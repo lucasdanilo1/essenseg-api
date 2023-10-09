@@ -1,10 +1,10 @@
-package sistema.essenseg.DTO.DadosClienteDTO;
+package sistema.essenseg.dto.clienteDTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import sistema.essenseg.model.enums.Segmentacao;
+import sistema.essenseg.model.cliente.Segmentacao;
 
 import java.math.BigDecimal;
 

@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sistema.essenseg.DTO.DadosAdministradoraDTO;
+import sistema.essenseg.dto.administradoraDTO.DadosAdministradoraDTO;
 
 import java.util.HashSet;
 import java.util.Set;

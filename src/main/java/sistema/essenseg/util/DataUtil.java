@@ -1,16 +1,16 @@
-package sistema.essenseg.service;
+package sistema.essenseg.util;
+
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class dataConverterService {
+@Component
+public class DataUtil {
 
     public static LocalDate converterData(String dataString){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate data = LocalDate.parse(dataString, formatter);
-        return data;
-
+        return LocalDate.parse(dataString, formatter);
     }
-
 
 }

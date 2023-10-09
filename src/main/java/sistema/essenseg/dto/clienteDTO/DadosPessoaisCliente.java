@@ -1,4 +1,4 @@
-package sistema.essenseg.DTO.DadosClienteDTO;
+package sistema.essenseg.dto.clienteDTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

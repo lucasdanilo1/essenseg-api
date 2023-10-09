@@ -6,27 +6,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import sistema.essenseg.DTO.DadosOperadoraDTO;
+import org.springframework.web.servlet.ModelAndView;
+import sistema.essenseg.dto.operadoraDTO.DadosOperadoraDTO;
 import sistema.essenseg.service.OperadoraService;
 
-
 @Controller
-@RequestMapping("operadoras")
+@RequestMapping("operadora")
 public class OperadoraController {
 
     @Autowired
     OperadoraService service;
 
     @GetMapping("cadastro")
-    public String formPlano(DadosOperadoraDTO dados){
-        return "formularioPlano";
+    public ModelAndView formulario(DadosOperadoraDTO dados){
+        return new ModelAndView("formularioPlano");
     }
 
     @Transactional
     @PostMapping("cadastro/save")
-    public String cadastrarOperadora(DadosOperadoraDTO dados){
-        service.cadastrarOperadora(dados);
-        return "redirect:/operadoras/cadastro";
+    public ModelAndView cadastro(DadosOperadoraDTO dados){
+        return service.cadastrar(dados);
     }
 
 }

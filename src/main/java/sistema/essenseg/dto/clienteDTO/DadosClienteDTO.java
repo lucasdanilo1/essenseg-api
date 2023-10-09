@@ -1,4 +1,4 @@
-package sistema.essenseg.DTO.DadosClienteDTO;
+package sistema.essenseg.dto.clienteDTO;
 
 import jakarta.validation.Valid;
 import lombok.Getter;
@@ -12,5 +12,7 @@ public class DadosClienteDTO{
         DadosPessoaisCliente dadosPessoaisCliente;
         @Valid
         DadosParaContratacaoCliente dadosParaContratacaoCliente;
+
+        String observacoes;
 
 }

@@ -1,19 +1,18 @@
-package sistema.essenseg.model.enums;
+package sistema.essenseg.model.cliente;
 
+import lombok.Getter;
+
+@Getter
 public enum Segmentacao {
 
     INDIVIDUAL("Individual"),
     EMPRESARIAL("Empresarial"),
     ADESAO("Adesão");
 
-    private String descricao;
+    private final String descricao;
 
     Segmentacao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public String getDescricao() {
-        return descricao;
     }
 
 }

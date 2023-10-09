@@ -2,8 +2,8 @@ package sistema.essenseg.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import sistema.essenseg.DTO.DadosAssociacaoDTO;
+import org.springframework.web.servlet.ModelAndView;
+import sistema.essenseg.dto.relacionamentoDTO.DadosRelacionamentoDTO;
 import sistema.essenseg.model.Administradora;
 import sistema.essenseg.model.OperadoraAdministradora;
 import sistema.essenseg.model.Operadora;
@@ -23,20 +23,27 @@ public class RelacionamentoService {
     @Autowired
     OperadorasAdministradorasRepository operadorasAdministradorasRepository;
 
-    public void relacionar(DadosAssociacaoDTO dados){
-        Administradora administradora = administradoraRepository.findById(dados.administradoraId()).orElseThrow(() -> new RuntimeException("Administradora não encontrada"));
-        Operadora operadora = operadoraRepository.findById(dados.operadoraId()).orElseThrow(() -> new RuntimeException("Operadora não encontrada"));
+    public ModelAndView relacionar(DadosRelacionamentoDTO dados){
+
+        Administradora administradora = administradoraRepository.getReferenceById(dados.administradoraId());
+        Operadora operadora = operadoraRepository.getReferenceById(dados.operadoraId());
 
         OperadoraAdministradora operadorasAdministradoras = new OperadoraAdministradora(administradora, operadora);
 
         operadorasAdministradorasRepository.save(operadorasAdministradoras);
+
+        return new ModelAndView("redirect:/relacionar/cadastro");
     }
 
-    public void carregarOperadorasEAdministradoras(Model model){
+    public ModelAndView carregarOperadorasEAdministradoras(){
+        ModelAndView mv = new ModelAndView("formularioAssociacao");
+
         List<Operadora> operadoras = operadoraRepository.findAll();
         List<Administradora> administradoras = administradoraRepository.findAll();
-        model.addAttribute("operadoras", operadoras);
-        model.addAttribute("administradoras", administradoras);
+        mv.addObject("operadoras", operadoras);
+        mv.addObject("administradoras", administradoras);
+
+        return mv;
     }
 
 }

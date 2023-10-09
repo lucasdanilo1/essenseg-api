@@ -40,43 +40,64 @@
   </nav>
 </header>
 
-<form action="/clientes/lista" th:object="${filtosClienteDTO}" method="post">
+<form action="/listagem/clientes/filtrados" th:object="${filtrosClienteDTO}" method="post">
 <main class="container-fluid col-md-6 mt-4">
-  <div class="accordion" id="accordionPanelsStayOpenExample">
+  <div class="accordion" >
     <div class="accordion-item ">
-      <div id="panelsStayOpen-collapseFive" class="accordion-collapse show">
+      <div  class="accordion-collapse show">
         <div class="accordion-body">
-          <div class="row g-2 mb-3">
-            <h5 class="mt-3 mb-3">Filtros</h5>
-<!--            <div class="form-group mb-2 col-md-3">-->
-<!--              <select th:field="*{administradoraId}" class="form-select borda-formulario">-->
-<!--                <option selected="selected" value="">- Etnia -</option>-->
-<!--                <option th:each="etnia : ${T(cop.projeto.Model.Aluno.Util).listaEtnia()}" th:value="${etnia}" th:text="${etnia.descricao}"></option>-->
-<!--              </select>-->
-<!--            </div>-->
-<!--            <div class="form-group mb-2 col-md-3">-->
-<!--              <select th:field="*{operadoraId}" class="form-select borda-formulario">-->
-<!--                <option selected="selected" value="">- Modalidades -</option>-->
-<!--                <option th:each="modalidade : ${T(cop.projeto.Model.Turma.Util).listaModalidade()}" th:value="${modalidade}" th:text="${modalidade.descricao}"></option>-->
-<!--              </select>-->
-<!--            </div>-->
-<!--            <div class="form-group mb-2 col-md-3">-->
-<!--              <select th:field="*{segmentacao}" class="form-select borda-formulario">-->
-<!--                <option selected="selected" value="">- Sexo -</option>-->
-<!--                <option th:each="sexo : ${T(cop.projeto.Model.Aluno.Util).listaSexo()}" th:value="${sexo}" th:text="${sexo.descricao}"></option>-->
-<!--              </select>-->
-<!--            </div>-->
-          </div>
+
           <div class="row">
-            <div class="col-md-12 text-end mt-4">
+            <h5 class="mt-3 mb-3">Filtros</h5>
+            <div class="form-group mb-2 col-md-3">
+              <select th:field="*{administradoraId}" class="form-select borda-formulario">
+                <option selected="selected" value="">- Administradora -</option>
+                <option th:each="administradora : ${administradoras}"
+                        th:value="${administradora.id}" th:text="${administradora.nome}"></option>
+              </select>
+            </div>
+            <div class="form-group mb-2 col-md-3">
+              <select th:field="*{operadoraId}" class="form-select borda-formulario">
+                <option selected="selected" value="">- Operadora -</option>
+                <option th:each="operadora : ${operadoras}" th:value="${operadora.id}"
+                        th:text="${operadora.nome}"></option>
+              </select>
+            </div>
+            <div class="form-group mb-2 col-md-3">
+              <select th:field="*{segmentacao}" class="form-select borda-formulario">
+                <option selected="selected" value="">- Segmentacao -</option>
+                <option
+                        th:each="segmentacao : ${segmentacoes}"
+                        th:value="${segmentacao}" th:text="${segmentacao.descricao}"></option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+
+            <div class="form-group mb-4 col-md-3">
+              <label for="primeiraData" class="form-label">Depois de</label>
+              <input type="date" name="primeiraData" th:field="*{primeiraData}"
+                     class="form-control borda-formulario" id="primeiraData">
+            </div>
+
+            <div class="form-group mb-4 col-md-3">
+              <label for="segundaData" class="form-label">Antes de</label>
+              <input type="date" name="segundaData" th:field="*{segundaData}"
+                     class="form-control borda-formulario" id="segundaData">
+            </div>
+
+            <div class="col-md-6 text-end mb-4">
               <button type="submit" class="btn btn-primary btn-wide">- Filtrar -</button>
             </div>
           </div>
-          </div>
+
         </div>
       </div>
     </div>
+  </div>
 </main>
+</form>
 
 
 <h2 class="container-fluid mt-5 col-md-8">Lista de Clientes</h2>
@@ -87,12 +108,14 @@
             <span class="input-group-text">
                 <i class="fas fa-search"></i>
             </span>
-        <input type="text" class="form-control form-control" placeholder="Pesquisar" th:field="*{nome}" th:value="${nome}">
+        <input type="text" class="form-control form-control" placeholder="Pesquisar" name="nome">
       </div>
+    </div>
+    <div class="col-md-7 text-end">
+      <a href="/clientes/cadastro"><button type="button" class="btn btn-light">Novo Cliente</button></a>
     </div>
   </div>
 </div>
-</form>
 
 <main class="container-fluid col-md-8 mt-3">
   <div class="accordion" id="listaTurmas">
@@ -109,7 +132,7 @@
               <th class="text-center">Segmentação</th>
             </tr>
             </thead>
-<!--            th:class="(${aluno.statusAluno.descricao == 'Selecionado'} ? 'text-success' : '') + (${aluno.ativo} ? '' : 'text-muted') + (${aluno.statusAluno.descricao == 'Matriculado'} ? 'text-warning' : '')"-->
+            <!--            th:class="(${aluno.statusAluno.descricao == 'Selecionado'} ? 'text-success' : '') + (${aluno.ativo} ? '' : 'text-muted') + (${aluno.statusAluno.descricao == 'Matriculado'} ? 'text-warning' : '')"-->
             <tbody th:each="cliente : ${clientes}">
             <tr>
               <td class="text-center" th:text="${cliente.id}"></td>
@@ -122,14 +145,10 @@
               <td class="text-center">
                 <a th:text="${cliente.operadora.nome}"></a>
               </td>
-              <td class="text-center" th:text="${cliente.dadosContratacao.segmentacao.descricao}"></td>
-<!--              <td class="text-center">-->
-<!--                <form th:action="@{/sistema/inscritos/inativar/{id}(id=${aluno.id})}" method="post">-->
-<!--                  <button type="submit" style="border: none; background-color: #fff;">-->
-<!--                    <i class="fas fa-power-off"></i>-->
-<!--                  </button>-->
-<!--                </form>-->
-<!--              </td>-->
+              <td class="text-center" th:text="${cliente.dadosContratacao.segmentacao.descricao}">
+              </td>
+              <td class="text-center">
+              </td>
             </tr>
             </tbody>
           </table>
@@ -138,6 +157,7 @@
     </div>
   </div>
 </main>
+
 
 <footer class="p-3 mt-5 mb-3" style="background-color: #FBFDFF">
   <p class="text-dark m-0 text-center">Lucas Danilo da Silva Rodrigues - 2023</p>

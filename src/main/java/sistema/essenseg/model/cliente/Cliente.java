@@ -7,9 +7,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sistema.essenseg.DTO.DadosClienteDTO.DadosClienteDTO;
+import sistema.essenseg.dto.clienteDTO.DadosClienteDTO;
 import sistema.essenseg.model.Administradora;
+import sistema.essenseg.model.Anexo;
+import sistema.essenseg.model.Corretor;
 import sistema.essenseg.model.Operadora;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,6 +28,8 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private LocalDate dataDoCadastro;
 
     @Embedded
     private DadosPessoais dadosPessoais;
@@ -37,9 +45,20 @@ public class Cliente {
     @ManyToOne
     private Administradora administradora;
 
-   public Cliente(DadosClienteDTO dados){
+    @ManyToOne
+    private Corretor corretor;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Anexo> anexos =  new ArrayList<>();
+
+    String observacoes;
+
+    public Cliente(DadosClienteDTO dados, Operadora operadora, Administradora administradora){
        this.dadosPessoais = new DadosPessoais(dados);
        this.dadosContratacao = new DadosContratacao(dados);
-   }
-
+       this.observacoes = dados.getObservacoes();
+       this.operadora = operadora;
+       this.administradora = administradora;
+       this.dataDoCadastro = LocalDate.now();
+    }
 }

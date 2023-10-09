@@ -1,4 +1,4 @@
-package sistema.essenseg.DTO;
+package sistema.essenseg.dto.operadoraDTO;
 
 public record DadosOperadoraDTO(
 
