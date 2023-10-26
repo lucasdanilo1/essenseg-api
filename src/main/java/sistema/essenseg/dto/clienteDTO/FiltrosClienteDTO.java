@@ -10,14 +10,14 @@ import java.time.LocalDate;
 @Setter
 public class FiltrosClienteDTO{
 
-        String nome;
-        String cpf;
-        String email;
-        String telefone;
-        Segmentacao segmentacao;
-        Long administradoraId;
-        Long operadoraId;
-        LocalDate primeiraData;
-        LocalDate segundaData;
+        private String nome;
+        private String cpf;
+        private  String email;
+        private String telefone;
+        private  Segmentacao segmentacao;
+        private  Long administradoraId;
+        private Long operadoraId;
+        private LocalDate primeiraData;
+        private  LocalDate segundaData;
 
 }

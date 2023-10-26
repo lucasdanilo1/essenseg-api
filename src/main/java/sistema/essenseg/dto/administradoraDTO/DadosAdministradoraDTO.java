@@ -1,9 +1,10 @@
 package sistema.essenseg.dto.administradoraDTO;
 
-public record DadosAdministradoraDTO(
-        String nome
-) {
+import jakarta.validation.constraints.NotBlank;
 
+public record DadosAdministradoraDTO(
+        @NotBlank String nome
+) {
 }
 
 

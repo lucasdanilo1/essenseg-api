@@ -24,6 +24,7 @@ public class Anexo {
     private Cliente cliente;
 
     private String nome;
+
     private String type;
 
     @Lob

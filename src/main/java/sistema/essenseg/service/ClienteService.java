@@ -1,113 +1,60 @@
 package sistema.essenseg.service;
 
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import sistema.essenseg.dto.clienteDTO.DadosClienteDTO;
-import sistema.essenseg.dto.clienteDTO.FiltrosClienteDTO;
-import sistema.essenseg.model.Administradora;
-import sistema.essenseg.model.Operadora;
-import sistema.essenseg.model.cliente.Cliente;
-import sistema.essenseg.model.cliente.Segmentacao;
-import sistema.essenseg.repository.AdministradoraRepository;
+import org.springframework.web.util.UriComponentsBuilder;
+import sistema.essenseg.dto.clienteDTO.*;
 import sistema.essenseg.repository.ClienteRepository;
-import sistema.essenseg.repository.OperadoraRepository;
+import sistema.essenseg.util.ClienteServiceUtil;
 
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ClienteService {
 
     @Autowired
-    private OperadoraRepository operadoraRepository;
-    @Autowired
-    private AdministradoraRepository administradoraRepository;
-    @Autowired
     private ClienteRepository clienteRepository;
     @Autowired
     private AnexoService anexoService;
-
-    public ModelAndView cliente(Long id){
-        ModelAndView mv = new ModelAndView("cliente");
-        var cliente = clienteRepository.getReferenceById(id);
-
-        mv.addObject("cliente", cliente);
-        return mv;
-    }
-
-    public void downloadAnexos(Long clienteId, Long anexoId, HttpServletResponse response) throws IOException {
-
-        var cliente = clienteRepository.getReferenceById(clienteId);
-
-        var anexo = cliente.getAnexos().get(anexoId.intValue());
-
-        response.setHeader("Content-Disposition", "attachment; filename=" + anexo.getNome());
-        response.setContentType(anexo.getType());
-
-        response.getOutputStream().write(anexo.getAnexoData());
-    }
+    @Autowired
+    private ClienteServiceUtil clienteServiceUtil;
 
     @Transactional
-    public ModelAndView cadastrarCliente(DadosClienteDTO dados, @RequestParam("anexos") List<MultipartFile> listaDeAnexos) {
+    public ResponseEntity<DadosClienteDetalhado> cadastrar(DadosClienteDTO dados, UriComponentsBuilder uriBuilder) {
 
-        Operadora operadora = operadoraRepository.getReferenceById(dados.getDadosParaContratacaoCliente().getOperadoraId());
-        Administradora administradora = administradoraRepository.getReferenceById(dados.getDadosParaContratacaoCliente().getAdministradoraId());
-        Cliente cliente = new Cliente(dados, operadora, administradora);
+        var cliente = clienteServiceUtil.novoObjCliente(dados);
+
         clienteRepository.save(cliente);
-
-            try {
-                anexoService.uploadDeAnexo(listaDeAnexos, cliente);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-        return new ModelAndView("redirect:/clientes/cadastro");
+        var uri = uriBuilder.path("cliente/{id}").buildAndExpand(cliente.getId()).toUri();
+        return ResponseEntity.created(uri).body(new DadosClienteDetalhado(cliente));
     }
 
-    public ModelAndView carregarOperadoraEAdministradora(){
-        ModelAndView mv = new ModelAndView("formulario");
-        var operadoras = operadoraRepository.findAll();
-        var administradoras = administradoraRepository.findAll();
-
-        mv.addObject("operadoras", operadoras);
-        mv.addObject("administradoras", administradoras);
-        return mv;
+    public ResponseEntity<DadosClienteDetalhado> detalhar(Long id){
+        return ResponseEntity.ok(new DadosClienteDetalhado(clienteRepository.getReferenceById(id)));
     }
 
-    public ModelAndView clientes(FiltrosClienteDTO filtros){
-        ModelAndView mv = new ModelAndView("listas/listaClientes");
-        var clientes = clienteRepository.findAll();
-        var operadoras = operadoraRepository.findAll();
-        var administradoras = administradoraRepository.findAll();
-
-        mv.addObject("segmentacoes", Arrays.asList(Segmentacao.values()));
-        mv.addObject("clientes", clientes);
-        mv.addObject("operadoras", operadoras);
-        mv.addObject("administradoras", administradoras);
-        return mv;
+    public ResponseEntity<DadosClienteDetalhado> atualizar(Long id, DadosAtualizaClienteDTO dados) {
+        var cliente = clienteRepository.getReferenceById(id);
+        cliente.atualizarInformacoes(dados);
+        return ResponseEntity.ok().body(new DadosClienteDetalhado(cliente));
     }
 
-    public ModelAndView clientesFiltrados(FiltrosClienteDTO filtros){
+    public ResponseEntity<Page<DadosListagemCliente>> listar(Pageable page){
+        return ResponseEntity.ok().body(clienteRepository.findAll(page).map(DadosListagemCliente::new));
+    }
 
-        ModelAndView mv = new ModelAndView("listas/listaClientes");
+    public ResponseEntity<Page<DadosListagemCliente>> listarFiltrados(FiltrosClienteDTO filtros, Pageable page){
+        return ResponseEntity.ok().body(clienteRepository.findAll(filtros, page).map(DadosListagemCliente::new));
+    }
 
-        var clientes = clienteRepository.findAllByFiltros(filtros.getNome(), filtros.getCpf(), filtros.getEmail(),
-                filtros.getTelefone(), filtros.getSegmentacao(), filtros.getAdministradoraId(), filtros.getOperadoraId(), filtros.getPrimeiraData(), filtros.getSegundaData());
-
-        var operadoras = operadoraRepository.findAll();
-        var administradoras = administradoraRepository.findAll();
-
-        mv.addObject("segmentacoes", Arrays.asList(Segmentacao.values()));
-        mv.addObject("clientes", clientes);
-        mv.addObject("operadoras", operadoras);
-        mv.addObject("administradoras", administradoras);
-        return mv;
+    public ResponseEntity<Map<String, List<?>>> obterOperadorasEAdministradoras(){
+        Map<String, List<?>> listas = clienteServiceUtil.listasParaFiltragem();
+        return ResponseEntity.ok().body(listas);
     }
 
 }

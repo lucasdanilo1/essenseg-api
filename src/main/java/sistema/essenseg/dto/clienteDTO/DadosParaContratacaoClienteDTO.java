@@ -2,32 +2,30 @@ package sistema.essenseg.dto.clienteDTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
 import sistema.essenseg.model.cliente.Segmentacao;
 
 import java.math.BigDecimal;
 
-@Setter
-@Getter
-public class DadosParaContratacaoCliente {
+public record DadosParaContratacaoClienteDTO(
 
         @NotBlank
-        String vigencia;
+        String vigencia,
 
         @NotNull
-        BigDecimal plano;
+        BigDecimal plano,
 
         @NotNull
-        BigDecimal adesao;
+        BigDecimal adesao,
 
         @NotNull
-        Long administradoraId;
+        Long administradoraId,
 
         @NotNull
-        Long operadoraId;
+        Long operadoraId,
 
         @NotNull
-        Segmentacao segmentacao;
+        Segmentacao segmentacao
+
+) {
 
 }

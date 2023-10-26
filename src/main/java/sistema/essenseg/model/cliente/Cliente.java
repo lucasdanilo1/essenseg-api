@@ -2,11 +2,11 @@ package sistema.essenseg.model.cliente;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import sistema.essenseg.dto.clienteDTO.DadosAtualizaClienteDTO;
 import sistema.essenseg.dto.clienteDTO.DadosClienteDTO;
 import sistema.essenseg.model.Administradora;
 import sistema.essenseg.model.Anexo;
@@ -37,11 +37,9 @@ public class Cliente {
     @Embedded
     private DadosContratacao dadosContratacao;
 
-    @NotNull
     @ManyToOne
     private Operadora operadora;
 
-    @NotNull
     @ManyToOne
     private Administradora administradora;
 
@@ -51,14 +49,21 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Anexo> anexos =  new ArrayList<>();
 
-    String observacoes;
+    private String observacoes;
 
     public Cliente(DadosClienteDTO dados, Operadora operadora, Administradora administradora){
        this.dadosPessoais = new DadosPessoais(dados);
        this.dadosContratacao = new DadosContratacao(dados);
-       this.observacoes = dados.getObservacoes();
+       this.observacoes = dados.observacoes();
        this.operadora = operadora;
        this.administradora = administradora;
        this.dataDoCadastro = LocalDate.now();
+    }
+
+    public void atualizarInformacoes(DadosAtualizaClienteDTO dados){
+        if(dados.getDadosPessoaisClienteDTO() != null || dados.getDadosParaContratacaoClienteDTO() != null){
+            this.dadosPessoais.checaCamposEAtualiza(dados);
+            this.dadosContratacao.checaCamposEAtualiza(dados);
+        }
     }
 }

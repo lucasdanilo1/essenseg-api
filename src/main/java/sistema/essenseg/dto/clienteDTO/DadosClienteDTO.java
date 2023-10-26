@@ -1,18 +1,15 @@
 package sistema.essenseg.dto.clienteDTO;
 
 import jakarta.validation.Valid;
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-public class DadosClienteDTO{
+public record DadosClienteDTO(
 
         @Valid
-        DadosPessoaisCliente dadosPessoaisCliente;
+        DadosPessoaisClienteDTO dadosPessoaisClienteDTO,
+
         @Valid
-        DadosParaContratacaoCliente dadosParaContratacaoCliente;
+        DadosParaContratacaoClienteDTO dadosParaContratacaoClienteDTO,
 
-        String observacoes;
+        String observacoes
 
+){
 }

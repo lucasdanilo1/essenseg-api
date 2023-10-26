@@ -1,13 +1,15 @@
 package sistema.essenseg.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import sistema.essenseg.dto.operadoraDTO.DadosOperadoraDTO;
-import sistema.essenseg.dto.operadoraDTO.FiltrosOperadorasDTO;
+import sistema.essenseg.infra.NomeObjetoJaExistenteException;
 import sistema.essenseg.model.Operadora;
 import sistema.essenseg.repository.OperadoraRepository;
 
+import java.net.URI;
 import java.util.List;
 
 @Service
@@ -16,20 +18,22 @@ public class OperadoraService {
     @Autowired
     OperadoraRepository repository;
 
-    public ModelAndView operadoras() {
-        ModelAndView mv = new ModelAndView();
+    public ResponseEntity<List<Operadora>> listar() {
         List<Operadora> operadoras = repository.findAll();
-        mv.addObject("operadoras", operadoras);
-        return mv;
+        return ResponseEntity.ok().body(operadoras);
     }
 
-    public ModelAndView cadastrar(DadosOperadoraDTO dados) {
-        Operadora operadora = new Operadora(dados);
-        repository.save(operadora);
-        return new ModelAndView("redirect:/listagem/operadoras");
-    }
+    public ResponseEntity<String> cadastrar(DadosOperadoraDTO dados){
 
-    public ModelAndView operadorasFiltradas(FiltrosOperadorasDTO filtros) {
-        return new ModelAndView();
+        if(repository.existsByNome(dados.nome())){
+            throw new NomeObjetoJaExistenteException();
+        }
+            Operadora operadora = new Operadora(dados);
+            repository.save(operadora);
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                    .replacePath("listagem/operadoras")
+                    .build().toUri();
+
+        return ResponseEntity.created(location).body(operadora.getNome());
     }
 }

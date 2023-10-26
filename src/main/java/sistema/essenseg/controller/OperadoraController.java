@@ -1,16 +1,14 @@
 package sistema.essenseg.controller;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import sistema.essenseg.dto.operadoraDTO.DadosOperadoraDTO;
 import sistema.essenseg.service.OperadoraService;
 
-@Controller
+@RestController
 @RequestMapping("operadora")
 public class OperadoraController {
 
@@ -18,13 +16,13 @@ public class OperadoraController {
     OperadoraService service;
 
     @GetMapping("cadastro")
-    public ModelAndView formulario(DadosOperadoraDTO dados){
-        return new ModelAndView("formularioPlano");
+    public ResponseEntity<?> formulario() {
+        return ResponseEntity.ok().build();
     }
 
     @Transactional
     @PostMapping("cadastro/save")
-    public ModelAndView cadastro(DadosOperadoraDTO dados){
+    public ResponseEntity<String> cadastro(@Valid @RequestBody DadosOperadoraDTO dados){
         return service.cadastrar(dados);
     }
 

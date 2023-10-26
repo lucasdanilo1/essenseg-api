@@ -1,13 +1,15 @@
 package sistema.essenseg.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import sistema.essenseg.dto.administradoraDTO.DadosAdministradoraDTO;
-import sistema.essenseg.dto.administradoraDTO.FiltrosAdministradorasDTO;
+import sistema.essenseg.infra.NomeObjetoJaExistenteException;
 import sistema.essenseg.model.Administradora;
 import sistema.essenseg.repository.AdministradoraRepository;
 
+import java.net.URI;
 import java.util.List;
 
 @Service
@@ -16,20 +18,22 @@ public class AdministradoraService {
     @Autowired
     AdministradoraRepository repository;
 
-    public ModelAndView administradoras(){
-        ModelAndView mv = new ModelAndView();
+    public ResponseEntity<List<Administradora>> listar(){
         List<Administradora> administradoras = repository.findAll();
-        mv.addObject("administradoras", administradoras);
-        return mv;
+        return ResponseEntity.ok().body(administradoras);
     }
 
-    public ModelAndView cadastrarAdministradora(DadosAdministradoraDTO dados){
+    public ResponseEntity<String> cadastrar(DadosAdministradoraDTO dados){
+
+        if(repository.existsByNome(dados.nome())){
+            throw new NomeObjetoJaExistenteException();
+        }
+
         Administradora administradora = new Administradora(dados);
         repository.save(administradora);
-        return new ModelAndView("redirect:/listagem/administradoras");
-    }
-
-    public ModelAndView administradorasFiltradas(FiltrosAdministradorasDTO filtros) {
-        return new ModelAndView();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .replacePath("listagem/administradoras")
+                .build().toUri();
+        return ResponseEntity.created(location).body(administradora.getNome());
     }
 }

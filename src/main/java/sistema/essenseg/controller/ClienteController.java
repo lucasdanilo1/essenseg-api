@@ -1,47 +1,55 @@
 package sistema.essenseg.controller;
 
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.UriComponentsBuilder;
+import sistema.essenseg.dto.clienteDTO.DadosAtualizaClienteDTO;
 import sistema.essenseg.dto.clienteDTO.DadosClienteDTO;
+import sistema.essenseg.dto.clienteDTO.DadosClienteDetalhado;
+import sistema.essenseg.service.AnexoService;
 import sistema.essenseg.service.ClienteService;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("cliente")
 public class ClienteController {
 
     @Autowired
     ClienteService service;
-
-    @GetMapping("{id}")
-    public ModelAndView cliente(@PathVariable Long id){
-        return service.cliente(id);
-    }
+    @Autowired
+    AnexoService anexoService;
 
     @GetMapping("cadastro")
-    public ModelAndView formulario(DadosClienteDTO dados){
-        return service.carregarOperadoraEAdministradora();
+    public ResponseEntity<Map<String, List<?>>> formulario(DadosClienteDTO dados){
+        return service.obterOperadorasEAdministradoras();
     }
 
     @Transactional
     @PostMapping("cadastro/save")
-    public ModelAndView cadastrar(@Valid DadosClienteDTO dados, @RequestParam("anexos") List<MultipartFile> listaDeAnexos){
-        return service.cadastrarCliente(dados, listaDeAnexos);
+    public ResponseEntity<DadosClienteDetalhado> cadastrar(@Valid @RequestBody DadosClienteDTO dados, UriComponentsBuilder uriBuilder){
+        return service.cadastrar(dados, uriBuilder);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<DadosClienteDetalhado> cliente(@PathVariable Long id){
+        return service.detalhar(id);
+    }
+
+    @Transactional
+    @PutMapping("{id}/update")
+    public ResponseEntity<DadosClienteDetalhado> atualizar(@PathVariable Long id, @RequestBody DadosAtualizaClienteDTO dados){
+        return service.atualizar(id, dados);
     }
 
     @GetMapping("/{clienteId}/anexo/{anexoId}")
-    public void downloadAnexos(@PathVariable Long clienteId, @PathVariable Long anexoId, HttpServletResponse response) throws IOException {
-        service.downloadAnexos(clienteId, anexoId, response);
+    public ResponseEntity<Resource> downloadAnexos(@PathVariable Long clienteId, @PathVariable Long anexoId)  {
+        return anexoService.downloadAnexos(clienteId, anexoId);
     }
-
-
 
 }

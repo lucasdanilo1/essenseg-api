@@ -1,15 +1,14 @@
 package sistema.essenseg.model.cliente;
 
 import jakarta.persistence.Embeddable;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CPF;
+import sistema.essenseg.dto.clienteDTO.DadosAtualizaClienteDTO;
 import sistema.essenseg.dto.clienteDTO.DadosClienteDTO;
 import sistema.essenseg.util.DataUtil;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
@@ -19,49 +18,89 @@ import java.time.LocalDate;
 @Setter
 public class DadosPessoais {
 
-    @NotBlank
     private String nome;
 
-    @NotBlank
-    @CPF
     private String cpf;
-
-    private String rg;
 
     private String nomeResponsavel;
 
     private String cpfResponsavel;
 
-    @NotNull
     private LocalDate dataNascimento;
 
-    @NotBlank
     private String telefone;
+
+    private String cep;
 
     private String endereco;
 
-    @NotBlank
     private String email;
 
-    private Double peso;
+    private BigDecimal peso;
 
-    private Integer altura;
+    private BigDecimal altura;
 
 
     public DadosPessoais(DadosClienteDTO dados){
 
-        this.nome = dados.getDadosPessoaisCliente().getNome();
-        this.cpf = dados.getDadosPessoaisCliente().getCpf();
-        this.nomeResponsavel = dados.getDadosPessoaisCliente().getNomeResponsavel();
-        this.dataNascimento = DataUtil.converterData(dados.getDadosPessoaisCliente().getDataNascimento());
-        this.telefone = dados.getDadosPessoaisCliente().getTelefone();
-        this.email = dados.getDadosPessoaisCliente().getEmail();
-        this.peso = dados.getDadosPessoaisCliente().getPeso();
-        this.altura = dados.getDadosPessoaisCliente().getAltura();
+        this.nome = dados.dadosPessoaisClienteDTO().nome();
+        this.cpf = dados.dadosPessoaisClienteDTO().cpf();
+        this.nomeResponsavel = dados.dadosPessoaisClienteDTO().nomeResponsavel();
+        this.cpfResponsavel = dados.dadosPessoaisClienteDTO().cpfResponsavel();
+        this.dataNascimento = DataUtil.converterData(dados.dadosPessoaisClienteDTO().dataNascimento());
+        this.telefone = dados.dadosPessoaisClienteDTO().telefone();
+        this.cep = dados.dadosPessoaisClienteDTO().cep();
+        this.endereco = dados.dadosPessoaisClienteDTO().endereco();
+        this.email = dados.dadosPessoaisClienteDTO().email();
+        this.peso = dados.dadosPessoaisClienteDTO().peso();
+        this.altura = dados.dadosPessoaisClienteDTO().altura();
 
     }
 
+    public void checaCamposEAtualiza(DadosAtualizaClienteDTO dados) {
 
+        if (!dados.getDadosPessoaisClienteDTO().nome().isEmpty()) {
+            this.nome = dados.getDadosPessoaisClienteDTO().nome();
+        }
 
+        if (!dados.getDadosPessoaisClienteDTO().cpf().isEmpty()) {
+            this.cpf = dados.getDadosPessoaisClienteDTO().cpf();
+        }
 
+        if (!dados.getDadosPessoaisClienteDTO().nomeResponsavel().isEmpty()) {
+            this.nomeResponsavel = dados.getDadosPessoaisClienteDTO().nomeResponsavel();
+        }
+
+        if (!dados.getDadosPessoaisClienteDTO().cpfResponsavel().isEmpty()) {
+            this.cpfResponsavel = dados.getDadosPessoaisClienteDTO().cpfResponsavel();
+        }
+
+        if (dados.getDadosPessoaisClienteDTO().dataNascimento() != null) {
+            this.dataNascimento = DataUtil.converterData(dados.getDadosPessoaisClienteDTO().dataNascimento());
+        }
+
+        if (!dados.getDadosPessoaisClienteDTO().telefone().isEmpty()) {
+            this.telefone = dados.getDadosPessoaisClienteDTO().telefone();
+        }
+        if (!dados.getDadosPessoaisClienteDTO().cep().isEmpty()) {
+            this.cep = dados.getDadosPessoaisClienteDTO().cep();
+        }
+
+        if (!dados.getDadosPessoaisClienteDTO().endereco().isEmpty()) {
+            this.endereco = dados.getDadosPessoaisClienteDTO().endereco();
+        }
+
+        if (!dados.getDadosPessoaisClienteDTO().email().isEmpty()) {
+            this.email = dados.getDadosPessoaisClienteDTO().email();
+        }
+
+        if (dados.getDadosPessoaisClienteDTO().peso() != null) {
+            this.peso = dados.getDadosPessoaisClienteDTO().peso();
+        }
+
+        if (dados.getDadosPessoaisClienteDTO().altura() != null) {
+            this.altura = dados.getDadosPessoaisClienteDTO().altura();
+        }
+
+    }
 }
