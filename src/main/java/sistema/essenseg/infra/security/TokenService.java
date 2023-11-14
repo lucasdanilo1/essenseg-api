@@ -21,13 +21,12 @@ public class TokenService {
     public String geradorToken(Usuario usuario) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
-            String token = JWT
+            return JWT
                     .create()
                     .withIssuer("essng-api")
                     .withSubject(usuario.getLogin())
                     .withExpiresAt(gerarDataDeExpiracao())
                     .sign(algorithm);
-            return token;
         } catch (JWTCreationException exception) {
             throw new RuntimeException("Error ao gerar o token", exception);
         }

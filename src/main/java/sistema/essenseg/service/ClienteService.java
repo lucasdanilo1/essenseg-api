@@ -15,7 +15,6 @@ import sistema.essenseg.model.cliente.Cliente;
 import sistema.essenseg.repository.AdministradoraRepository;
 import sistema.essenseg.repository.ClienteRepository;
 import sistema.essenseg.repository.OperadoraRepository;
-import sistema.essenseg.util.ClienteServiceUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -27,8 +26,6 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
     @Autowired
     private AnexoService anexoService;
-    @Autowired
-    private ClienteServiceUtil clienteServiceUtil;
     @Autowired
     private OperadoraRepository operadoraRepository;
     @Autowired
@@ -76,10 +73,4 @@ public class ClienteService {
     public ResponseEntity<Page<DadosListagemCliente>> listarFiltrados(FiltrosClienteDTO filtros, Pageable page){
         return ResponseEntity.ok().body(clienteRepository.findAll(filtros, page).map(DadosListagemCliente::new));
     }
-
-    public ResponseEntity<Map<String, List<?>>> obterOperadorasEAdministradoras(){
-        Map<String, List<?>> listas = clienteServiceUtil.listasParaFiltragem();
-        return ResponseEntity.ok().body(listas);
-    }
-
 }

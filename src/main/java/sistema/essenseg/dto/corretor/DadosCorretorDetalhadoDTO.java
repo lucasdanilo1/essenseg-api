@@ -1,6 +1,5 @@
 package sistema.essenseg.dto.corretor;
 
-import lombok.Getter;
 import sistema.essenseg.model.Corretor;
 
 public record DadosCorretorDetalhadoDTO(

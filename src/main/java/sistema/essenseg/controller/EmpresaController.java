@@ -18,11 +18,6 @@ public class EmpresaController {
     @Autowired
     EmpresaService service;
 
-    @GetMapping("cadastro")
-    public ResponseEntity<?> formulario() {
-        return ResponseEntity.ok().build();
-    }
-
     @Transactional
     @PostMapping("cadastro/save")
     public ResponseEntity<DadosEmpresaDetalhadaDTO> cadastro(@Valid @RequestBody DadosCadastroEmpresaDTO dados, UriComponentsBuilder uriBuilder) {

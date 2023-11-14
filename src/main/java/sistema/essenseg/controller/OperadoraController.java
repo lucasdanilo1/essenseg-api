@@ -15,11 +15,6 @@ public class OperadoraController {
     @Autowired
     OperadoraService service;
 
-    @GetMapping("cadastro")
-    public ResponseEntity<?> formulario() {
-        return ResponseEntity.ok().build();
-    }
-
     @Transactional
     @PostMapping("cadastro/save")
     public ResponseEntity<String> cadastro(@Valid @RequestBody DadosOperadoraDTO dados){

@@ -28,11 +28,6 @@ public class AuthController {
     @Autowired
     private TokenService service;
 
-    @GetMapping()
-    public ResponseEntity<?> formularioLogin(){
-        return ResponseEntity.ok().build();
-    }
-
     @Transactional
     @PostMapping("login")
     public ResponseEntity<RespostaLoginDTO> login(@Valid @RequestBody DadosAutenticacao dados){

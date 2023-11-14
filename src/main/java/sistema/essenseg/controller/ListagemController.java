@@ -61,7 +61,6 @@ public class ListagemController {
         Page<DadosListagemSeguradoDTO> pageCombinada = new PageImpl<>(listaCombinada, page, listaClientes.size());
 
         return ResponseEntity.ok(pageCombinada);
-
     }
 
     @GetMapping("clientes")

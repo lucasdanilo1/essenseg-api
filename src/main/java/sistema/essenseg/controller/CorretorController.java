@@ -17,11 +17,6 @@ public class CorretorController {
     @Autowired
     CorretorService service;
 
-    @GetMapping("cadastro")
-    public ResponseEntity<?> formulario(){
-        return ResponseEntity.ok().build();
-    }
-
     @Transactional
     @PostMapping("cadastro/save")
     public ResponseEntity<DadosCorretorDetalhadoDTO> cadastro(@Valid @RequestBody DadosCadastroCorretorDTO dados){
