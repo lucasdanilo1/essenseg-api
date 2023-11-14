@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import sistema.essenseg.dto.administradoraDTO.DadosAdministradoraDTO;
-import sistema.essenseg.infra.NomeObjetoJaExistenteException;
+import sistema.essenseg.dto.administradora.DadosAdministradoraDTO;
+import sistema.essenseg.infra.Exception.NomeObjetoJaExistenteException;
 import sistema.essenseg.model.Administradora;
 import sistema.essenseg.repository.AdministradoraRepository;
 

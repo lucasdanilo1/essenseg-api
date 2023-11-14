@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sistema.essenseg.dto.corretorDTO.DadosAtualizaCorretor;
-import sistema.essenseg.dto.corretorDTO.DadosCorretorDTO;
+import sistema.essenseg.dto.corretor.DadosAtualizaCorretorDTO;
+import sistema.essenseg.dto.corretor.DadosCadastroCorretorDTO;
 
 @Entity
 @Getter
@@ -25,13 +25,13 @@ public class Corretor {
     private String email;
 
     private String telefone;
-    public Corretor(DadosCorretorDTO dados) {
+    public Corretor(DadosCadastroCorretorDTO dados) {
         this.nome = dados.nome();
         this.email = dados.email();
         this.telefone = dados.telefone();
     }
 
-    public void atualizaInformacoes(DadosAtualizaCorretor dados) {
+    public void atualizaInformacoes(DadosAtualizaCorretorDTO dados) {
         if(!dados.getNome().isEmpty()){
             this.nome = dados.getNome();
         }

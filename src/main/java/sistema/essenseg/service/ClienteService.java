@@ -7,8 +7,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
-import sistema.essenseg.dto.clienteDTO.*;
+import sistema.essenseg.dto.cliente.AtualizaDadosClienteDTO;
+import sistema.essenseg.dto.cliente.*;
+import sistema.essenseg.model.Administradora;
+import sistema.essenseg.model.Operadora;
+import sistema.essenseg.model.cliente.Cliente;
+import sistema.essenseg.repository.AdministradoraRepository;
 import sistema.essenseg.repository.ClienteRepository;
+import sistema.essenseg.repository.OperadoraRepository;
 import sistema.essenseg.util.ClienteServiceUtil;
 
 import java.util.List;
@@ -23,25 +29,44 @@ public class ClienteService {
     private AnexoService anexoService;
     @Autowired
     private ClienteServiceUtil clienteServiceUtil;
+    @Autowired
+    private OperadoraRepository operadoraRepository;
+    @Autowired
+    private AdministradoraRepository administradoraRepository;
 
     @Transactional
-    public ResponseEntity<DadosClienteDetalhado> cadastrar(DadosClienteDTO dados, UriComponentsBuilder uriBuilder) {
-
-        var cliente = clienteServiceUtil.novoObjCliente(dados);
+    public ResponseEntity<DadosClienteDetalhadoDTO> cadastrar(DadosCadastroClienteDTO dados, UriComponentsBuilder uriBuilder) {
+        var cliente = new Cliente(dados);
+        Operadora operadora = operadoraRepository.getReferenceById(dados.dadosParaContratacaoSeguradoDTO().operadoraId());
+        Administradora administradora = administradoraRepository.getReferenceById(dados.dadosParaContratacaoSeguradoDTO().administradoraId());
+        cliente.getDadosContratacaoSegurado().setOperadora(operadora);
+        cliente.getDadosContratacaoSegurado().setAdministradora(administradora);
 
         clienteRepository.save(cliente);
         var uri = uriBuilder.path("cliente/{id}").buildAndExpand(cliente.getId()).toUri();
-        return ResponseEntity.created(uri).body(new DadosClienteDetalhado(cliente));
+        return ResponseEntity.created(uri).body(new DadosClienteDetalhadoDTO(cliente));
     }
 
-    public ResponseEntity<DadosClienteDetalhado> detalhar(Long id){
-        return ResponseEntity.ok(new DadosClienteDetalhado(clienteRepository.getReferenceById(id)));
-    }
+    public ResponseEntity<DadosClienteDetalhadoDTO> atualizar(Long id, AtualizaDadosClienteDTO dados) {
 
-    public ResponseEntity<DadosClienteDetalhado> atualizar(Long id, DadosAtualizaClienteDTO dados) {
         var cliente = clienteRepository.getReferenceById(id);
+
+        if(dados.atualizaDadosSeguradoDTO() != null){
+            if(dados.atualizaDadosSeguradoDTO().operadoraId() != null){
+                var operadora = operadoraRepository.getReferenceById(dados.atualizaDadosSeguradoDTO().operadoraId());
+                cliente.getDadosContratacaoSegurado().setOperadora(operadora);
+            } else if (dados.atualizaDadosSeguradoDTO().administradoraId() != null) {
+                var administradora = administradoraRepository.getReferenceById(dados.atualizaDadosSeguradoDTO().administradoraId());
+                cliente.getDadosContratacaoSegurado().setAdministradora(administradora);
+            }
+        }
+
         cliente.atualizarInformacoes(dados);
-        return ResponseEntity.ok().body(new DadosClienteDetalhado(cliente));
+        return ResponseEntity.ok().body(new DadosClienteDetalhadoDTO(cliente));
+    }
+
+    public ResponseEntity<DadosClienteDetalhadoDTO> detalhar(Long id){
+        return ResponseEntity.ok(new DadosClienteDetalhadoDTO(clienteRepository.getReferenceById(id)));
     }
 
     public ResponseEntity<Page<DadosListagemCliente>> listar(Pageable page){

@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import sistema.essenseg.dto.operadoraDTO.DadosOperadoraDTO;
-import sistema.essenseg.infra.NomeObjetoJaExistenteException;
+import sistema.essenseg.dto.operadora.DadosOperadoraDTO;
+import sistema.essenseg.infra.Exception.NomeObjetoJaExistenteException;
 import sistema.essenseg.model.Operadora;
 import sistema.essenseg.repository.OperadoraRepository;
 

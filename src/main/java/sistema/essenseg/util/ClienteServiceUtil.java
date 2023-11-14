@@ -2,9 +2,7 @@ package sistema.essenseg.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import sistema.essenseg.dto.clienteDTO.DadosClienteDTO;
-import sistema.essenseg.model.cliente.Cliente;
-import sistema.essenseg.model.cliente.Segmentacao;
+import sistema.essenseg.model.Segurado.Segmentacao;
 import sistema.essenseg.repository.AdministradoraRepository;
 import sistema.essenseg.repository.ClienteRepository;
 import sistema.essenseg.repository.OperadoraRepository;
@@ -35,10 +33,4 @@ public class ClienteServiceUtil {
         listas.put("segmentacoes", Arrays.asList(Segmentacao.values()));
         return listas;
     }
-    public Cliente novoObjCliente(DadosClienteDTO dados){
-        var operadora = operadoraRepository.getReferenceById(dados.dadosParaContratacaoClienteDTO().operadoraId());
-        var administradora = administradoraRepository.getReferenceById(dados.dadosParaContratacaoClienteDTO().operadoraId());
-        return new Cliente(dados, operadora, administradora);
-    }
-
 }

@@ -5,7 +5,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sistema.essenseg.dto.operadoraDTO.DadosOperadoraDTO;
+import sistema.essenseg.dto.operadora.DadosOperadoraDTO;
 import sistema.essenseg.service.OperadoraService;
 
 @RestController

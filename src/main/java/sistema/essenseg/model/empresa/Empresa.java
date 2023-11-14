@@ -2,12 +2,14 @@ package sistema.essenseg.model.empresa;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sistema.essenseg.dto.empresaDTO.DadosEmpresaDTO;
-import sistema.essenseg.model.cliente.Cliente;
+import sistema.essenseg.dto.empresa.AtualizaDadosEmpresaDTO;
+import sistema.essenseg.dto.empresa.DadosCadastroEmpresaDTO;
+import sistema.essenseg.model.Segurado.DadosContratacaoSegurado;
+import sistema.essenseg.model.Segurado.DadosPessoaisSegurado;
+import sistema.essenseg.model.Segurado.Segurado;
 
 import java.time.LocalDate;
 
@@ -15,10 +17,8 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
-@Table(name = "empresas")
-@AllArgsConstructor
 @NoArgsConstructor
-public class Empresa extends Cliente {
+public class Empresa extends Segurado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,12 +27,22 @@ public class Empresa extends Cliente {
     private LocalDate dataDoCadastro;
 
     @Embedded
-    private DadosEmpresa dadosEmpresa;
+    private DadosEspecificosEmpresa dadosEspecificosEmpresa;
 
-
-    public Empresa(DadosEmpresaDTO dados){
+    public Empresa(DadosCadastroEmpresaDTO dados){
        this.dataDoCadastro = LocalDate.now();
-       this.dadosEmpresa = new DadosEmpresa(dados);
+       this.dadosPessoaisSegurado = new DadosPessoaisSegurado(dados);
+       this.dadosEspecificosEmpresa = new DadosEspecificosEmpresa(dados);
+       this.dadosContratacaoSegurado = new DadosContratacaoSegurado(dados);
     }
 
+    public void atualizarInformacoes(AtualizaDadosEmpresaDTO dados) {
+        if(dados != null){
+            if(dados.atualizaDadosSeguradoDTO() != null){
+                this.dadosPessoaisSegurado.checaCamposEAtualiza(dados.atualizaDadosSeguradoDTO());
+                this.dadosContratacaoSegurado.checaCamposEAtualiza(dados.atualizaDadosSeguradoDTO());
+            }
+            this.dadosEspecificosEmpresa.checaCamposEAtualiza(dados);
+        }
+    }
 }

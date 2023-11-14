@@ -7,14 +7,11 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import sistema.essenseg.dto.clienteDTO.DadosAtualizaClienteDTO;
-import sistema.essenseg.dto.clienteDTO.DadosClienteDTO;
-import sistema.essenseg.dto.clienteDTO.DadosClienteDetalhado;
+import sistema.essenseg.dto.cliente.AtualizaDadosClienteDTO;
+import sistema.essenseg.dto.cliente.DadosCadastroClienteDTO;
+import sistema.essenseg.dto.cliente.DadosClienteDetalhadoDTO;
 import sistema.essenseg.service.AnexoService;
 import sistema.essenseg.service.ClienteService;
-
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("cliente")
@@ -25,25 +22,20 @@ public class ClienteController {
     @Autowired
     AnexoService anexoService;
 
-    @GetMapping("cadastro")
-    public ResponseEntity<Map<String, List<?>>> formulario(DadosClienteDTO dados){
-        return service.obterOperadorasEAdministradoras();
-    }
-
     @Transactional
     @PostMapping("cadastro/save")
-    public ResponseEntity<DadosClienteDetalhado> cadastrar(@Valid @RequestBody DadosClienteDTO dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<DadosClienteDetalhadoDTO> cadastrar(@Valid @RequestBody DadosCadastroClienteDTO dados, UriComponentsBuilder uriBuilder){
         return service.cadastrar(dados, uriBuilder);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<DadosClienteDetalhado> cliente(@PathVariable Long id){
+    public ResponseEntity<DadosClienteDetalhadoDTO> detalhar(@PathVariable Long id){
         return service.detalhar(id);
     }
 
     @Transactional
     @PutMapping("{id}/update")
-    public ResponseEntity<DadosClienteDetalhado> atualizar(@PathVariable Long id, @RequestBody DadosAtualizaClienteDTO dados){
+    public ResponseEntity<DadosClienteDetalhadoDTO> atualizar(@PathVariable Long id, @Valid @RequestBody AtualizaDadosClienteDTO dados){
         return service.atualizar(id, dados);
     }
 
