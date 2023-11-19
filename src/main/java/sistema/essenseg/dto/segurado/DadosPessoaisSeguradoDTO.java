@@ -9,6 +9,8 @@ public record DadosPessoaisSeguradoDTO(
         @NotBlank
         String nome,
 
+        String dataNascimento,
+
         @Pattern(regexp = "\\d{10}")
         @NotBlank
         String telefone,

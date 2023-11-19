@@ -25,7 +25,6 @@ public class DadosEspecificosCliente {
 
     private BigDecimal altura;
 
-
     public DadosEspecificosCliente(DadosCadastroClienteDTO dados){
         this.peso = dados.dadosEspecificosCadastroClienteDTO().peso();
         this.altura = dados.dadosEspecificosCadastroClienteDTO().altura();
@@ -36,22 +35,22 @@ public class DadosEspecificosCliente {
 
     public void checaCamposEAtualiza(AtualizaDadosClienteDTO dados) {
 
-        if (dados.cpf() != null) {
-            this.cpf = dados.cpf();
+        if (dados.atualizaDadosEspecificosClienteDTO().cpf() != null) {
+            this.cpf = dados.atualizaDadosEspecificosClienteDTO().cpf();
         }
-        if (dados.peso() != null) {
-            this.peso = dados.peso();
+        if (dados.atualizaDadosEspecificosClienteDTO().peso() != null) {
+            this.peso = dados.atualizaDadosEspecificosClienteDTO().peso();
         }
-        if (dados.altura() != null) {
-            this.altura = dados.altura();
-        }
-
-        if (dados.nomeResponsavel() != null) {
-            this.nomeResponsavel = dados.nomeResponsavel();
+        if (dados.atualizaDadosEspecificosClienteDTO().altura() != null) {
+            this.altura = dados.atualizaDadosEspecificosClienteDTO().altura();
         }
 
-        if (dados.cpfResponsavel() != null) {
-            this.cpfResponsavel = dados.cpfResponsavel();
+        if (dados.atualizaDadosEspecificosClienteDTO().nomeResponsavel() != null) {
+            this.nomeResponsavel = dados.atualizaDadosEspecificosClienteDTO().nomeResponsavel();
+        }
+
+        if (dados.atualizaDadosEspecificosClienteDTO().cpfResponsavel() != null) {
+            this.cpfResponsavel = dados.atualizaDadosEspecificosClienteDTO().cpfResponsavel();
         }
     }
 }

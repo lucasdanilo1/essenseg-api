@@ -14,6 +14,9 @@ public record DadosParaContratacaoSeguradoDTO(
         @NotNull
         Long administradoraId,
 
+        @NotNull
+        Long corretorId,
+
         @NotBlank
         String vigencia,
 
@@ -23,7 +26,6 @@ public record DadosParaContratacaoSeguradoDTO(
         @NotNull
         BigDecimal adesao,
 
-        @NotNull
         Segmentacao segmentacao
 
 ) {

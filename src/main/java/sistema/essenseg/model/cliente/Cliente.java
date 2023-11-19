@@ -1,50 +1,32 @@
 package sistema.essenseg.model.cliente;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sistema.essenseg.dto.cliente.AtualizaDadosClienteDTO;
 import sistema.essenseg.dto.cliente.DadosCadastroClienteDTO;
-import sistema.essenseg.model.Anexo;
-import sistema.essenseg.model.Corretor;
 import sistema.essenseg.model.Segurado.DadosContratacaoSegurado;
 import sistema.essenseg.model.Segurado.DadosPessoaisSegurado;
 import sistema.essenseg.model.Segurado.Segurado;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-@Entity
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
+@DiscriminatorValue("cliente")
 public class Cliente extends Segurado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Embedded
-    DadosEspecificosCliente dadosEspecificosCliente;
-
-    @ManyToOne
-    private Corretor corretor;
-
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Anexo> anexos =  new ArrayList<>();
-
-    public Cliente(DadosCadastroClienteDTO dadosCliente){
-       this.dadosPessoaisSegurado = new DadosPessoaisSegurado(dadosCliente);
-       this.dadosContratacaoSegurado = new DadosContratacaoSegurado(dadosCliente);
-       this.dadosEspecificosCliente = new DadosEspecificosCliente(dadosCliente);
-
-       this.observacoes = dadosCliente.observacoes();
-       this.dataDoCadastro = LocalDate.now();
+    public Cliente(DadosCadastroClienteDTO dados){
+       this.dadosPessoaisSegurado = new DadosPessoaisSegurado(dados);
+       this.dadosEspecificosCliente = new DadosEspecificosCliente(dados);
+       this.dadosContratacaoSegurado = new DadosContratacaoSegurado(dados);
+       this.observacoes = dados.observacoes();
     }
-
 
     public void atualizarInformacoes(AtualizaDadosClienteDTO dados){
         if(dados != null){
@@ -52,7 +34,18 @@ public class Cliente extends Segurado {
                 this.dadosPessoaisSegurado.checaCamposEAtualiza(dados.atualizaDadosSeguradoDTO());
                 this.dadosContratacaoSegurado.checaCamposEAtualiza(dados.atualizaDadosSeguradoDTO());
             }
-            this.dadosEspecificosCliente.checaCamposEAtualiza(dados);
+            if(dados.atualizaDadosEspecificosClienteDTO() != null){
+                this.dadosEspecificosCliente.checaCamposEAtualiza(dados);
+            }
+            if(dados.observacoes() != null){
+                if(!dados.observacoes().isEmpty()){
+                    this.observacoes = dados.observacoes();
+                }
+            }
         }
+    }
+
+    public Long getId() {
+        return super.id;
     }
 }

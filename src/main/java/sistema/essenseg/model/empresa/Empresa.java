@@ -11,29 +11,22 @@ import sistema.essenseg.model.Segurado.DadosContratacaoSegurado;
 import sistema.essenseg.model.Segurado.DadosPessoaisSegurado;
 import sistema.essenseg.model.Segurado.Segurado;
 
-import java.time.LocalDate;
-
-
-@Entity
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
+@DiscriminatorValue("empresa")
 public class Empresa extends Segurado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate dataDoCadastro;
-
-    @Embedded
-    private DadosEspecificosEmpresa dadosEspecificosEmpresa;
-
     public Empresa(DadosCadastroEmpresaDTO dados){
-       this.dataDoCadastro = LocalDate.now();
        this.dadosPessoaisSegurado = new DadosPessoaisSegurado(dados);
        this.dadosEspecificosEmpresa = new DadosEspecificosEmpresa(dados);
        this.dadosContratacaoSegurado = new DadosContratacaoSegurado(dados);
+       this.observacoes = dados.observacoes();
     }
 
     public void atualizarInformacoes(AtualizaDadosEmpresaDTO dados) {
@@ -42,7 +35,18 @@ public class Empresa extends Segurado {
                 this.dadosPessoaisSegurado.checaCamposEAtualiza(dados.atualizaDadosSeguradoDTO());
                 this.dadosContratacaoSegurado.checaCamposEAtualiza(dados.atualizaDadosSeguradoDTO());
             }
-            this.dadosEspecificosEmpresa.checaCamposEAtualiza(dados);
+            if(dados.atualizaDadosEspecificosEmpresaDTO() != null){
+                this.dadosEspecificosEmpresa.checaCamposEAtualiza(dados);
+            }
+            if(dados.observacoes() != null){
+                if(!dados.observacoes().isEmpty()){
+                    this.observacoes = dados.observacoes();
+                }
+            }
         }
+    }
+
+    public Long getId() {
+        return super.id;
     }
 }

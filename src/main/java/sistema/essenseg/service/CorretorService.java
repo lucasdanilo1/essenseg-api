@@ -8,6 +8,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import sistema.essenseg.dto.corretor.DadosAtualizaCorretorDTO;
 import sistema.essenseg.dto.corretor.DadosCadastroCorretorDTO;
 import sistema.essenseg.dto.corretor.DadosCorretorDetalhadoDTO;
+import sistema.essenseg.infra.Exception.NomeObjetoJaExistenteException;
 import sistema.essenseg.model.Corretor;
 import sistema.essenseg.repository.CorretorRepository;
 
@@ -21,6 +22,11 @@ public class CorretorService {
     private CorretorRepository repository;
 
     public ResponseEntity<DadosCorretorDetalhadoDTO> cadastrar(DadosCadastroCorretorDTO dados) {
+
+        if(repository.existsByNome(dados.nome())){
+            throw new NomeObjetoJaExistenteException();
+        }
+
         Corretor corretor = new Corretor(dados);
         repository.save(corretor);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -35,6 +41,7 @@ public class CorretorService {
     }
 
     public ResponseEntity<DadosCorretorDetalhadoDTO> atualizar(@PathVariable Long id, DadosAtualizaCorretorDTO dados){
+
         var corretor = repository.getReferenceById(id);
         corretor.atualizaInformacoes(dados);
         return ResponseEntity.ok().body(new DadosCorretorDetalhadoDTO(corretor));

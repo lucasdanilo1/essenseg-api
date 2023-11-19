@@ -9,6 +9,9 @@ import java.time.format.DateTimeFormatter;
 public class DataUtil {
 
     public static LocalDate converterData(String dataString){
+        if(dataString == null){
+            return null;
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(dataString, formatter);
     }

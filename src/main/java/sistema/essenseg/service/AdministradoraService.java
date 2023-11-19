@@ -24,7 +24,6 @@ public class AdministradoraService {
     }
 
     public ResponseEntity<String> cadastrar(DadosAdministradoraDTO dados){
-
         if(repository.existsByNome(dados.nome())){
             throw new NomeObjetoJaExistenteException();
         }

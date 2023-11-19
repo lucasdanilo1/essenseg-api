@@ -4,9 +4,12 @@ import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import sistema.essenseg.dto.cliente.DadosCadastroClienteDTO;
 import sistema.essenseg.dto.empresa.DadosCadastroEmpresaDTO;
 import sistema.essenseg.dto.segurado.AtualizaDadosSeguradoDTO;
-import sistema.essenseg.dto.cliente.DadosCadastroClienteDTO;
+import sistema.essenseg.util.DataUtil;
+
+import java.time.LocalDate;
 
 
 @Embeddable
@@ -16,6 +19,8 @@ import sistema.essenseg.dto.cliente.DadosCadastroClienteDTO;
 public class DadosPessoaisSegurado {
 
     private String nome;
+
+    private LocalDate dataNascimento;
 
     private String telefone;
 
@@ -27,6 +32,7 @@ public class DadosPessoaisSegurado {
 
     public DadosPessoaisSegurado(DadosCadastroClienteDTO dados){
         this.nome = dados.dadosPessoaisSeguradoDTO().nome();
+        this.dataNascimento = DataUtil.converterData(dados.dadosPessoaisSeguradoDTO().dataNascimento());
         this.telefone = dados.dadosPessoaisSeguradoDTO().telefone();
         this.cep = dados.dadosPessoaisSeguradoDTO().cep();
         this.endereco = dados.dadosPessoaisSeguradoDTO().endereco();
@@ -35,6 +41,7 @@ public class DadosPessoaisSegurado {
 
     public DadosPessoaisSegurado(DadosCadastroEmpresaDTO dados){
         this.nome = dados.dadosPessoaisSeguradoDTO().nome();
+        this.dataNascimento = DataUtil.converterData(dados.dadosPessoaisSeguradoDTO().dataNascimento());
         this.telefone = dados.dadosPessoaisSeguradoDTO().telefone();
         this.cep = dados.dadosPessoaisSeguradoDTO().cep();
         this.endereco = dados.dadosPessoaisSeguradoDTO().endereco();

@@ -1,22 +1,21 @@
 package sistema.essenseg.dto.empresa;
 
-
-import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CNPJ;
 
-public record DadosEspecificosCadastroEmpresaDTO(
+public record AtualizaDadosEspecificosEmpresaDTO(
+
+        @CNPJ
+        String cnpj,
 
         String razaoSocial,
 
         String nomeFantasia,
 
-        @CNPJ
-        @NotBlank
-        String cnpj,
-
         String atvEconomica,
 
-        String dataAbertura
+        String dataAbertura,
+
+        String observacoes
 
 ) {
 }

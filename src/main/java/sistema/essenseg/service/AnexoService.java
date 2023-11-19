@@ -10,8 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import sistema.essenseg.model.Anexo;
-import sistema.essenseg.model.cliente.Cliente;
-import sistema.essenseg.repository.ClienteRepository;
+import sistema.essenseg.repository.SeguradoRepository;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -21,10 +20,13 @@ import java.util.List;
 public class AnexoService {
 
     @Autowired
-    ClienteRepository clienteRepository;
+    SeguradoRepository seguradoRepository;
 
-    public void uploadDeAnexos(List<MultipartFile> listaDeAnexos, Cliente cliente) {
+    public void uploadDeAnexos(List<MultipartFile> listaDeAnexos, Long seguradoId) {
         for (MultipartFile anexo : listaDeAnexos) {
+
+            var segurado = seguradoRepository.getReferenceById(seguradoId);
+            System.out.println(segurado.getDadosPessoaisSegurado().getNome());
 
             Anexo novoAnexo = new Anexo();
 
@@ -37,18 +39,18 @@ public class AnexoService {
             }
 
             novoAnexo.setAnexoData(os.toByteArray());
-            novoAnexo.setCliente(cliente);
+            novoAnexo.setSegurado(segurado);
             novoAnexo.setNome(anexo.getOriginalFilename());
             novoAnexo.setType(anexo.getContentType());
-            cliente.getAnexos().add(novoAnexo);
+            segurado.getAnexos().add(novoAnexo);
         }
     }
 
-    public ResponseEntity<Resource> downloadAnexos(Long clienteId, Long anexoId) {
+    public ResponseEntity<Resource> downloadAnexos(Long seguradoId, Long anexoIndex) {
 
-        var cliente = clienteRepository.getReferenceById(clienteId);
+        var segurado = seguradoRepository.getReferenceById(seguradoId);
 
-        var anexo = cliente.getAnexos().get(anexoId.intValue());
+        var anexo = segurado.getAnexos().get(anexoIndex.intValue());
 
         ByteArrayResource resource = new ByteArrayResource(anexo.getAnexoData());
 

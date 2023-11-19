@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum Segmentacao {
 
     INDIVIDUAL("Individual"),
-    ADESAO("Adesão");
+    ADESAO("Adesão"),
+    EMPRESARIAL("Empresarial");
 
     private final String descricao;
 

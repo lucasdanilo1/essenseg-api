@@ -27,18 +27,8 @@ public class ExceptionHandler {
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(ClienteJaCadastradoException.class)
-    public ResponseEntity<?> ClienteJaCadastrado(ClienteJaCadastradoException ex){
+    public ResponseEntity<?> ClienteJaCadastrado(ClienteJaCadastradoException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
-    }
-
-    @org.springframework.web.bind.annotation.ExceptionHandler(CpfObrigatorioException.class)
-    public ResponseEntity<?> CpfObrigatorio(CpfObrigatorioException ex){
-        return ResponseEntity.badRequest().body(ex.getMessage());
-    }
-
-    @org.springframework.web.bind.annotation.ExceptionHandler(CnpjObrigatorioException.class)
-    public ResponseEntity<?> CnpjObrigatorio(CpfObrigatorioException ex){
-        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
 }

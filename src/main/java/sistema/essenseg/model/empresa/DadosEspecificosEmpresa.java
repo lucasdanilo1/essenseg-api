@@ -36,23 +36,23 @@ public class DadosEspecificosEmpresa {
 
     public void checaCamposEAtualiza(AtualizaDadosEmpresaDTO dados) {
 
-        if (dados.razaoSocial() != null) {
-            this.razaoSocial = dados.razaoSocial();
+        if (dados.atualizaDadosEspecificosEmpresaDTO().razaoSocial() != null) {
+            this.razaoSocial = dados.atualizaDadosEspecificosEmpresaDTO().razaoSocial();
         }
 
-        if (dados.cnpj() != null) {
-            this.cnpj = dados.cnpj();
+        if (dados.atualizaDadosEspecificosEmpresaDTO().cnpj() != null) {
+            this.cnpj = dados.atualizaDadosEspecificosEmpresaDTO().cnpj();
         }
-        if (dados.nomeFantasia() != null) {
-            this.nomeFantasia = dados.nomeFantasia();
-        }
-
-        if (dados.atvEconomica() != null) {
-            this.atvEconomica = dados.atvEconomica();
+        if (dados.atualizaDadosEspecificosEmpresaDTO().nomeFantasia() != null) {
+            this.nomeFantasia = dados.atualizaDadosEspecificosEmpresaDTO().nomeFantasia();
         }
 
-        if (dados.dataAbertura() != null) {
-            this.dataAbertura = DataUtil.converterData(dados.dataAbertura());
+        if (dados.atualizaDadosEspecificosEmpresaDTO().atvEconomica() != null) {
+            this.atvEconomica = dados.atualizaDadosEspecificosEmpresaDTO().atvEconomica();
+        }
+
+        if (dados.atualizaDadosEspecificosEmpresaDTO().dataAbertura() != null) {
+            this.dataAbertura = DataUtil.converterData(dados.atualizaDadosEspecificosEmpresaDTO().dataAbertura());
         }
     }
 

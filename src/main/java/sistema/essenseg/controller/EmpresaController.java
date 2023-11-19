@@ -30,10 +30,14 @@ public class EmpresaController {
     }
 
     @Transactional
-    @PutMapping("{id}/update")
+    @PutMapping("{id}/atualizar")
     public ResponseEntity<DadosEmpresaDetalhadaDTO> atualizar(@PathVariable Long id, @Valid @RequestBody AtualizaDadosEmpresaDTO dados){
         return service.atualizar(id, dados);
     }
 
-
+    @Transactional
+    @DeleteMapping("inativar/{id}")
+    public ResponseEntity<DadosEmpresaDetalhadaDTO> inativar(@PathVariable Long id){
+        return service.inativar(id);
+    }
 }

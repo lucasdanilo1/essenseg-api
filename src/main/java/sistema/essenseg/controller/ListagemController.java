@@ -3,25 +3,20 @@ package sistema.essenseg.controller;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sistema.essenseg.dto.segurado.DadosListagemSeguradoDTO;
 import sistema.essenseg.dto.cliente.DadosListagemCliente;
 import sistema.essenseg.dto.cliente.FiltrosClienteDTO;
 import sistema.essenseg.dto.empresa.DadosListagemEmpresa;
 import sistema.essenseg.dto.empresa.FiltrosEmpresaDTO;
+import sistema.essenseg.dto.segurado.DadosListagemSegurado;
+import sistema.essenseg.dto.segurado.FiltrosSeguradoDTO;
 import sistema.essenseg.model.Administradora;
 import sistema.essenseg.model.Corretor;
 import sistema.essenseg.model.Operadora;
-import sistema.essenseg.model.cliente.Cliente;
-import sistema.essenseg.model.empresa.Empresa;
-import sistema.essenseg.repository.ClienteRepository;
-import sistema.essenseg.repository.EmpresaRepository;
 import sistema.essenseg.service.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -38,30 +33,21 @@ public class ListagemController {
     CorretorService corretorService;
     @Autowired
     EmpresaService empresaService;
-
     @Autowired
-    ClienteRepository clienteRepository;
-
-    @Autowired
-    EmpresaRepository empresaRepository;
+    SeguradoService seguradoService;
 
     @Transactional
     @GetMapping("segurados")
-    public ResponseEntity<?> segurados(Pageable page) {
-
-        Page<Cliente> pageClientes = clienteRepository.findAll(page);
-        Page<Empresa> pageEmpresas = empresaRepository.findAll(page);
-
-        List<DadosListagemSeguradoDTO> listaClientes = pageClientes.getContent().stream().map(DadosListagemSeguradoDTO::new).toList();
-        List<DadosListagemSeguradoDTO> listaEmpresas = pageEmpresas.getContent().stream().map(DadosListagemSeguradoDTO::new).toList();
-
-        List<DadosListagemSeguradoDTO> listaCombinada = new ArrayList<>(listaClientes);
-        listaCombinada.addAll(listaEmpresas);
-
-        Page<DadosListagemSeguradoDTO> pageCombinada = new PageImpl<>(listaCombinada, page, listaClientes.size());
-
-        return ResponseEntity.ok(pageCombinada);
+    public ResponseEntity<Page<DadosListagemSegurado>> segurados(Pageable page) {
+        return seguradoService.listar(page);
     }
+
+    @Transactional
+    @PostMapping("segurados/filtrados")
+    public ResponseEntity<Page<DadosListagemSegurado>> seguradosFiltrados(@RequestBody FiltrosSeguradoDTO filtros, Pageable page) {
+        return seguradoService.listarFiltrados(filtros, page);
+    }
+
 
     @GetMapping("clientes")
     public ResponseEntity<Page<DadosListagemCliente>> clientes(Pageable page) {
@@ -78,6 +64,7 @@ public class ListagemController {
     public ResponseEntity<Page<DadosListagemEmpresa>> empresas(Pageable page) {
         return empresaService.listar(page);
     }
+
     @Transactional
     @PostMapping("empresas/filtrados")
     public ResponseEntity<Page<DadosListagemEmpresa>> empresasFiltrados(@RequestBody FiltrosEmpresaDTO filtros, Pageable page) {

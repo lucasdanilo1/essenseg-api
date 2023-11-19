@@ -13,16 +13,23 @@ public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
     @Query("""
             SELECT e
             FROM Empresa e
-            WHERE (:#{#filtro.nomeFantasia} IS NULL OR e.dadosEspecificosEmpresa.nomeFantasia LIKE %:#{#filtro.nomeFantasia}%)
-            AND (:#{#filtro.cnpj} IS NULL OR e.dadosEspecificosEmpresa.cnpj LIKE %:#{#filtro.cnpj}%)
-            AND (:#{#filtro.atvEconomica} IS NULL OR e.dadosEspecificosEmpresa.atvEconomica LIKE %:#{#filtro.atvEconomica}%)
-            AND (:#{#filtro.nome} IS NULL OR e.dadosPessoaisSegurado.nome LIKE %:#{#filtro.nome}%)
-            AND (:#{#filtro.razaoSocial} IS NULL OR e.dadosEspecificosEmpresa.razaoSocial LIKE %:#{#filtro.razaoSocial}%)
+            WHERE (:#{#filtro.filtroGlobal} IS NULL
+            OR e.dadosPessoaisSegurado.nome LIKE %:#{#filtro.filtroGlobal}%
+            OR e.dadosEspecificosEmpresa.nomeFantasia LIKE %:#{#filtro.filtroGlobal}%
+            OR e.dadosEspecificosEmpresa.cnpj LIKE %:#{#filtro.filtroGlobal}%
+            OR e.dadosEspecificosEmpresa.atvEconomica LIKE %:#{#filtro.filtroGlobal}%
+            OR e.dadosEspecificosEmpresa.razaoSocial LIKE %:#{#filtro.filtroGlobal}%)
             AND (:#{#filtro.administradoraId} IS NULL OR e.dadosContratacaoSegurado.administradora.id = :#{#filtro.administradoraId})
             AND (:#{#filtro.operadoraId} IS NULL OR e.dadosContratacaoSegurado.operadora.id = :#{#filtro.operadoraId})
             AND (:#{#filtro.primeiraDataVigencia} IS NULL OR e.dadosContratacaoSegurado.vigencia > :#{#filtro.primeiraDataVigencia})
             AND (:#{#filtro.segundaDataVigencia} IS NULL OR e.dadosContratacaoSegurado.vigencia < :#{#filtro.segundaDataVigencia})
+            ORDER BY e.dadosEspecificosEmpresa.nomeFantasia ASC
             """)
     Page<Empresa> findAll(@Param("filtro") FiltrosEmpresaDTO filtros, Pageable pageable);
 
+    @Override
+    @Query("SELECT e FROM Empresa e ORDER BY e.dadosEspecificosEmpresa.nomeFantasia ASC")
+    Page<Empresa> findAll(Pageable pageable);
+
+    boolean existsByDadosEspecificosEmpresaCnpj(String cnpj);
 }

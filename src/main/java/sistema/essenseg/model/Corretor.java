@@ -32,14 +32,16 @@ public class Corretor {
     }
 
     public void atualizaInformacoes(DadosAtualizaCorretorDTO dados) {
-        if(!dados.getNome().isEmpty()){
-            this.nome = dados.getNome();
-        }
-        if(!dados.getEmail().isEmpty()){
-            this.email = dados.getEmail();
-        }
-        if(!dados.getTelefone().isEmpty()){
-            this.telefone = dados.getTelefone();
+        if(dados != null){
+            if(dados.getNome() != null){
+                this.nome = dados.getNome();
+            }
+            if(dados.getEmail() != null){
+                this.email = dados.getEmail();
+            }
+            if(dados.getTelefone() != null){
+                this.telefone = dados.getTelefone();
+            }
         }
     }
 }

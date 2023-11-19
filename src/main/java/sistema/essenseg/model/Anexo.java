@@ -5,15 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sistema.essenseg.model.cliente.Cliente;
+import sistema.essenseg.model.Segurado.Segurado;
 
-
-@Entity
 @Getter
 @Setter
-@Table(name = "anexos")
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "anexos")
 public class Anexo {
 
     @Id
@@ -21,7 +20,8 @@ public class Anexo {
     private Long id;
 
     @ManyToOne
-    private Cliente cliente;
+    @JoinColumn(name = "segurado_id")
+    private Segurado segurado;
 
     private String nome;
 

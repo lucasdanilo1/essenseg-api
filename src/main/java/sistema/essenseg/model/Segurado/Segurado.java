@@ -3,21 +3,29 @@ package sistema.essenseg.model.Segurado;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import sistema.essenseg.model.Anexo;
+import sistema.essenseg.model.cliente.DadosEspecificosCliente;
+import sistema.essenseg.model.empresa.DadosEspecificosEmpresa;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@MappedSuperclass
+@Entity
+@Table(name = "segurados")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo")
 public abstract class Segurado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
+
+    protected boolean ativo;
 
     protected LocalDate dataDoCadastro;
 
@@ -27,6 +35,20 @@ public abstract class Segurado {
     @Embedded
     protected DadosContratacaoSegurado dadosContratacaoSegurado;
 
+    @Embedded
+    protected DadosEspecificosCliente dadosEspecificosCliente;
+
+    @Embedded
+    protected DadosEspecificosEmpresa dadosEspecificosEmpresa;
+
     protected String observacoes;
+
+    @OneToMany(mappedBy = "segurado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Anexo> anexos =  new ArrayList<>();
+
+    public Segurado(){
+        this.ativo = true;
+        this.dataDoCadastro = LocalDate.now();
+    }
 
 }

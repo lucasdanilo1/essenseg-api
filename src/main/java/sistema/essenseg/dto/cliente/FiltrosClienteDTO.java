@@ -6,10 +6,7 @@ import java.time.LocalDate;
 
 public record FiltrosClienteDTO(
 
-        String nome,
-        String cpf,
-        String email,
-        String telefone,
+        String filtroGlobal,
         Segmentacao segmentacao,
         Long administradoraId,
         Long operadoraId,

@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import sistema.essenseg.dto.cliente.DadosCadastroClienteDTO;
 import sistema.essenseg.dto.empresa.DadosCadastroEmpresaDTO;
 import sistema.essenseg.dto.segurado.AtualizaDadosSeguradoDTO;
-import sistema.essenseg.dto.cliente.DadosCadastroClienteDTO;
 import sistema.essenseg.model.Administradora;
+import sistema.essenseg.model.Corretor;
 import sistema.essenseg.model.Operadora;
 import sistema.essenseg.util.DataUtil;
 
@@ -25,6 +26,9 @@ public class DadosContratacaoSegurado {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Administradora administradora;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Corretor corretor;
 
     private LocalDate vigencia;
 
@@ -48,7 +52,7 @@ public class DadosContratacaoSegurado {
         this.vigencia = DataUtil.converterData(dados.dadosParaContratacaoSeguradoDTO().vigencia());
         this.plano = dados.dadosParaContratacaoSeguradoDTO().plano();
         this.adesao = dados.dadosParaContratacaoSeguradoDTO().adesao();
-        this.segmentacao = dados.dadosParaContratacaoSeguradoDTO().segmentacao();
+        this.segmentacao = Segmentacao.EMPRESARIAL;
     }
 
     public void checaCamposEAtualiza(AtualizaDadosSeguradoDTO dados) {
