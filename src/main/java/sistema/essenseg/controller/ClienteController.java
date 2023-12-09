@@ -3,12 +3,13 @@ package sistema.essenseg.controller;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import sistema.essenseg.dto.cliente.AtualizaDadosClienteDTO;
-import sistema.essenseg.dto.cliente.DadosCadastroClienteDTO;
-import sistema.essenseg.dto.cliente.DadosClienteDetalhadoDTO;
+import sistema.essenseg.dto.cliente.*;
+import sistema.essenseg.model.cliente.Cliente;
 import sistema.essenseg.service.ClienteService;
 
 @RestController
@@ -21,24 +22,40 @@ public class ClienteController {
     @Transactional
     @PostMapping("cadastro/save")
     public ResponseEntity<DadosClienteDetalhadoDTO> cadastrar(@Valid @RequestBody DadosCadastroClienteDTO dados, UriComponentsBuilder uriBuilder){
-        return service.cadastrar(dados, uriBuilder);
+        Cliente cliente = service.cadastrar(dados);
+        return ResponseEntity.created(
+                uriBuilder.path("cliente/{id}")
+                        .buildAndExpand(cliente.getId())
+                        .toUri()
+        ).body(new DadosClienteDetalhadoDTO(cliente));
+    }
+
+    @GetMapping("clientes")
+    public ResponseEntity<Page<DadosListagemCliente>> clientes(Pageable page) {
+        return ResponseEntity.ok().body(service.listar(page));
+    }
+
+    @Transactional
+    @PostMapping("clientes/filtrados")
+    public ResponseEntity<Page<DadosListagemCliente>> clientesFiltrados(@RequestBody FiltrosClienteDTO filtros, Pageable page) {
+        return ResponseEntity.ok().body(service.listarFiltrados(filtros, page));
     }
 
     @GetMapping("{id}")
     public ResponseEntity<DadosClienteDetalhadoDTO> detalhar(@PathVariable Long id){
-        return service.detalhar(id);
+        return ResponseEntity.ok().body(service.detalhar(id));
     }
 
     @Transactional
     @PutMapping("{id}/atualizar")
     public ResponseEntity<DadosClienteDetalhadoDTO> atualizar(@PathVariable Long id, @Valid @RequestBody AtualizaDadosClienteDTO dados){
-        return service.atualizar(id, dados);
+        return ResponseEntity.ok().body(service.atualizar(id, dados));
     }
 
     @Transactional
     @PutMapping("inativar/{id}")
     public ResponseEntity<DadosClienteDetalhadoDTO> inativar(@PathVariable Long id){
-        return service.inativar(id);
+        return ResponseEntity.ok().body(service.inativar(id));
     }
 
 }

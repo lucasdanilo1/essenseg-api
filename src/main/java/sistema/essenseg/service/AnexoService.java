@@ -3,14 +3,13 @@ package sistema.essenseg.service;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import sistema.essenseg.model.Anexo;
 import sistema.essenseg.repository.SeguradoRepository;
+import sistema.essenseg.util.AnexoInfos;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -40,13 +39,13 @@ public class AnexoService {
 
             novoAnexo.setAnexoData(os.toByteArray());
             novoAnexo.setSegurado(segurado);
-            novoAnexo.setNome(anexo.getOriginalFilename());
-            novoAnexo.setType(anexo.getContentType());
+            novoAnexo.setNomeArquivo(anexo.getOriginalFilename());
+            novoAnexo.setTipoArquivo(anexo.getContentType());
             segurado.getAnexos().add(novoAnexo);
         }
     }
 
-    public ResponseEntity<Resource> downloadAnexos(Long seguradoId, Long anexoIndex) {
+    public AnexoInfos downloadAnexos(Long seguradoId, Long anexoIndex) {
 
         var segurado = seguradoRepository.getReferenceById(seguradoId);
 
@@ -55,13 +54,10 @@ public class AnexoService {
         ByteArrayResource resource = new ByteArrayResource(anexo.getAnexoData());
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + anexo.getNome());
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + anexo.getNomeArquivo());
         headers.setContentType(MediaType.APPLICATION_PDF);
 
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentLength(anexo.getAnexoData().length)
-                .body(resource);
+        return new AnexoInfos(headers, (long) anexo.getAnexoData().length, resource);
     }
 
 }

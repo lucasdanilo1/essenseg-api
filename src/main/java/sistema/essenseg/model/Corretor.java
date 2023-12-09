@@ -11,7 +11,7 @@ import sistema.essenseg.dto.corretor.DadosCadastroCorretorDTO;
 @Entity
 @Getter
 @Setter
-@Table(name = "corretores")
+@Table(name = "corretor")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Corretor {
@@ -25,6 +25,7 @@ public class Corretor {
     private String email;
 
     private String telefone;
+
     public Corretor(DadosCadastroCorretorDTO dados) {
         this.nome = dados.nome();
         this.email = dados.email();

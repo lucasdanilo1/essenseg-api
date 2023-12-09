@@ -2,7 +2,7 @@ package sistema.essenseg.dto.segurado;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
-import sistema.essenseg.model.Segurado.Segmentacao;
+import sistema.essenseg.model.segurado.Segmentacao;
 
 import java.math.BigDecimal;
 

@@ -3,7 +3,6 @@ package sistema.essenseg.model.empresa;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import sistema.essenseg.dto.empresa.AtualizaDadosEmpresaDTO;
 import sistema.essenseg.dto.empresa.DadosCadastroEmpresaDTO;
 import sistema.essenseg.util.DataUtil;
@@ -12,7 +11,6 @@ import java.time.LocalDate;
 
 @Embeddable
 @Getter
-@Setter
 @NoArgsConstructor
 public class DadosEspecificosEmpresa {
 
@@ -38,10 +36,6 @@ public class DadosEspecificosEmpresa {
 
         if (dados.atualizaDadosEspecificosEmpresaDTO().razaoSocial() != null) {
             this.razaoSocial = dados.atualizaDadosEspecificosEmpresaDTO().razaoSocial();
-        }
-
-        if (dados.atualizaDadosEspecificosEmpresaDTO().cnpj() != null) {
-            this.cnpj = dados.atualizaDadosEspecificosEmpresaDTO().cnpj();
         }
         if (dados.atualizaDadosEspecificosEmpresaDTO().nomeFantasia() != null) {
             this.nomeFantasia = dados.atualizaDadosEspecificosEmpresaDTO().nomeFantasia();

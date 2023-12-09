@@ -4,9 +4,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.util.UriComponentsBuilder;
 import sistema.essenseg.dto.empresa.*;
 import sistema.essenseg.infra.Exception.ClienteJaCadastradoException;
 import sistema.essenseg.model.empresa.Empresa;
@@ -22,7 +20,7 @@ public class EmpresaService {
     SeguradoServiceUtil seguradoServiceUtil;
 
     @Transactional
-    public ResponseEntity<DadosEmpresaDetalhadaDTO> cadastrar(DadosCadastroEmpresaDTO dados, UriComponentsBuilder uriBuilder) {
+    public Empresa cadastrar(DadosCadastroEmpresaDTO dados) {
 
         if(dados.dadosEspecificosCadastroEmpresaDTO() != null){
             if(repository.existsByDadosEspecificosEmpresaCnpj(dados.dadosEspecificosCadastroEmpresaDTO().cnpj())){
@@ -37,39 +35,33 @@ public class EmpresaService {
         seguradoServiceUtil.defineCorretor(empresa, dados.dadosParaContratacaoSeguradoDTO().corretorId());
 
         repository.save(empresa);
-        var uri = uriBuilder.path("empresa/{id}").buildAndExpand(empresa.getId()).toUri();
-        return ResponseEntity.created(uri).body(new DadosEmpresaDetalhadaDTO(empresa));
+        return empresa;
     }
 
-    public ResponseEntity<Page<DadosListagemEmpresa>> listar(Pageable page){
-        return ResponseEntity.ok().body(repository.findAll(page).map(DadosListagemEmpresa::new));
+    public Page<DadosListagemEmpresa> listar(Pageable page){
+        return repository.findAll(page).map(DadosListagemEmpresa::new);
     }
 
-    public ResponseEntity<Page<DadosListagemEmpresa>> listarFiltrados(FiltrosEmpresaDTO filtros, Pageable page){
-        return ResponseEntity.ok().body(repository.findAll(filtros, page).map(DadosListagemEmpresa::new));
+    public Page<DadosListagemEmpresa> listarFiltrados(FiltrosEmpresaDTO filtros, Pageable page){
+        return repository.findAll(filtros, page).map(DadosListagemEmpresa::new);
     }
 
-    public ResponseEntity<DadosEmpresaDetalhadaDTO> detalhar(Long id) {
-        return ResponseEntity.ok(new DadosEmpresaDetalhadaDTO(repository.getReferenceById(id)));
+    public DadosEmpresaDetalhadaDTO detalhar(Long id) {
+        return new DadosEmpresaDetalhadaDTO(repository.getReferenceById(id));
     }
 
-    public ResponseEntity<DadosEmpresaDetalhadaDTO> atualizar(Long id, AtualizaDadosEmpresaDTO dados) {
-
-        if(repository.existsByDadosEspecificosEmpresaCnpj(dados.atualizaDadosEspecificosEmpresaDTO().cnpj())){
-            throw new ClienteJaCadastradoException();
-        }
-
+    public DadosEmpresaDetalhadaDTO atualizar(Long id, AtualizaDadosEmpresaDTO dados) {
         var empresa = repository.getReferenceById(id);
 
         seguradoServiceUtil.atualizaOperadoraOuAdministradora(empresa, dados.atualizaDadosSeguradoDTO());
 
         empresa.atualizarInformacoes(dados);
-        return ResponseEntity.ok().body(new DadosEmpresaDetalhadaDTO(empresa));
+        return new DadosEmpresaDetalhadaDTO(empresa);
     }
 
-    public ResponseEntity<DadosEmpresaDetalhadaDTO> inativar(Long id) {
+    public DadosEmpresaDetalhadaDTO inativar(Long id) {
         var empresa = repository.getReferenceById(id);
         empresa.setAtivo(false);
-        return ResponseEntity.ok(new DadosEmpresaDetalhadaDTO(empresa));
+        return new DadosEmpresaDetalhadaDTO(empresa);
     }
 }

@@ -21,6 +21,11 @@ public class ExceptionHandler {
         return ResponseEntity.badRequest().body(errors.stream().map(DadosErroValidacaoDTO::new).toList());
     }
 
+    @org.springframework.web.bind.annotation.ExceptionHandler(SegmentacaoSeguradoInvalidaException.class)
+    public ResponseEntity<?> SegmentacaoSeguradoInvalida(SegmentacaoSeguradoInvalidaException ex){
+        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(ex.getMessage());
+    }
+
     @org.springframework.web.bind.annotation.ExceptionHandler(NomeObjetoJaExistenteException.class)
     public ResponseEntity<?> NomeObjetoJaExistente(NomeObjetoJaExistenteException ex){
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());

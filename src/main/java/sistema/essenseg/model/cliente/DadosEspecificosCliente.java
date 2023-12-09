@@ -3,7 +3,6 @@ package sistema.essenseg.model.cliente;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import sistema.essenseg.dto.cliente.AtualizaDadosClienteDTO;
 import sistema.essenseg.dto.cliente.DadosCadastroClienteDTO;
 
@@ -11,7 +10,6 @@ import java.math.BigDecimal;
 
 @Embeddable
 @Getter
-@Setter
 @NoArgsConstructor
 public class DadosEspecificosCliente {
 

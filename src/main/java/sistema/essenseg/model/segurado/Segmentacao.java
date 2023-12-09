@@ -1,4 +1,4 @@
-package sistema.essenseg.model.Segurado;
+package sistema.essenseg.model.segurado;
 
 import lombok.Getter;
 

@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "administradoras")
+@Table(name = "administradora")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Administradora {
@@ -24,8 +24,8 @@ public class Administradora {
 
     private String nome;
 
-    @ManyToMany(mappedBy = "administradoras")
-    private Set<Operadora> operadoras = new HashSet<>();
+    @ManyToMany(mappedBy = "administradora")
+    private Set<Operadora> operadora = new HashSet<>();
 
     public Administradora(DadosAdministradoraDTO dados){
         this.nome = dados.nome();

@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sistema.essenseg.dto.empresa.AtualizaDadosEmpresaDTO;
 import sistema.essenseg.dto.empresa.DadosCadastroEmpresaDTO;
-import sistema.essenseg.model.Segurado.DadosContratacaoSegurado;
-import sistema.essenseg.model.Segurado.DadosPessoaisSegurado;
-import sistema.essenseg.model.Segurado.Segurado;
+import sistema.essenseg.model.segurado.DadosContratacaoSegurado;
+import sistema.essenseg.model.segurado.DadosPessoaisSegurado;
+import sistema.essenseg.model.segurado.Segurado;
 
 @Getter
 @Setter

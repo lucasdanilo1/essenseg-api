@@ -1,6 +1,6 @@
 package sistema.essenseg.dto.cliente;
 
-import sistema.essenseg.model.Segurado.Segmentacao;
+import sistema.essenseg.model.segurado.Segmentacao;
 import sistema.essenseg.model.cliente.Cliente;
 
 import java.math.BigDecimal;

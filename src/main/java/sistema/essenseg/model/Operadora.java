@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "operadoras")
+@Table(name = "operadora")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Operadora {
@@ -28,7 +28,7 @@ public class Operadora {
     @JoinTable(name = "operadora_administradora",
             joinColumns = @JoinColumn(name = "operadora_id"),
             inverseJoinColumns = @JoinColumn(name = "administradora_id"))
-    private Set<Administradora> administradoras = new HashSet<>();
+    private Set<Administradora> administradora = new HashSet<>();
 
     public Operadora(DadosOperadoraDTO dados){
         this.nome = dados.nome();

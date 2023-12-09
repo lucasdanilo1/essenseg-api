@@ -1,4 +1,4 @@
-package sistema.essenseg.model.Segurado;
+package sistema.essenseg.model.segurado;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import sistema.essenseg.model.Anexo;
 import sistema.essenseg.model.cliente.DadosEspecificosCliente;
+import sistema.essenseg.model.dependente.Dependente;
 import sistema.essenseg.model.empresa.DadosEspecificosEmpresa;
 
 import java.time.LocalDate;
@@ -16,7 +17,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @Entity
-@Table(name = "segurados")
+@Table(name = "segurado")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo")
 public abstract class Segurado {
@@ -41,10 +42,13 @@ public abstract class Segurado {
     @Embedded
     protected DadosEspecificosEmpresa dadosEspecificosEmpresa;
 
-    protected String observacoes;
+    @OneToMany(mappedBy = "segurado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Dependente> dependentes =  new ArrayList<>();
 
     @OneToMany(mappedBy = "segurado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Anexo> anexos =  new ArrayList<>();
+
+    protected String observacoes;
 
     public Segurado(){
         this.ativo = true;

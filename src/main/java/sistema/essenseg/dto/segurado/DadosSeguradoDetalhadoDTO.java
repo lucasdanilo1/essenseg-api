@@ -1,8 +1,8 @@
 package sistema.essenseg.dto.segurado;
 
-import sistema.essenseg.model.Segurado.DadosContratacaoSegurado;
-import sistema.essenseg.model.Segurado.DadosPessoaisSegurado;
-import sistema.essenseg.model.Segurado.Segmentacao;
+import sistema.essenseg.model.segurado.DadosContratacaoSegurado;
+import sistema.essenseg.model.segurado.DadosPessoaisSegurado;
+import sistema.essenseg.model.segurado.Segmentacao;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

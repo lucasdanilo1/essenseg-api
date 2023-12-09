@@ -4,12 +4,13 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import sistema.essenseg.dto.administradora.DadosAdministradoraDTO;
+import sistema.essenseg.model.Administradora;
 import sistema.essenseg.service.AdministradoraService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("administradora")
@@ -21,7 +22,16 @@ public class AdministradoraController {
     @Transactional
     @PostMapping("cadastro/save")
     public ResponseEntity<String> cadastro(@Valid @RequestBody DadosAdministradoraDTO dados) {
-        return service.cadastrar(dados);
+        return ResponseEntity.created(
+                ServletUriComponentsBuilder.fromCurrentRequest()
+                        .replacePath("listagem/administradoras")
+                        .build().toUri()
+        ).body(service.cadastrar(dados).getNome());
+    }
+
+    @GetMapping("administradoras")
+    public ResponseEntity<List<Administradora>> administradoras() {
+        return ResponseEntity.ok().body(service.listar());
     }
 
 }

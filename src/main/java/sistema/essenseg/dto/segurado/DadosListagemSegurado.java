@@ -2,7 +2,7 @@ package sistema.essenseg.dto.segurado;
 
 import lombok.Getter;
 import lombok.Setter;
-import sistema.essenseg.model.Segurado.Segurado;
+import sistema.essenseg.model.segurado.Segurado;
 import sistema.essenseg.model.cliente.Cliente;
 import sistema.essenseg.model.empresa.Empresa;
 

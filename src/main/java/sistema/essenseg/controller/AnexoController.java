@@ -26,7 +26,10 @@ public class AnexoController {
 
     @GetMapping("/{anexoIndex}/segurado/{seguradoId}")
     public ResponseEntity<Resource> downloadAnexos(@PathVariable Long seguradoId, @PathVariable Long anexoIndex)  {
-        return anexoService.downloadAnexos(seguradoId, anexoIndex);
+        var anexoInfos = anexoService.downloadAnexos(seguradoId, anexoIndex);
+        return ResponseEntity.ok()
+                .headers(anexoInfos.getHeaders())
+                .contentLength(anexoInfos.getContentLength())
+                .body(anexoInfos.getResource());
     }
-
 }

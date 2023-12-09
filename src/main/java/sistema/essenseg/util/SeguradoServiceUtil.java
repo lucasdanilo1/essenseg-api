@@ -3,7 +3,7 @@ package sistema.essenseg.util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sistema.essenseg.dto.segurado.AtualizaDadosSeguradoDTO;
-import sistema.essenseg.model.Segurado.Segurado;
+import sistema.essenseg.model.segurado.Segurado;
 import sistema.essenseg.repository.AdministradoraRepository;
 import sistema.essenseg.repository.CorretorRepository;
 import sistema.essenseg.repository.OperadoraRepository;

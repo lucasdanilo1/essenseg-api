@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
 import sistema.essenseg.dto.segurado.FiltrosSeguradoDTO;
-import sistema.essenseg.model.Segurado.Segurado;
+import sistema.essenseg.model.segurado.Segurado;
 
 public interface SeguradoRepository extends JpaRepository<Segurado, Long>, Repository<Segurado, Long> {
 
