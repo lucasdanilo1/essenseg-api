@@ -2,11 +2,12 @@ package sistema.essenseg.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sistema.essenseg.dto.segurado.AtualizaDadosSeguradoDTO;
+import sistema.essenseg.model.exception.*;
 import sistema.essenseg.model.segurado.Segurado;
 import sistema.essenseg.repository.AdministradoraRepository;
 import sistema.essenseg.repository.CorretorRepository;
 import sistema.essenseg.repository.OperadoraRepository;
+import sistema.essenseg.repository.PlanoRepository;
 
 @Service
 public class SeguradoServiceUtil {
@@ -20,31 +21,27 @@ public class SeguradoServiceUtil {
     @Autowired
     CorretorRepository corretorRepository;
 
-    public void defineOperadora(Segurado segurado, Long id){
-        var operadora = operadoraRepository.getReferenceById(id);
+    @Autowired
+    PlanoRepository planoRepository;
+
+    public void defineOperadoraPorId(Segurado segurado, Long id) {
+        var operadora = operadoraRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Operadora não encontrada"));
         segurado.getDadosContratacaoSegurado().setOperadora(operadora);
     }
 
-    public void defineAdministradora(Segurado segurado, Long id){
-        var administradora = administradoraRepository.getReferenceById(id);
+    public void defineAdministradoraPorId(Segurado segurado, Long id){
+        var administradora = administradoraRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Administradora não encontrada"));
         segurado.getDadosContratacaoSegurado().setAdministradora(administradora);
     }
 
-    public void defineCorretor(Segurado segurado, Long id){
-        var corretor = corretorRepository.getReferenceById(id);
-        segurado.getDadosContratacaoSegurado().setCorretor(corretor);
+    public void definePlanoPorId(Segurado segurado, Long id){
+        var plano = planoRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Plano não encontrado"));
+        segurado.getDadosContratacaoSegurado().setPlano(plano);
     }
 
-    public void atualizaOperadoraOuAdministradora(Segurado segurado, AtualizaDadosSeguradoDTO dados) {
-        if(dados != null){
-            if(dados.operadoraId() != null){
-                var operadora = operadoraRepository.getReferenceById(dados.operadoraId());
-                segurado.getDadosContratacaoSegurado().setOperadora(operadora);
-            } else if (dados.administradoraId() != null) {
-                var administradora = administradoraRepository.getReferenceById(dados.administradoraId());
-                segurado.getDadosContratacaoSegurado().setAdministradora(administradora);
-            }
-        }
-
+    public void defineCorretorPorId(Segurado segurado, Long id){
+        var corretor = corretorRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Corretor não encontrado"));
+        corretor.getSegurados().add(segurado);
+        segurado.getDadosContratacaoSegurado().setCorretor(corretor);
     }
 }

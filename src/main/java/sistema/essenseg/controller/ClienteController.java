@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -30,13 +31,13 @@ public class ClienteController {
         ).body(new DadosClienteDetalhadoDTO(cliente));
     }
 
-    @GetMapping("clientes")
-    public ResponseEntity<Page<DadosListagemCliente>> clientes(Pageable page) {
+    @GetMapping("lista")
+    public ResponseEntity<Page<DadosListagemCliente>> clientes(@PageableDefault(size = 30) Pageable page) {
         return ResponseEntity.ok().body(service.listar(page));
     }
 
     @Transactional
-    @PostMapping("clientes/filtrados")
+    @PostMapping("lista/filtrada")
     public ResponseEntity<Page<DadosListagemCliente>> clientesFiltrados(@RequestBody FiltrosClienteDTO filtros, Pageable page) {
         return ResponseEntity.ok().body(service.listarFiltrados(filtros, page));
     }
@@ -53,7 +54,7 @@ public class ClienteController {
     }
 
     @Transactional
-    @PutMapping("inativar/{id}")
+    @DeleteMapping("inativar/{id}")
     public ResponseEntity<DadosClienteDetalhadoDTO> inativar(@PathVariable Long id){
         return ResponseEntity.ok().body(service.inativar(id));
     }

@@ -1,8 +1,11 @@
 package sistema.essenseg.dto.empresa;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CNPJ;
+
+import java.time.LocalDate;
 
 public record DadosEspecificosCadastroEmpresaDTO(
 
@@ -16,7 +19,8 @@ public record DadosEspecificosCadastroEmpresaDTO(
 
         String atvEconomica,
 
-        String dataAbertura
+        @JsonFormat(pattern = "dd/MM/yyyy")
+        LocalDate dataAbertura
 
 ) {
 }

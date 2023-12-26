@@ -1,5 +1,6 @@
 package sistema.essenseg.dto.empresa;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import sistema.essenseg.model.empresa.DadosEspecificosEmpresa;
 
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ public record DadosEspecificosEmpresaDetalhadaDTO(
 
         String atvEconomica,
 
+        @JsonFormat(pattern = "dd/MM/yyyy")
         LocalDate dataAbertura
 
 ) {

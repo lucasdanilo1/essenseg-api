@@ -29,7 +29,7 @@ public class AdministradoraController {
         ).body(service.cadastrar(dados).getNome());
     }
 
-    @GetMapping("administradoras")
+    @GetMapping("lista")
     public ResponseEntity<List<Administradora>> administradoras() {
         return ResponseEntity.ok().body(service.listar());
     }

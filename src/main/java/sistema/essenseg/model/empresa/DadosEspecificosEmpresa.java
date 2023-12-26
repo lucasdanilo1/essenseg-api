@@ -1,5 +1,6 @@
 package sistema.essenseg.model.empresa;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class DadosEspecificosEmpresa {
 
     private String nomeFantasia;
 
+    @Column(unique = true)
     private String cnpj;
 
     private String atvEconomica;
@@ -29,7 +31,7 @@ public class DadosEspecificosEmpresa {
         this.cnpj = dados.dadosEspecificosCadastroEmpresaDTO().cnpj();
         this.nomeFantasia = dados.dadosEspecificosCadastroEmpresaDTO().nomeFantasia();
         this.atvEconomica = dados.dadosEspecificosCadastroEmpresaDTO().atvEconomica();
-        this.dataAbertura = DataUtil.converterData(dados.dadosEspecificosCadastroEmpresaDTO().dataAbertura());
+        this.dataAbertura = dados.dadosEspecificosCadastroEmpresaDTO().dataAbertura();//DataUtil.converterData(dados.dadosEspecificosCadastroEmpresaDTO().dataAbertura());
     }
 
     public void checaCamposEAtualiza(AtualizaDadosEmpresaDTO dados) {

@@ -8,13 +8,18 @@ import org.springframework.stereotype.Service;
 import sistema.essenseg.repository.UsuarioRepository;
 
 @Service
-public class AuthService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UsuarioRepository repository;
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+
+        if (login == null || login.isEmpty()) {
+            throw new UsernameNotFoundException("Usuário não encontrado");
+        }
+
         return repository.findByLogin(login);
     }
 

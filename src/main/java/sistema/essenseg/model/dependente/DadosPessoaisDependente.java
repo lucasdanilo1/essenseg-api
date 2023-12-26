@@ -2,6 +2,7 @@ package sistema.essenseg.model.dependente;
 
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import sistema.essenseg.dto.dependente.DadosAtualizaDependenteDTO;
 import sistema.essenseg.dto.dependente.DadosCadastroDependenteDTO;
 import sistema.essenseg.util.DataUtil;
@@ -10,13 +11,14 @@ import java.time.LocalDate;
 
 @Embeddable
 @Getter
+@NoArgsConstructor
 public class DadosPessoaisDependente {
 
     private String nome;
 
     private LocalDate dataNascimento;
 
-    private final String cpf;
+    private String cpf;
 
     private String parentesco;
 

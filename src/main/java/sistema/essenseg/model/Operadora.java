@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sistema.essenseg.dto.operadora.DadosOperadoraDTO;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -22,7 +24,11 @@ public class Operadora {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String nome;
+
+    @OneToMany(mappedBy = "operadora", cascade = CascadeType.ALL)
+    private List<Plano> planos = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "operadora_administradora",

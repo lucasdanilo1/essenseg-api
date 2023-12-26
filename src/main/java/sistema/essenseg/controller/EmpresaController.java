@@ -30,13 +30,13 @@ public class EmpresaController {
             ).body(new DadosEmpresaDetalhadaDTO(empresa));
     }
 
-    @GetMapping("empresas")
+    @GetMapping("lista")
     public ResponseEntity<Page<DadosListagemEmpresa>> empresas(Pageable page) {
         return ResponseEntity.ok().body(service.listar(page));
     }
 
     @Transactional
-    @PostMapping("empresas/filtrados")
+    @PostMapping("lista/filtrada")
     public ResponseEntity<Page<DadosListagemEmpresa>> empresasFiltrados(@RequestBody FiltrosEmpresaDTO filtros, Pageable page) {
         return ResponseEntity.ok().body(service.listarFiltrados(filtros, page));
     }

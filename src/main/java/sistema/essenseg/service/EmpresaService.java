@@ -2,11 +2,12 @@ package sistema.essenseg.service;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import sistema.essenseg.dto.empresa.*;
-import sistema.essenseg.infra.Exception.ClienteJaCadastradoException;
+import sistema.essenseg.model.exception.ObjectNotFoundException;
 import sistema.essenseg.model.empresa.Empresa;
 import sistema.essenseg.repository.EmpresaRepository;
 import sistema.essenseg.util.SeguradoServiceUtil;
@@ -24,15 +25,16 @@ public class EmpresaService {
 
         if(dados.dadosEspecificosCadastroEmpresaDTO() != null){
             if(repository.existsByDadosEspecificosEmpresaCnpj(dados.dadosEspecificosCadastroEmpresaDTO().cnpj())){
-                throw new ClienteJaCadastradoException();
+                throw new DataIntegrityViolationException("CNPJ já cadastrado");
             }
         }
 
         var empresa = new Empresa(dados);
 
-        seguradoServiceUtil.defineOperadora(empresa, dados.dadosParaContratacaoSeguradoDTO().operadoraId());
-        seguradoServiceUtil.defineAdministradora(empresa, dados.dadosParaContratacaoSeguradoDTO().administradoraId());
-        seguradoServiceUtil.defineCorretor(empresa, dados.dadosParaContratacaoSeguradoDTO().corretorId());
+        seguradoServiceUtil.defineOperadoraPorId(empresa, dados.dadosParaContratacaoSeguradoDTO().operadoraId());
+        seguradoServiceUtil.defineAdministradoraPorId(empresa, dados.dadosParaContratacaoSeguradoDTO().administradoraId());
+        seguradoServiceUtil.defineCorretorPorId(empresa, dados.dadosParaContratacaoSeguradoDTO().corretorId());
+        seguradoServiceUtil.definePlanoPorId(empresa, dados.dadosParaContratacaoSeguradoDTO().planoId());
 
         repository.save(empresa);
         return empresa;
@@ -47,15 +49,19 @@ public class EmpresaService {
     }
 
     public DadosEmpresaDetalhadaDTO detalhar(Long id) {
-        return new DadosEmpresaDetalhadaDTO(repository.getReferenceById(id));
+        return new DadosEmpresaDetalhadaDTO(repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Segurado não encontrado")));
     }
 
     public DadosEmpresaDetalhadaDTO atualizar(Long id, AtualizaDadosEmpresaDTO dados) {
-        var empresa = repository.getReferenceById(id);
 
-        seguradoServiceUtil.atualizaOperadoraOuAdministradora(empresa, dados.atualizaDadosSeguradoDTO());
+        var empresa = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Segurado não encontrado"));
+
+        seguradoServiceUtil.defineOperadoraPorId(empresa, dados.atualizaDadosSeguradoDTO().operadoraId());
+        seguradoServiceUtil.defineAdministradoraPorId(empresa, dados.atualizaDadosSeguradoDTO().administradoraId());
+        seguradoServiceUtil.definePlanoPorId(empresa, dados.atualizaDadosSeguradoDTO().planoId());
 
         empresa.atualizarInformacoes(dados);
+
         return new DadosEmpresaDetalhadaDTO(empresa);
     }
 

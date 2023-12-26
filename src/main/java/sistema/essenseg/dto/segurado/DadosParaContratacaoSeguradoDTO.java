@@ -1,10 +1,11 @@
 package sistema.essenseg.dto.segurado;
 
-import jakarta.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 import sistema.essenseg.model.segurado.Segmentacao;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public record DadosParaContratacaoSeguradoDTO(
 
@@ -17,11 +18,17 @@ public record DadosParaContratacaoSeguradoDTO(
         @NotNull
         Long corretorId,
 
-        @NotBlank
-        String vigencia,
+        @JsonFormat(pattern = "dd/MM/yyyy")
+        LocalDate vigencia,
 
         @NotNull
-        BigDecimal plano,
+        Long planoId,
+
+        @NotNull
+        BigDecimal valorDoPlano,
+
+        @NotNull
+        BigDecimal percentualComissao,
 
         @NotNull
         BigDecimal adesao,

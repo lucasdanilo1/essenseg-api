@@ -1,9 +1,9 @@
 package sistema.essenseg.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import sistema.essenseg.dto.administradora.DadosAdministradoraDTO;
-import sistema.essenseg.infra.Exception.NomeObjetoJaExistenteException;
 import sistema.essenseg.model.Administradora;
 import sistema.essenseg.repository.AdministradoraRepository;
 
@@ -21,7 +21,7 @@ public class AdministradoraService {
 
     public Administradora cadastrar(DadosAdministradoraDTO dados){
         if(repository.existsByNome(dados.nome())){
-            throw new NomeObjetoJaExistenteException();
+            throw new DataIntegrityViolationException("Administradora já cadastrada");
         }
 
         Administradora administradora = new Administradora(dados);

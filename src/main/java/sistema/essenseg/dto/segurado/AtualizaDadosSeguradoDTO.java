@@ -1,10 +1,12 @@
 package sistema.essenseg.dto.segurado;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import sistema.essenseg.model.segurado.Segmentacao;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public record AtualizaDadosSeguradoDTO(
 
@@ -12,9 +14,14 @@ public record AtualizaDadosSeguradoDTO(
 
         Long administradoraId,
 
-        String vigencia,
+        Long planoId,
 
-        BigDecimal plano,
+        @JsonFormat(pattern = "dd/MM/yyyy")
+        LocalDate vigencia,
+
+        BigDecimal valorDoPlano,
+
+        BigDecimal percentualComissao,
 
         BigDecimal adesao,
 

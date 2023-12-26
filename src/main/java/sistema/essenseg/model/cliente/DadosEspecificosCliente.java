@@ -1,5 +1,6 @@
 package sistema.essenseg.model.cliente;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,15 +14,17 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class DadosEspecificosCliente {
 
+    @Column(unique = true)
     private String cpf;
 
     private String nomeResponsavel;
 
+    @Column(unique = true)
     private String cpfResponsavel;
 
-    private BigDecimal peso;
+    private BigDecimal peso = new BigDecimal("0");
 
-    private BigDecimal altura;
+    private BigDecimal altura = new BigDecimal("0");
 
     public DadosEspecificosCliente(DadosCadastroClienteDTO dados){
         this.peso = dados.dadosEspecificosCadastroClienteDTO().peso();
@@ -32,10 +35,6 @@ public class DadosEspecificosCliente {
     }
 
     public void checaCamposEAtualiza(AtualizaDadosClienteDTO dados) {
-
-        if (dados.atualizaDadosEspecificosClienteDTO().cpf() != null) {
-            this.cpf = dados.atualizaDadosEspecificosClienteDTO().cpf();
-        }
         if (dados.atualizaDadosEspecificosClienteDTO().peso() != null) {
             this.peso = dados.atualizaDadosEspecificosClienteDTO().peso();
         }
@@ -45,10 +44,6 @@ public class DadosEspecificosCliente {
 
         if (dados.atualizaDadosEspecificosClienteDTO().nomeResponsavel() != null) {
             this.nomeResponsavel = dados.atualizaDadosEspecificosClienteDTO().nomeResponsavel();
-        }
-
-        if (dados.atualizaDadosEspecificosClienteDTO().cpfResponsavel() != null) {
-            this.cpfResponsavel = dados.atualizaDadosEspecificosClienteDTO().cpfResponsavel();
         }
     }
 }

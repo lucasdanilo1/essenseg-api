@@ -31,7 +31,7 @@ public class CorretorController {
         ).body(service.cadastrar(dados));
     }
 
-    @GetMapping("corretores")
+    @GetMapping("lista")
     public ResponseEntity<List<Corretor>> corretores() {
         return ResponseEntity.ok().body(service.listar());
     }

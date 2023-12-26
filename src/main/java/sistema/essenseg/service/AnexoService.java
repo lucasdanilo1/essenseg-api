@@ -3,13 +3,11 @@ package sistema.essenseg.service;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import sistema.essenseg.model.Anexo;
 import sistema.essenseg.repository.SeguradoRepository;
-import sistema.essenseg.util.AnexoInfos;
+import sistema.essenseg.util.DocData;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -25,7 +23,6 @@ public class AnexoService {
         for (MultipartFile anexo : listaDeAnexos) {
 
             var segurado = seguradoRepository.getReferenceById(seguradoId);
-            System.out.println(segurado.getDadosPessoaisSegurado().getNome());
 
             Anexo novoAnexo = new Anexo();
 
@@ -45,19 +42,17 @@ public class AnexoService {
         }
     }
 
-    public AnexoInfos downloadAnexos(Long seguradoId, Long anexoIndex) {
+    public DocData downloadAnexos(Long seguradoId, Long anexoIndex) {
 
         var segurado = seguradoRepository.getReferenceById(seguradoId);
 
-        var anexo = segurado.getAnexos().get(anexoIndex.intValue());
+        var anexo = segurado
+                .getAnexos()
+                .get(anexoIndex.intValue());
 
         ByteArrayResource resource = new ByteArrayResource(anexo.getAnexoData());
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + anexo.getNomeArquivo());
-        headers.setContentType(MediaType.APPLICATION_PDF);
-
-        return new AnexoInfos(headers, (long) anexo.getAnexoData().length, resource);
+        return new DocData(anexo.getNomeArquivo(), resource.contentLength(), resource);
     }
 
 }

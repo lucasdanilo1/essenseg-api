@@ -42,8 +42,8 @@ public abstract class Segurado {
     @Embedded
     protected DadosEspecificosEmpresa dadosEspecificosEmpresa;
 
-    @OneToMany(mappedBy = "segurado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Dependente> dependentes =  new ArrayList<>();
+    @OneToMany(mappedBy = "segurado", cascade = CascadeType.ALL)
+    private List<Dependente> dependentes = new ArrayList<>();
 
     @OneToMany(mappedBy = "segurado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Anexo> anexos =  new ArrayList<>();

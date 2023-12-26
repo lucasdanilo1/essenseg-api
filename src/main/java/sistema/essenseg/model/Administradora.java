@@ -22,6 +22,7 @@ public class Administradora {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String nome;
 
     @ManyToMany(mappedBy = "administradora")

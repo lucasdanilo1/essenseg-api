@@ -1,7 +1,6 @@
 package sistema.essenseg.model.dependente;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +12,6 @@ import sistema.essenseg.model.segurado.Segurado;
 @Getter
 @Setter
 @Table(name = "dependente")
-@AllArgsConstructor
 @NoArgsConstructor
 public class Dependente {
 

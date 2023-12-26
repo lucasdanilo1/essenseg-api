@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sistema.essenseg.dto.corretor.DadosAtualizaCorretorDTO;
 import sistema.essenseg.dto.corretor.DadosCadastroCorretorDTO;
+import sistema.essenseg.model.segurado.Segurado;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,11 +24,18 @@ public class Corretor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String nome;
 
     private String email;
 
     private String telefone;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Extrato> extratos = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Segurado> segurados = new ArrayList<>();
 
     public Corretor(DadosCadastroCorretorDTO dados) {
         this.nome = dados.nome();

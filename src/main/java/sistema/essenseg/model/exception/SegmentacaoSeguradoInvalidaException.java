@@ -1,4 +1,4 @@
-package sistema.essenseg.infra.Exception;
+package sistema.essenseg.model.exception;
 
 public class SegmentacaoSeguradoInvalidaException extends RuntimeException{
 

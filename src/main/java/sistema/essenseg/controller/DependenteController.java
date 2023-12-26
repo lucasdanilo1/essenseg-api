@@ -19,12 +19,12 @@ public class DependenteController {
     DependenteService service;
 
     @Transactional
-    @PutMapping("/segurado/{seguradoId}/addDependente")
+    @PostMapping("/segurado/{seguradoId}/addDependente")
     public ResponseEntity<?> cadastroDepentente(@RequestBody DadosCadastroDependenteDTO dados, @PathVariable Long seguradoId){
         return ResponseEntity.ok().body(service.cadastrar(dados, seguradoId));
     }
 
-    @GetMapping("dependentes")
+    @GetMapping("lista")
     public ResponseEntity<List<Dependente>> dependentes(){
         return ResponseEntity.ok().body(service.listar());
     }

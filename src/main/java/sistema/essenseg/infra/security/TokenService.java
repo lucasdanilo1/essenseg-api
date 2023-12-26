@@ -41,7 +41,7 @@ public class TokenService {
                     .build().verify(token)
                     .getSubject();
         } catch (JWTVerificationException exception) {
-            return "";
+            throw new JWTVerificationException("Token não autorizado");
         }
     }
 
