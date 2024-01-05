@@ -26,7 +26,6 @@ public class ClienteService {
     @Autowired
     private PlanoRepository planoRepository;
 
-
     @Transactional
     public Cliente cadastrar(DadosCadastroClienteDTO dados) {
         if(dados.dadosEspecificosCadastroClienteDTO() != null){

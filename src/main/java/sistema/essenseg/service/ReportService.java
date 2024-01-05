@@ -45,10 +45,10 @@ public class ReportService {
                     seguradoSelecionado.percentualComissaoEmpresa(),
                     seguradoSelecionado.percentualImpostoDevido()
             );
-
-            if(!seguradoDuplicado(dataset, seguradoParaDataSet)){
-                dataset.add(seguradoParaDataSet);
-            }
+            dataset.add(seguradoParaDataSet);
+//            if(!seguradoDuplicado(dataset, seguradoParaDataSet)){
+//                dataset.add(seguradoParaDataSet);
+//            }
         }
         return new JRBeanCollectionDataSource(dataset);
     }

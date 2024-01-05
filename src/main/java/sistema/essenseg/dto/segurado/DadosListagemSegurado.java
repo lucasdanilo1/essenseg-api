@@ -13,25 +13,27 @@ import java.time.LocalDate;
 @Setter
 public class DadosListagemSegurado {
 
+    String tipo;
     Long id;
-    String nome;
-    String nomeFantasia;
-    String telefone;
-    String cpf;
-    String cnpj;
     @JsonFormat(pattern = "dd/MM/yyyy")
     LocalDate dataCadastro;
+    String nome;
+    String telefone;
+    String email;
+    String cpfCnpj;
 
     public DadosListagemSegurado(Segurado segurado){
         this.id = segurado.getId();
-        this.nome = segurado.getDadosPessoaisSegurado().getNome();
         this.telefone = segurado.getDadosPessoaisSegurado().getTelefone();
         this.dataCadastro = segurado.getDataDoCadastro();
+        this.email = segurado.getDadosPessoaisSegurado().getEmail();
+        this.tipo = segurado.getDadosContratacaoSegurado().getSegmentacao().getDescricao();
         if(segurado instanceof Cliente){
-            this.cpf = segurado.getDadosEspecificosCliente().getCpf();
+            this.nome = segurado.getDadosPessoaisSegurado().getNome();
+            this.cpfCnpj = segurado.getDadosEspecificosCliente().getCpf();
         } else if (segurado instanceof Empresa) {
-            this.cnpj = segurado.getDadosEspecificosEmpresa().getCnpj();
-            this.nomeFantasia = segurado.getDadosEspecificosEmpresa().getNomeFantasia();
+            this.nome = segurado.getDadosEspecificosEmpresa().getNomeFantasia();
+            this.cpfCnpj = segurado.getDadosEspecificosEmpresa().getCnpj();
         }
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import sistema.essenseg.dto.administradora.DadosAdministradoraDTO;
-import sistema.essenseg.model.Administradora;
+import sistema.essenseg.dto.administradora.DadosListagemAdministradoraDTO;
 import sistema.essenseg.service.AdministradoraService;
 
 import java.util.List;
@@ -30,8 +30,10 @@ public class AdministradoraController {
     }
 
     @GetMapping("lista")
-    public ResponseEntity<List<Administradora>> administradoras() {
+    public ResponseEntity<List<DadosListagemAdministradoraDTO>> administradoras() {
         return ResponseEntity.ok().body(service.listar());
     }
+
+
 
 }
