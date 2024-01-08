@@ -9,7 +9,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import sistema.essenseg.dto.corretor.DadosAtualizaCorretorDTO;
 import sistema.essenseg.dto.corretor.DadosCadastroCorretorDTO;
 import sistema.essenseg.dto.corretor.DadosCorretorDetalhadoDTO;
-import sistema.essenseg.model.Corretor;
+import sistema.essenseg.dto.corretor.DadosListagemCorretor;
 import sistema.essenseg.service.CorretorService;
 
 import java.util.List;
@@ -32,7 +32,7 @@ public class CorretorController {
     }
 
     @GetMapping("lista")
-    public ResponseEntity<List<Corretor>> corretores() {
+    public ResponseEntity<List<DadosListagemCorretor>> corretores() {
         return ResponseEntity.ok().body(service.listar());
     }
 

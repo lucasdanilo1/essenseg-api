@@ -18,7 +18,7 @@ import sistema.essenseg.service.ClienteService;
 public class ClienteController {
 
     @Autowired
-    ClienteService service;
+    private ClienteService service;
 
     @Transactional
     @PostMapping("cadastro/save")

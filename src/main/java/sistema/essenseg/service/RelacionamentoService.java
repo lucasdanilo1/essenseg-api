@@ -1,8 +1,9 @@
 package sistema.essenseg.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
+import sistema.essenseg.dto.administradora.DadosListagemAdministradoraDTO;
 import sistema.essenseg.dto.relacionamento.DadosRelacionamentoDTO;
 import sistema.essenseg.model.Administradora;
 import sistema.essenseg.model.Operadora;
@@ -23,27 +24,18 @@ public class RelacionamentoService {
     @Autowired
     OperadorasAdministradorasRepository operadorasAdministradorasRepository;
 
-    public ModelAndView relacionar(DadosRelacionamentoDTO dados){
-
+    public ResponseEntity<?> relacionar(DadosRelacionamentoDTO dados){
         Administradora administradora = administradoraRepository.getReferenceById(dados.administradoraId());
         Operadora operadora = operadoraRepository.getReferenceById(dados.operadoraId());
 
         OperadoraAdministradora operadorasAdministradoras = new OperadoraAdministradora(administradora, operadora);
 
         operadorasAdministradorasRepository.save(operadorasAdministradoras);
-
-        return new ModelAndView("redirect:/relacionar/cadastro");
+        return ResponseEntity.ok().build();
     }
 
-    public ModelAndView carregarOperadorasEAdministradoras(){
-        ModelAndView mv = new ModelAndView("formularioAssociacao");
-
-        List<Operadora> operadoras = operadoraRepository.findAll();
-        List<Administradora> administradoras = administradoraRepository.findAll();
-        mv.addObject("operadoras", operadoras);
-        mv.addObject("administradoras", administradoras);
-
-        return mv;
+    public ResponseEntity<List<DadosListagemAdministradoraDTO>> listaAdministradoraPorOperadoraId(Long id){
+        return ResponseEntity.ok().body(operadorasAdministradorasRepository.findAdministradorasByOperadoraId(id).stream().map(DadosListagemAdministradoraDTO::new).toList());
     }
 
 }

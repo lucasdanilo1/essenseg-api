@@ -2,30 +2,31 @@ package sistema.essenseg.controller;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
+import sistema.essenseg.dto.administradora.DadosListagemAdministradoraDTO;
 import sistema.essenseg.dto.relacionamento.DadosRelacionamentoDTO;
 import sistema.essenseg.service.RelacionamentoService;
 
+import java.util.List;
+
 @Controller
-@RequestMapping("relacionar")
+@RequestMapping("relacao")
 public class RelacionamentoController {
 
     @Autowired
     RelacionamentoService service;
 
-    @GetMapping("cadastro")
-    public ModelAndView formulario(DadosRelacionamentoDTO dados){
-        return service.carregarOperadorasEAdministradoras();
-    }
-
-    @PostMapping("cadastro/save")
+    @PostMapping("administradora-operadora/cadastrar")
     @Transactional
-    public ModelAndView relacionar(DadosRelacionamentoDTO dados){
+    public ResponseEntity<?> relacionar(@RequestBody DadosRelacionamentoDTO dados){
         return service.relacionar(dados);
     }
 
+    @GetMapping("/administradora/lista/operadora/{id}")
+    @Transactional
+    public ResponseEntity<List<DadosListagemAdministradoraDTO>> relacionar(@PathVariable Long id){
+        return service.listaAdministradoraPorOperadoraId(id);
+    }
 }
