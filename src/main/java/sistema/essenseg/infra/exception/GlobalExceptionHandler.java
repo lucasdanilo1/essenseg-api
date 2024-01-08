@@ -6,7 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.ConstraintViolationException;
-import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.apache.tomcat.util.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
@@ -29,8 +29,6 @@ import sistema.essenseg.model.exception.ObjectNotFoundException;
 import javax.naming.AuthenticationException;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
-import java.util.List;
-
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler implements AuthenticationFailureHandler {
 
@@ -51,7 +49,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
             WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(httpStatus.value(), message);
         if (this.printStackTrace) {
-            errorResponse.setStackTrace(ExceptionUtils.getStackTrace(exception));
+            errorResponse.setStackTrace("");
         }
         return ResponseEntity.status(httpStatus).body(errorResponse);
     }
