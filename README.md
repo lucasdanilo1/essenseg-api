@@ -36,10 +36,7 @@ mvn spring-boot:run - Na raiz do projeto
 ```
 --------------------------------------------------------------------
 
-# Usuário
-
-
-## Autenticação de Usuário
+# Autenticação de Usuário
 
 ### Cadastro de Usuário
 
@@ -67,6 +64,23 @@ Status: 200 OK
 ```json
 {
 	No body returned for response
+}
+```
+
+#### Resposa de Falha
+
+Status: 422 Unprocessable Entity
+
+```json
+{
+	"status": 422,
+	"message": "Erro de validação",
+	"errors": [
+		{
+			"field": "{field}",
+			"message": "não deve estar em branco"
+		}
+	]
 }
 ```
 
@@ -108,53 +122,85 @@ Status: 403 Forbidden
 ```
 --------------------------------------------------------------------
 
-## Atualização de Usuário
+### Cadastro de Cliente
 
-Este endpoint é usado para atualizar as informações de um usuário existente no sistema. Para acessar essa funcionalidade, você precisa estar autenticado com um token válido.
+**Endpoint:** `/cliente/cadastro/save`  
+**Método:** POST
 
-- **Endpoint:** `/user/{id}`
-- **Método:** PATCH
+#### Parâmetros da Solicitação -
 
-#### Parâmetros da Solicitação
-
-- `id` (número, obrigatório): O ID do usuário que você deseja atualizar.
-- `name` (string, opcional): Nome do usuário.
-- `password` (string, opcional): A nova senha do usuário (se você desejar alterá-la).
-- `phone` (string, opcional): Novo número de telefone do usuário.
-- `crmv` (string, opcional): Novo número do CRMV (se aplicável).
-- `office` (string, opcional): Novo cargo do usuário.
-- `owner` (boolean, opcional): Indica se o usuário é um proprietário (true/false).
-- `work_areas` (array de strings, opcional): Novas áreas de trabalho do usuário.
-- `status` (string, opcional): Novo status do usuário (ativo/inativo).
-- `commissioned` (boolean, opcional): Indica se o usuário é comissionado (true/false).
-- `commission_date` (string, opcional): Nova data de comissão do usuário.
-
-#### Resposta de Sucesso
-
-- **Status:** 200 OK
+- `dadosPessoaisSeguradoDTO.nome` (string, required) 
+- `dadosPessoaisSeguradoDTO.dataNascimento` (string, required) 
+- `dadosPessoaisSeguradoDTO.telefone` (string, required) 
+- `dadosPessoaisSeguradoDTO.endereco` (string, required) 
+- `dadosPessoaisSeguradoDTO.cep` (string, required) 
+- `dadosPessoaisSeguradoDTO.email` (string, required) 
+- `dadosParaContratacaoSeguradoDTO.corretorId` (integer, required) 
+- `dadosParaContratacaoSeguradoDTO.operadoraId` (integer, required) 
+- `dadosParaContratacaoSeguradoDTO.administradoraId` (integer, required) 
+- `dadosParaContratacaoSeguradoDTO.vigencia` (string, required) 
+- `dadosParaContratacaoSeguradoDTO.planoId` (integer, required) 
+- `dadosParaContratacaoSeguradoDTO.valorDoPlanoBruto` (number, required) 
+- `dadosParaContratacaoSeguradoDTO.percentualComissao` (number, required) 
+- `dadosParaContratacaoSeguradoDTO.adesao` (number, required) 
+- `dadosParaContratacaoSeguradoDTO.segmentacao` (string, required) 
+- `dadosEspecificosCadastroClienteDTO.cpf` (string, required) 
+- `dadosEspecificosCadastroClienteDTO.peso` (number, required) 
+- `dadosEspecificosCadastroClienteDTO.altura` (number, required) 
 
 ```json
 {
- "id": 153,
- "name": "Joe Doe",
- "phone": "(12) 34567-8900",
- "crmv": null,
- "office": null,
- "email": "joedoe@test.com",
- "owner": false,
- "work_areas": null,
- "status": "Ativo",
- "commissioned": false,
- "commission_date": null,
- "last_access": "2023-10-18 14:54:25",
- "profile": {
-  "id": 3,
-  "name": "Gestor da Clínica",
-  "type": "Modelo",
-  "performs_service": true
- }
+	"dadosPessoaisSeguradoDTO": {
+		"nome": "Lucas Danilo Exemplo da Silva",
+		"dataNascimento": "2003-10-10",
+		"telefone": "6191020695",
+		"endereco": "Rua Exemplo, 123",
+		"cep": "12345-678",
+		"email": "natalia.ales091@gmail.com"
+	},
+	"dadosParaContratacaoSeguradoDTO": {
+		"corretorId": 1,
+		"operadoraId": 1,
+		"administradoraId": 3,
+		"vigencia": "2024-10-10",
+		"planoId": 1,
+		"valorDoPlanoBruto": 812, 
+		"percentualComissao": 50,
+		"adesao": 90.00,
+		"segmentacao": "ADESAO"
+	},
+	"dadosEspecificosCadastroClienteDTO": {
+		"cpf": "15654472712",
+		"peso": 70.5,
+		"altura": 1.75
+	}
 }
 ```
+#### Resposta de sucesso
+
+Status: 201 Created
+
+```json
+{
+	No body returned for response
+}
+```
+
+#### Resposta de Falha
+
+```json
+{
+	"status": 422,
+	"message": "Erro de validação",
+	"errors": [
+		{
+			"field": "{field}",
+			"message": "não deve estar em branco"
+		}
+	]
+}
+```
+
 
 ## Deleção de Usuário
 
