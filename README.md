@@ -37,12 +37,10 @@ mvn spring-boot:run - Na raiz do projeto
 
 ## Autenticação de Usuário
 
-### Login
+### Cadastro de Usuário
 
 Endpoint: `/auth/registrar`
 Método: POST
-
-Registro de usuário no sistema
 
 #### Parâmetros da Solicitação
 
@@ -52,72 +50,50 @@ Registro de usuário no sistema
 
 ```json
 {
-  "login" : "",
+	"login" : "",
 	"senha" : "",
 	"role" : ""
 }
 ```
 
-#### Resposta de Sucesso
+#### Resposa de sucesso
 
 Status: 200 OK
 
-```json
-{
-  "token": "seu-token-de-autenticação"
-}
-```
+#### Resposta de falha
 
-#### Resposta de erro
-
-Status: 401 Unauthorized
+Status: 403 Forbidden
 
 ```json
 {
- "message": "Invalid email or password",
- "error": "Unauthorized",
- "statusCode": 401
+	"status": 403,
+	"message": "Usuário inexistente ou senha inválida"
 }
 ```
 
-## Registro
+### Login de Usuário
 
-**Endpoint:** `/auth/register`
+**Endpoint:** `/auth/login`
 
-**Método:** POST
-
-Este endpoint é usado para criar um novo usuário no sistema.
+**Método:** GET
 
 #### Parâmetros da Solicitação
 
-- `name` (string, obrigatório): Nome do usuário.
-- `email` (string, obrigatório): O endereço de e-mail do usuário.
-- `password` (string, obrigatório): A senha do usuário.
-- `phone` (string, opcional): Número de telefone do usuário.
-- `crmv` (string, opcional): Número do CRMV (se aplicável).
-- `office` (string, opcional): Cargo do usuário.
-- `owner` (boolean, opcional): Indica se o usuário é um proprietário (true/false).
-- `work_areas` (array de strings, opcional): Áreas de trabalho do usuário.
-- `status` (string, opcional): Status do usuário se está ativo ou não.
-- `commissioned` (boolean, opcional): Indica se o usuário é comissionado (true/false).
-- `commission_date` (string, opcional): Data de comissão do usuário.
+- `login` (string, required)
+- `senha` (string, required)
+
+{
+	"login" : "",
+	"senha" : ""
+}
 
 #### Resposta de Sucesso
 
-- **Status:** 201 Created
+- **Status:** 200 OK
 
 ```json
 {
- "user": {
-  "id": 143,
-  "name": "test",
-  "office": null,
-  "crmv": null,
-  "owner": false,
-  "profile": {
-   "id": 3
-  }
- }
+	"token": "token"
 }
 ```
 
