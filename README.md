@@ -60,17 +60,6 @@ Método: POST
 
 Status: 200 OK
 
-#### Resposta de falha
-
-Status: 403 Forbidden
-
-```json
-{
-	"status": 403,
-	"message": "Usuário inexistente ou senha inválida"
-}
-```
-
 ### Login de Usuário
 
 **Endpoint:** `/auth/login`
@@ -94,6 +83,17 @@ Status: 403 Forbidden
 ```json
 {
 	"token": "token"
+}
+```
+
+#### Resposta de Falha
+
+Status: 403 Forbidden
+
+```json
+{
+	"status": 403,
+	"message": "Usuário inexistente ou senha inválida"
 }
 ```
 
