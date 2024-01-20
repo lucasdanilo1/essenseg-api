@@ -26,40 +26,37 @@ Docker e Flyway para as migrations. Deploy usando AWS (EC2 e RDS).
 ```shell
 - Java JDK 8 ou superior
 - Maven
-- MYSQL
-```
-
-### Config connection
-
-adicione ao seu arquivo `.env` os valores de cada chave correspondende para a conexão com o banco de dados **postgress**
-
-```env
-DB_HOST=""
-DB_PORT=""
-DB_DATABASE=""
-DB_USERNAME=""
-DB_PASSWORD=""
+- Docker
 ```
 
 ### Start project
 
 ```shell
-npm run start:dev
+mvn spring-boot:run - Na raiz do projeto
 ```
 
 ## Autenticação de Usuário
 
 ### Login
 
-Endpoint: `/auth/login`
+Endpoint: `/auth/registrar`
 Método: POST
 
-Este endpoint é usado para permitir que um usuário entre no sistema.
+Registro de usuário no sistema
 
 #### Parâmetros da Solicitação
 
-- `email` (string, obrigatório): O endereço de e-mail do usuário.
-- `password` (string, obrigatório): A senha do usuário.
+- `login` (string, required)
+- `senha` (string, required)
+- `role` (string, required): Tipo de perfil; (USER ou ADMIN)
+
+```json
+{
+  "login" : "",
+	"senha" : "",
+	"role" : ""
+}
+```
 
 #### Resposta de Sucesso
 
