@@ -34,6 +34,10 @@ Docker e Flyway para as migrations. Deploy usando AWS (EC2 e RDS).
 ```shell
 mvn spring-boot:run - Na raiz do projeto
 ```
+--------------------------------------------------------------------
+
+# Usuário
+
 
 ## Autenticação de Usuário
 
@@ -102,6 +106,7 @@ Status: 403 Forbidden
 	"message": "Usuário inexistente ou senha inválida"
 }
 ```
+--------------------------------------------------------------------
 
 ## Atualização de Usuário
 
