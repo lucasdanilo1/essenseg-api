@@ -39,8 +39,8 @@ mvn spring-boot:run - Na raiz do projeto
 
 ### Cadastro de Usuário
 
-Endpoint: `/auth/registrar`
-Método: POST
+**Endpoint:** `/auth/registrar` **Método:** POST
+
 
 #### Parâmetros da Solicitação
 
@@ -60,11 +60,17 @@ Método: POST
 
 Status: 200 OK
 
+```json
+{
+	No body returned for response
+}
+```
+
+--------------------------------------------------------------------
+
 ### Login de Usuário
 
-**Endpoint:** `/auth/login`
-
-**Método:** GET
+**Endpoint:** `/auth/login` **Método:** GET
 
 #### Parâmetros da Solicitação
 
