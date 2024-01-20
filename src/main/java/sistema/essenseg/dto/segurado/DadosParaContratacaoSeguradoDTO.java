@@ -22,7 +22,7 @@ public record DadosParaContratacaoSeguradoDTO(
         Long planoId,
 
         @NotNull
-        BigDecimal valorDoPlano,
+        BigDecimal valorDoPlanoBruto,
 
         @NotNull
         BigDecimal percentualComissao,

@@ -36,9 +36,9 @@ public class DadosContratacaoSegurado {
     private Plano plano;
 
     @Column(precision = 10, scale = 2)
-    private BigDecimal valorDoPlano = new BigDecimal("0");
+    private BigDecimal valorDoPlanoBruto = new BigDecimal("0");
 
-    private BigDecimal percentualComissao = new BigDecimal("0");
+    private BigDecimal percentualComissaoDaOperadora = new BigDecimal("0");
 
     @Column(precision = 10, scale = 2)
     private BigDecimal adesao = new BigDecimal("0");
@@ -48,16 +48,16 @@ public class DadosContratacaoSegurado {
 
     public DadosContratacaoSegurado(DadosCadastroClienteDTO dados){
         this.vigencia = dados.dadosParaContratacaoSeguradoDTO().vigencia();
-        this.valorDoPlano = dados.dadosParaContratacaoSeguradoDTO().valorDoPlano();
-        this.percentualComissao = dados.dadosParaContratacaoSeguradoDTO().percentualComissao();
+        this.valorDoPlanoBruto = dados.dadosParaContratacaoSeguradoDTO().valorDoPlanoBruto();
+        this.percentualComissaoDaOperadora = dados.dadosParaContratacaoSeguradoDTO().percentualComissao();
         this.adesao = dados.dadosParaContratacaoSeguradoDTO().adesao();
         this.segmentacao = dados.dadosParaContratacaoSeguradoDTO().segmentacao();
     }
 
     public DadosContratacaoSegurado(DadosCadastroEmpresaDTO dados){
         this.vigencia = dados.dadosParaContratacaoSeguradoDTO().vigencia();
-        this.valorDoPlano = dados.dadosParaContratacaoSeguradoDTO().valorDoPlano();
-        this.percentualComissao = dados.dadosParaContratacaoSeguradoDTO().percentualComissao();
+        this.valorDoPlanoBruto = dados.dadosParaContratacaoSeguradoDTO().valorDoPlanoBruto();
+        this.percentualComissaoDaOperadora = dados.dadosParaContratacaoSeguradoDTO().percentualComissao();
         this.adesao = dados.dadosParaContratacaoSeguradoDTO().adesao();
         this.segmentacao = Segmentacao.EMPRESARIAL;
     }
@@ -67,10 +67,10 @@ public class DadosContratacaoSegurado {
             this.vigencia = dados.vigencia();
         }
         if (dados.valorDoPlano() != null) {
-            this.valorDoPlano = dados.valorDoPlano();
+            this.valorDoPlanoBruto = dados.valorDoPlano();
         }
         if(dados.percentualComissao() != null){
-            this.percentualComissao = dados.percentualComissao();
+            this.percentualComissaoDaOperadora = dados.percentualComissao();
         }
         if(dados.adesao() != null){
             this.adesao = dados.adesao();

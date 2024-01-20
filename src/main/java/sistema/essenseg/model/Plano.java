@@ -33,6 +33,6 @@ public class Plano {
 
     public Plano(DadosPlanoDTO dados){
         this.nome = dados.nome();
-        this.comissao = dados.comissao();
+        this.comissao = dados.comissaoDaOperadora();
     }
 }

@@ -27,7 +27,7 @@ public record DadosSeguradoDetalhadoDTO(
         LocalDate vigencia,
         String nomePlano,
         Long planoId,
-        BigDecimal valorDoPlano,
+        BigDecimal valorDoPlanoBruto,
         BigDecimal adesao,
         Segmentacao segmentacao
 
@@ -50,7 +50,7 @@ public record DadosSeguradoDetalhadoDTO(
                 dadosContratacaoSegurado.getVigencia(),
                 dadosContratacaoSegurado.getPlano().getNome(),
                 dadosContratacaoSegurado.getPlano().getId(),
-                dadosContratacaoSegurado.getValorDoPlano(),
+                dadosContratacaoSegurado.getValorDoPlanoBruto(),
                 dadosContratacaoSegurado.getAdesao(),
                 dadosContratacaoSegurado.getSegmentacao()
         );

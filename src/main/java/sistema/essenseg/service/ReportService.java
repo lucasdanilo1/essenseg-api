@@ -40,10 +40,10 @@ public class ReportService {
                     dadosContratacaoSegurado.getPlano().getNome(),
                     dadosContratacaoSegurado.getOperadora().getNome(),
                     dadosContratacaoSegurado.getAdministradora().getNome(),
-                    dadosContratacaoSegurado.getValorDoPlano(),
-                    dadosContratacaoSegurado.getPercentualComissao(),
-                    seguradoSelecionado.percentualComissaoEmpresa(),
-                    seguradoSelecionado.percentualImpostoDevido()
+                    dadosContratacaoSegurado.getValorDoPlanoBruto(),
+                    dadosContratacaoSegurado.getPercentualComissaoDaOperadora(),
+                    seguradoSelecionado.percentualComissaoDoCorretor(),
+                    seguradoSelecionado.percentualDoImposto()
             );
             dataset.add(seguradoParaDataSet);
 //            if(!seguradoDuplicado(dataset, seguradoParaDataSet)){

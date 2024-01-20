@@ -28,6 +28,6 @@ public class Anexo {
     private String tipoArquivo;
 
     @Lob
-    @Column(columnDefinition = "bytea")
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] anexoData;
 }

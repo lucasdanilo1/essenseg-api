@@ -24,7 +24,7 @@ public record DadosListagemCliente(Long id,
                 cliente.getDadosContratacaoSegurado().getOperadora().getId(),
                 cliente.getDadosContratacaoSegurado().getVigencia(),
                 cliente.getDadosContratacaoSegurado().getPlano().getId(),
-                cliente.getDadosContratacaoSegurado().getValorDoPlano(),
+                cliente.getDadosContratacaoSegurado().getValorDoPlanoBruto(),
                 cliente.getDadosContratacaoSegurado().getAdesao(),
                 cliente.getDadosContratacaoSegurado().getSegmentacao()
         );

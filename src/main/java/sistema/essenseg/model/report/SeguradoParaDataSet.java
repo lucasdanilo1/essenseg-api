@@ -18,9 +18,9 @@ public class SeguradoParaDataSet {
     private String nomePlano;
     private String nomeOperadora;
     private String nomeAdm;
-    private BigDecimal valorDoPlano;
-    private BigDecimal percentualComissaoCorretor;
-    private BigDecimal percentualComissaoEmpresa;
-    private BigDecimal percentualImpostoDevido;
+    private BigDecimal valorDoPlanoBruto;
+    private BigDecimal percentualComissaoDaOperadora;
+    private BigDecimal percentualComissaoDoCorretor;
+    private BigDecimal percentualDoImposto;
 
 }

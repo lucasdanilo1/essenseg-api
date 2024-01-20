@@ -29,7 +29,7 @@ public class Extrato {
     private LocalDate dataCriacao;
 
     @Lob
-    @Column(columnDefinition = "bytea")
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] extratoData;
 
 }

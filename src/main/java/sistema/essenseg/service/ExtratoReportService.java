@@ -37,7 +37,7 @@ public class ExtratoReportService {
 
     public DocData gerarExtratoReport(Long id, List<SeguradoSelecionado> dados) {
 
-        if(corretorRepository.getReferenceById(id).getSegurados().isEmpty()){
+        if (corretorRepository.getReferenceById(id).getSegurados().isEmpty()) {
             throw new CorretorNaoTemClientes();
         }
 
@@ -66,7 +66,6 @@ public class ExtratoReportService {
 
         return new DocData(corretor.getNome(), resource.contentLength(), resource);
     }
-
     public void saveExtratoReport(long randomId, Corretor corretor, byte[] resource){
         var extrato = new Extrato(
                 null,
@@ -79,11 +78,9 @@ public class ExtratoReportService {
         corretor.getExtratos().add(extrato);
         extratoRepository.save(extrato);
     }
-
     public Page<DadosListagemExtrato> listar(Pageable page){
         return extratoRepository.findAll(page).map(DadosListagemExtrato::new);
     }
-
     public DocData downloadExtrato(Long id) {
         var extrato = extratoRepository.findByRandomId(id).orElseThrow(() -> new ObjectNotFoundException("Extrato não encontrado"));
 

@@ -16,7 +16,7 @@ public record DadosPlanoDTO(
 
         @DecimalMin(value = "1", message = "A comissão deve ser no mínimo 1")
         @Digits(integer = 2, fraction = 1, message = "A comissão deve ter no máximo 2 digitos inteiros e 1 fracional ex: 30,5")
-        BigDecimal comissao
+        BigDecimal comissaoDaOperadora
 
 ) {
 }

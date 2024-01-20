@@ -11,9 +11,9 @@ public record SeguradoSelecionado(
         @NotNull
         Long clienteId,
         @NotNull
-        BigDecimal percentualComissaoEmpresa,
+        BigDecimal percentualComissaoDoCorretor,
         @NotNull
-        BigDecimal percentualImpostoDevido
+        BigDecimal percentualDoImposto
 
 ) {
 }
