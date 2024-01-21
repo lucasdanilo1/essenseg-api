@@ -78,6 +78,8 @@ Status: 422 Unprocessable Entity
 }
 ```
 
+--------------------------------------------------------------------
+
 ### Login de Usuário
 
 **Endpoint:** `/auth/login` **Método:** GET
