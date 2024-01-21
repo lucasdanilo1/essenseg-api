@@ -36,8 +36,6 @@ mvn spring-boot:run - Na raiz do projeto
 ```
 --------------------------------------------------------------------
 
-# Autenticação de Usuário
-
 ### Cadastro de Usuário
 
 **Endpoint:** `/auth/registrar` **Método:** POST
@@ -89,10 +87,12 @@ Status: 422 Unprocessable Entity
 - `login` (string, required)
 - `senha` (string, required)
 
+```json
 {
 	"login" : "",
 	"senha" : ""
 }
+```
 
 #### Resposta de Sucesso
 
@@ -172,6 +172,7 @@ Status: 403 Forbidden
 	}
 }
 ```
+
 ##### Resposta de sucesso
 
 Status: 201 Created
@@ -195,7 +196,6 @@ Status: 422 Unprocessable Entity
 }
 ```
 --------------------------------------------------------------------
-
 
 ## Detalhamento do Cliente
 
