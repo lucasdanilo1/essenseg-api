@@ -47,6 +47,7 @@ mvn spring-boot:run
 ## Cadastro de Usuário
 
 **Endpoint:** `/auth/registrar` 
+
 **Método:** POST
 
 #### Parâmetros da Solicitação
@@ -87,6 +88,7 @@ mvn spring-boot:run
 ## Login de Usuário
 
 **Endpoint:** `/auth/login`
+
 **Método:** GET
 
 #### Parâmetros da Solicitação
@@ -125,6 +127,7 @@ mvn spring-boot:run
 ## Cadastro de Cliente
 
 **Endpoint:** `/cliente/cadastro/save` 
+
 **Método:** POST
 
 #### Parâmetros da Solicitação -
@@ -203,6 +206,7 @@ Status: 422 Unprocessable Entity
 ## Detalhamento do Cliente
 
 **Endpoint:** `/cliente/{id}` 
+
 **Método:** POST
 
 #### Resposta de Sucesso
