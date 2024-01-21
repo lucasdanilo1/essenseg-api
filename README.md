@@ -2,7 +2,7 @@
 
 API Restful desenvolvida com Spring para uma corretora de planos de saúde. 
 
-## 1. Description
+## description
 
 Principal foco a gestão de Segurados, Dependentes, Operadoras, Administradoras, Corretores e Planos de Saúde.
 Cadastro, atualização, listagem com filtros e detalhamento de todas as entidades citadas acima. 
@@ -57,17 +57,13 @@ mvn spring-boot:run - Na raiz do projeto
 }
 ```
 
-#### Resposa de sucesso
+##### Resposa de sucesso
 
 Status: 200 OK
 
-```json
-{
-	No body returned for response
-}
-```
+No body returned for response
 
-#### Resposa de Falha
+##### Resposa de Falha
 
 Status: 422 Unprocessable Entity
 
@@ -83,8 +79,6 @@ Status: 422 Unprocessable Entity
 	]
 }
 ```
-
---------------------------------------------------------------------
 
 ### Login de Usuário
 
@@ -104,13 +98,15 @@ Status: 422 Unprocessable Entity
 
 - **Status:** 200 OK
 
+No body returned for response
+
 ```json
 {
 	"token": "token"
 }
 ```
 
-#### Resposta de Falha
+##### Resposta de Falha
 
 Status: 403 Forbidden
 
@@ -122,31 +118,31 @@ Status: 403 Forbidden
 ```
 --------------------------------------------------------------------
 
-### Cadastro de Cliente
+##### Cadastro de Cliente
 
 **Endpoint:** `/cliente/cadastro/save`  
 **Método:** POST
 
 #### Parâmetros da Solicitação -
 
-- `dadosPessoaisSeguradoDTO.nome` (string, required) 
-- `dadosPessoaisSeguradoDTO.dataNascimento` (string, required) 
-- `dadosPessoaisSeguradoDTO.telefone` (string, required) 
-- `dadosPessoaisSeguradoDTO.endereco` (string, required) 
-- `dadosPessoaisSeguradoDTO.cep` (string, required) 
-- `dadosPessoaisSeguradoDTO.email` (string, required) 
-- `dadosParaContratacaoSeguradoDTO.corretorId` (integer, required) 
-- `dadosParaContratacaoSeguradoDTO.operadoraId` (integer, required) 
-- `dadosParaContratacaoSeguradoDTO.administradoraId` (integer, required) 
-- `dadosParaContratacaoSeguradoDTO.vigencia` (string, required) 
-- `dadosParaContratacaoSeguradoDTO.planoId` (integer, required) 
-- `dadosParaContratacaoSeguradoDTO.valorDoPlanoBruto` (number, required) 
-- `dadosParaContratacaoSeguradoDTO.percentualComissao` (number, required) 
-- `dadosParaContratacaoSeguradoDTO.adesao` (number, required) 
-- `dadosParaContratacaoSeguradoDTO.segmentacao` (string, required) 
-- `dadosEspecificosCadastroClienteDTO.cpf` (string, required) 
-- `dadosEspecificosCadastroClienteDTO.peso` (number, required) 
-- `dadosEspecificosCadastroClienteDTO.altura` (number, required) 
+- `nome` (string, required) 
+- `dataNascimento` (string, required) 
+- `telefone` (string, required) 
+- `endereco` (string, required) 
+- `cep` (string, required) 
+- `email` (string, required) 
+- `corretorId` (integer, required) 
+- `operadoraId` (integer, required) 
+- `administradoraId` (integer, required) 
+- `vigencia` (string, required) 
+- `planoId` (integer, required) 
+- `valorDoPlanoBruto` (number, required) 
+- `percentualComissao` (number, required) 
+- `adesao` (number, required) 
+- `segmentacao` (string, required) 
+- `cpf` (string, required) 
+- `peso` (number, required) 
+- `altura` (number, required) 
 
 ```json
 {
@@ -176,17 +172,15 @@ Status: 403 Forbidden
 	}
 }
 ```
-#### Resposta de sucesso
+##### Resposta de sucesso
 
 Status: 201 Created
 
-```json
-{
-	No body returned for response
-}
-```
+No body returned for response
 
-#### Resposta de Falha
+##### Resposta de Falha
+
+Status: 422 Unprocessable Entity
 
 ```json
 {
