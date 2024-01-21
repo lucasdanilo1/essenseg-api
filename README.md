@@ -57,13 +57,13 @@ mvn spring-boot:run - Na raiz do projeto
 
 #### Resposa de sucesso
 
-Status: 200 OK
+- **Status:** 200 OK
 
 No body returned for response
 
 #### Resposa de Falha
 
-Status: 422 Unprocessable Entity
+- **Status:** 422 Unprocessable Entity
 
 ```json
 {
@@ -100,8 +100,6 @@ Status: 422 Unprocessable Entity
 
 - **Status:** 200 OK
 
-No body returned for response
-
 ```json
 {
 	"token": "token"
@@ -110,7 +108,7 @@ No body returned for response
 
 #### Resposta de Falha
 
-Status: 403 Forbidden
+- **Status:** 403 Forbidden
 
 ```json
 {
