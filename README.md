@@ -207,7 +207,7 @@ mvn spring-boot:run
 
 **Endpoint:** `/cliente/{id}` 
 
-**Método:** POST
+**Método:** GET
 
 #### Resposta de Sucesso
 
@@ -250,7 +250,122 @@ mvn spring-boot:run
 	"status": 404,
 	"message": "Não foi possível encontrar a entidade"
 }
-
 ```
 
 --------------------------------------------------------------------
+
+## Lista de Clientes
+
+**Endpoint:** `/cliente/lista` 
+
+**Método:** GET
+
+#### Resposta de Sucesso
+
+- **Status:** 200 OK
+
+```json
+{
+	"content": [],
+	"pageable": {
+		"pageNumber": 0,
+		"pageSize": 30,
+		"sort": {
+			"empty": true,
+			"unsorted": true,
+			"sorted": false
+		},
+		"offset": 0,
+		"unpaged": false,
+		"paged": true
+	},
+	"last": true,
+	"totalElements": 0,
+	"totalPages": 0,
+	"size": 30,
+	"number": 0,
+	"sort": {
+		"empty": true,
+		"unsorted": true,
+		"sorted": false
+	},
+	"numberOfElements": 0,
+	"first": true,
+	"empty": true
+}
+```
+
+--------------------------------------------------------------------
+
+## Lista de Clientes Filtrada
+
+**Endpoint:** `/cliente/lista/filtrada` 
+
+**Método:** POST
+
+#### Parâmetros da Solicitação -
+
+- `filtroGlobal` (required)
+
+```json
+{
+	"filtroGlobal" : ""
+}
+
+```
+
+#### Resposta de Sucesso
+
+- **Status:** 200 OK
+
+```json
+{
+	{
+	"content": [
+		{
+			"id": ,
+			"nome": "",
+			"operadoraId": ,
+			"vigencia": "2023-10-24",
+			"valorDoPlano": ,
+			"adesao": ,
+			"segmentacao": "
+		},
+		{
+			"id": ,
+			"nome": "",
+			"operadoraId": ,
+			"vigencia": "2023-10-24",
+			"valorDoPlano": ,
+			"adesao": ,
+			"segmentacao": "
+		}
+	],
+	"pageable": {
+		"pageNumber": 0,
+		"pageSize": 20,
+		"sort": {
+			"empty": true,
+			"sorted": false,
+			"unsorted": true
+		},
+		"offset": 0,
+		"unpaged": false,
+		"paged": true
+	},
+	"last": true,
+	"totalPages": 1,
+	"totalElements": 2,
+	"size": 20,
+	"number": 0,
+	"sort": {
+		"empty": true,
+		"sorted": false,
+		"unsorted": true
+	},
+	"first": true,
+	"numberOfElements": 2,
+	"empty": false
+}
+
+```
