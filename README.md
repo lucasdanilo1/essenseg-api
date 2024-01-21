@@ -200,21 +200,57 @@ Status: 201 Created
 	]
 }
 ```
+--------------------------------------------------------------------
 
 
-## Deleção de Usuário
+## Detalhamento do Cliente
 
-Este endpoint permite excluir um usuário do sistema, desde que o usuário autenticado seja um proprietário (owner) e que o usuário alvo não seja outro proprietário. Um proprietário também pode excluir a si mesmo.
-
-- **Endpoint:** `/user/{id}`
-- **Método:** DELETE
-
-#### Parâmetros da Solicitação
-
-- `id` (número, obrigatório): O ID do usuário que você deseja excluir.
+Endpoint: /cliente/{id} - Método: GET
 
 #### Resposta de Sucesso
 
-- **Status:** 204 No Content
+Status: 200 OK
 
-Esta resposta indica que o usuário foi excluído com sucesso e não há conteúdo de resposta.
+```json
+{
+	"dadosSeguradoDetalhadoDTO": {
+		"nome": "",
+		"dataNascimento": "",
+		"telefone": "",
+		"cep": "",
+		"endereco": "",
+		"email": "",
+		"corretorId": 0,
+		"operadoraId": 0,
+		"administradoraId": 0,
+		"vigencia": "",
+		"planoId": 0,
+		"valorDoPlanoBruto": 0.0,
+		"percentualComissaoDaOperadora": 0.0,
+		"adesao": 0.0,
+		"segmentacao": ""
+	},
+	"dadosEspecificosClienteDetalhadoDTO": {
+		"cpf": "",
+		"nomeResponsavel": "",
+		"cpfResponsavel": "",
+		"peso": 0.0,
+		"altura": 0.0
+	},
+	"observacoes": null
+}
+```
+
+#### Resposta de Sucesso
+
+- **Status:** 404 Not Found
+
+
+```json
+{
+	"status": 404,
+	"message": "Não foi possível encontrar a entidade"
+}
+
+```
+
