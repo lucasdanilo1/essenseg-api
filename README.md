@@ -56,11 +56,7 @@ mvn spring-boot:run
 
 #### Resposa de sucesso
 
-```json
-{
-	""
-}
-```
+- **Status:** 200 OK
 
 #### Resposa de Falha
 
@@ -96,6 +92,8 @@ mvn spring-boot:run
 ```
 
 #### Resposta de Sucesso
+
+- **Status:** 200 OK
 
 ```json
 {
