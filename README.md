@@ -24,9 +24,6 @@ baseados na venda dos planos feitas para Segurados, de um Corretor.
 <img height="30" width="40" src="https://github.com/tandpfun/skill-icons/blob/main/icons/AWS-Light.svg"/>
 </div>
 
-Spring Boot, Data JPA, Security, Swagger, Tokens JWT para segurança, Jasper Report para a geração dos relatórios,
-Docker e Flyway para as migrations. Deploy usando AWS (EC2 e RDS).
-
 --------------------------------------------------------------------
 
 ## 1. Install dependencies
