@@ -112,10 +112,9 @@ mvn spring-boot:run
 
 --------------------------------------------------------------------
 
-##### Cadastro de Cliente
+## Cadastro de Cliente
 
-**Endpoint:** `/cliente/cadastro/save`  
-**Método:** POST
+**Endpoint:** `/cliente/cadastro/save` **Método:** POST
 
 #### Parâmetros da Solicitação -
 
@@ -133,7 +132,7 @@ mvn spring-boot:run
 - `valorDoPlanoBruto` (number, required) 
 - `percentualComissao` (number, required) 
 - `adesao` (number, required) 
-- `segmentacao` (string, required) 
+- `segmentacao` (string, required)
 - `cpf` (string, required) 
 - `peso` (number, required) 
 - `altura` (number, required) 
@@ -141,39 +140,37 @@ mvn spring-boot:run
 ```json
 {
 	"dadosPessoaisSeguradoDTO": {
-		"nome": "Lucas Danilo Exemplo da Silva",
+		"nome": "",
 		"dataNascimento": "2003-10-10",
-		"telefone": "6191020695",
-		"endereco": "Rua Exemplo, 123",
-		"cep": "12345-678",
-		"email": "natalia.ales091@gmail.com"
+		"telefone": "XXXXXXXXXXX",
+		"endereco": "",
+		"cep": "",
+		"email": ""
 	},
 	"dadosParaContratacaoSeguradoDTO": {
-		"corretorId": 1,
-		"operadoraId": 1,
-		"administradoraId": 3,
+		"corretorId": ,
+		"operadoraId": ,
+		"administradoraId": ,
 		"vigencia": "2024-10-10",
-		"planoId": 1,
-		"valorDoPlanoBruto": 812, 
-		"percentualComissao": 50,
-		"adesao": 90.00,
-		"segmentacao": "ADESAO"
+		"planoId": ,
+		"valorDoPlanoBruto": , 
+		"percentualComissao": ,
+		"adesao": ,
+		"segmentacao": ""
 	},
 	"dadosEspecificosCadastroClienteDTO": {
-		"cpf": "15654472712",
-		"peso": 70.5,
-		"altura": 1.75
+		"cpf": "",
+		"peso": ,
+		"altura": 
 	}
 }
 ```
 
-##### Resposta de sucesso
+#### Resposta de sucesso
 
-Status: 201 Created
+- **Status:** 201 Created
 
-No body returned for response
-
-##### Resposta de Falha
+#### Resposta de Falha
 
 Status: 422 Unprocessable Entity
 
@@ -189,15 +186,16 @@ Status: 422 Unprocessable Entity
 	]
 }
 ```
+
 --------------------------------------------------------------------
 
 ## Detalhamento do Cliente
 
-Endpoint: /cliente/{id} - Método: GET
+**Endpoint:** `/cliente/{id}` **Método:** POST
 
 #### Resposta de Sucesso
 
-Status: 200 OK
+- **Status:** 200 OK
 
 ```json
 {
@@ -229,10 +227,7 @@ Status: 200 OK
 }
 ```
 
-#### Resposta de Sucesso
-
-- **Status:** 404 Not Found
-
+#### Resposta de Falha
 
 ```json
 {
@@ -242,3 +237,4 @@ Status: 200 OK
 
 ```
 
+--------------------------------------------------------------------
