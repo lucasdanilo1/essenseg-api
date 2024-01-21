@@ -12,6 +12,9 @@ Principal foco a gestão de Segurados, Dependentes, Operadoras, Administradoras,
 Cadastro, atualização, listagem com filtros e detalhamento de todas as entidades citadas acima. 
 Além da possibilidade de anexo de arquivos, vinculados aos Segurados. Geração de relatórios PDF de extratos, 
 baseados na venda dos planos feitas para Segurados, de um Corretor.
+
+--------------------------------------------------------------------
+
 ## technologies in use
 
 <div>
