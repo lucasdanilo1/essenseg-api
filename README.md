@@ -32,7 +32,7 @@ Docker e Flyway para as migrations. Deploy usando AWS (EC2 e RDS).
 ### Start project
 
 ```shell
-mvn spring-boot:run - Na raiz do projeto
+mvn spring-boot:run
 ```
 --------------------------------------------------------------------
 
