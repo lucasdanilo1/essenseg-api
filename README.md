@@ -132,24 +132,24 @@ mvn spring-boot:run
 
 #### Parâmetros da Solicitação -
 
-- `nome` (string, required) 
-- `dataNascimento` (string, required) 
-- `telefone` (string, required) 
-- `endereco` (string, required) 
-- `cep` (string, required) 
-- `email` (string, required) 
-- `corretorId` (integer, required) 
-- `operadoraId` (integer, required) 
-- `administradoraId` (integer, required) 
-- `vigencia` (string, required) 
-- `planoId` (integer, required) 
-- `valorDoPlanoBruto` (number, required) 
-- `percentualComissao` (number, required) 
-- `adesao` (number, required) 
-- `segmentacao` (string, required)
-- `cpf` (string, required) 
-- `peso` (number, required) 
-- `altura` (number, required) 
+- `nome` (required) 
+- `dataNascimento` (required) 
+- `telefone` (required) 
+- `endereco` 
+- `cep` 
+- `email` (required) 
+- `corretorId` (required) 
+- `operadoraId` (required) 
+- `administradoraId` (required) 
+- `vigencia` (required) 
+- `planoId` (required) 
+- `valorDoPlanoBruto` (required) 
+- `percentualComissao` (required) 
+- `adesao` ( required) 
+- `segmentacao` (required)
+- `cpf` (required) 
+- `peso` 
+- `altura` 
 
 ```json
 {
@@ -186,7 +186,7 @@ mvn spring-boot:run
 
 #### Resposta de Falha
 
-Status: 422 Unprocessable Entity
+- **Status:** 422 Unprocessable Entity
 
 ```json
 {
