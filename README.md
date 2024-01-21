@@ -266,7 +266,28 @@ mvn spring-boot:run
 
 ```json
 {
-	"content": [],
+	"content": [
+		{
+			"id": ,
+			"nome": "",
+			"operadoraId": ,
+			"vigencia": "4",
+			"planoId": 1,
+			"valorDoPlano": ,
+			"adesao": ,
+			"segmentacao": ""
+		},
+		{
+			"id": ,
+			"nome": "",
+			"operadoraId": ,
+			"vigencia": "",
+			"planoId": ,
+			"valorDoPlano":,
+			"adesao": ,
+			"segmentacao": ""
+		}
+	],
 	"pageable": {
 		"pageNumber": 0,
 		"pageSize": 30,
@@ -280,8 +301,8 @@ mvn spring-boot:run
 		"paged": true
 	},
 	"last": true,
-	"totalElements": 0,
-	"totalPages": 0,
+	"totalElements": 2,
+	"totalPages": 1,
 	"size": 30,
 	"number": 0,
 	"sort": {
@@ -289,10 +310,11 @@ mvn spring-boot:run
 		"unsorted": true,
 		"sorted": false
 	},
-	"numberOfElements": 0,
 	"first": true,
-	"empty": true
+	"numberOfElements": 2,
+	"empty": false
 }
+
 ```
 
 --------------------------------------------------------------------
@@ -329,7 +351,7 @@ mvn spring-boot:run
 			"vigencia": "2023-10-24",
 			"valorDoPlano": ,
 			"adesao": ,
-			"segmentacao": "
+			"segmentacao": ""
 		},
 		{
 			"id": ,
@@ -338,7 +360,7 @@ mvn spring-boot:run
 			"vigencia": "2023-10-24",
 			"valorDoPlano": ,
 			"adesao": ,
-			"segmentacao": "
+			"segmentacao": ""
 		}
 	],
 	"pageable": {
@@ -366,6 +388,7 @@ mvn spring-boot:run
 	"first": true,
 	"numberOfElements": 2,
 	"empty": false
+	}
 }
 
 ```
