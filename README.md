@@ -40,7 +40,6 @@ mvn spring-boot:run
 
 **Endpoint:** `/auth/registrar` **Método:** POST
 
-
 #### Parâmetros da Solicitação
 
 - `login` (required)
@@ -59,7 +58,11 @@ mvn spring-boot:run
 
 - **Status:** 200 OK
 
+```json
+{
 No body returned for response
+}
+```
 
 #### Resposa de Falha
 
@@ -116,6 +119,7 @@ No body returned for response
 	"message": "Usuário inexistente ou senha inválida"
 }
 ```
+
 --------------------------------------------------------------------
 
 ##### Cadastro de Cliente
