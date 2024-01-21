@@ -56,8 +56,6 @@ mvn spring-boot:run
 
 #### Resposa de sucesso
 
-- **Status:** 200 OK
-
 ```json
 {
 	""
@@ -65,8 +63,6 @@ mvn spring-boot:run
 ```
 
 #### Resposa de Falha
-
-- **Status:** 422 Unprocessable Entity
 
 ```json
 {
@@ -101,8 +97,6 @@ mvn spring-boot:run
 
 #### Resposta de Sucesso
 
-- **Status:** 200 OK
-
 ```json
 {
 	"token": "token"
@@ -110,8 +104,6 @@ mvn spring-boot:run
 ```
 
 #### Resposta de Falha
-
-- **Status:** 403 Forbidden
 
 ```json
 {
