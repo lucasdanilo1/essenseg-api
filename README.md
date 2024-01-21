@@ -60,7 +60,7 @@ mvn spring-boot:run
 
 ```json
 {
-No body returned for response
+	""
 }
 ```
 
