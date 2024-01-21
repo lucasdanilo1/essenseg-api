@@ -1,8 +1,12 @@
+--------------------------------------------------------------------
+
 # Essenseg - Rest Api
 
 API Restful desenvolvida com Spring para uma corretora de planos de saúde. 
 
-## description
+--------------------------------------------------------------------
+
+## Description
 
 Principal foco a gestão de Segurados, Dependentes, Operadoras, Administradoras, Corretores e Planos de Saúde.
 Cadastro, atualização, listagem com filtros e detalhamento de todas as entidades citadas acima. 
@@ -21,7 +25,9 @@ baseados na venda dos planos feitas para Segurados, de um Corretor.
 Spring Boot, Data JPA, Security, Swagger, Tokens JWT para segurança, Jasper Report para a geração dos relatórios,
 Docker e Flyway para as migrations. Deploy usando AWS (EC2 e RDS).
 
-### Install dependencies
+--------------------------------------------------------------------
+
+## 1. Install dependencies
 
 ```shell
 - Java JDK 8 ou superior
@@ -29,16 +35,20 @@ Docker e Flyway para as migrations. Deploy usando AWS (EC2 e RDS).
 - Docker
 ```
 
-### Start project
+--------------------------------------------------------------------
+
+## 2. Start project
 
 ```shell
 mvn spring-boot:run
 ```
+
 --------------------------------------------------------------------
 
 ## Cadastro de Usuário
 
-**Endpoint:** `/auth/registrar` **Método:** POST
+**Endpoint:** `/auth/registrar` 
+**Método:** POST
 
 #### Parâmetros da Solicitação
 
@@ -77,7 +87,8 @@ mvn spring-boot:run
 
 ## Login de Usuário
 
-**Endpoint:** `/auth/login` **Método:** GET
+**Endpoint:** `/auth/login`
+**Método:** GET
 
 #### Parâmetros da Solicitação
 
@@ -114,7 +125,8 @@ mvn spring-boot:run
 
 ## Cadastro de Cliente
 
-**Endpoint:** `/cliente/cadastro/save` **Método:** POST
+**Endpoint:** `/cliente/cadastro/save` 
+**Método:** POST
 
 #### Parâmetros da Solicitação -
 
@@ -191,7 +203,8 @@ Status: 422 Unprocessable Entity
 
 ## Detalhamento do Cliente
 
-**Endpoint:** `/cliente/{id}` **Método:** POST
+**Endpoint:** `/cliente/{id}` 
+**Método:** POST
 
 #### Resposta de Sucesso
 
