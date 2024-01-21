@@ -36,16 +36,16 @@ mvn spring-boot:run - Na raiz do projeto
 ```
 --------------------------------------------------------------------
 
-### Cadastro de Usuário
+## Cadastro de Usuário
 
 **Endpoint:** `/auth/registrar` **Método:** POST
 
 
 #### Parâmetros da Solicitação
 
-- `login` (string, required)
-- `senha` (string, required)
-- `role` (string, required): Tipo de perfil; (USER ou ADMIN)
+- `login` (required)
+- `senha` (required)
+- `role` (required): ("USER" OU "ADMIN")
 
 ```json
 {
@@ -55,13 +55,13 @@ mvn spring-boot:run - Na raiz do projeto
 }
 ```
 
-##### Resposa de sucesso
+#### Resposa de sucesso
 
 Status: 200 OK
 
 No body returned for response
 
-##### Resposa de Falha
+#### Resposa de Falha
 
 Status: 422 Unprocessable Entity
 
@@ -80,14 +80,14 @@ Status: 422 Unprocessable Entity
 
 --------------------------------------------------------------------
 
-### Login de Usuário
+## Login de Usuário
 
 **Endpoint:** `/auth/login` **Método:** GET
 
 #### Parâmetros da Solicitação
 
-- `login` (string, required)
-- `senha` (string, required)
+- `login` (required)
+- `senha` (required)
 
 ```json
 {
@@ -108,7 +108,7 @@ No body returned for response
 }
 ```
 
-##### Resposta de Falha
+#### Resposta de Falha
 
 Status: 403 Forbidden
 
