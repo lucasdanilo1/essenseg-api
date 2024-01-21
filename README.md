@@ -1,6 +1,6 @@
 --------------------------------------------------------------------
 
-# Essenseg - Rest Api
+# EssensegAPI
 
 API Restful desenvolvida com Spring para uma corretora de planos de saúde. 
 
