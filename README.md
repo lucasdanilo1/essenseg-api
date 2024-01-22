@@ -44,5 +44,5 @@ mvn spring-boot:run
 --------------------------------------------------------------------
 ## Db Schema
 <div>
-<img src="https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.svg"/>
+<img src="https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.png"/>
 </div>
