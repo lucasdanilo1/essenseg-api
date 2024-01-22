@@ -1,13 +1,18 @@
-# Essenseg - Rest Api
+
+# EssensegAPI
 
 API Restful desenvolvida com Spring para uma corretora de planos de saúde. 
 
-## 1. Description
+
+## Description
 
 Principal foco a gestão de Segurados, Dependentes, Operadoras, Administradoras, Corretores e Planos de Saúde.
 Cadastro, atualização, listagem com filtros e detalhamento de todas as entidades citadas acima. 
 Além da possibilidade de anexo de arquivos, vinculados aos Segurados. Geração de relatórios PDF de extratos, 
 baseados na venda dos planos feitas para Segurados, de um Corretor.
+
+--------------------------------------------------------------------
+
 ## technologies in use
 
 <div>
@@ -18,132 +23,80 @@ baseados na venda dos planos feitas para Segurados, de um Corretor.
 <img height="30" width="40" src="https://github.com/tandpfun/skill-icons/blob/main/icons/AWS-Light.svg"/>
 </div>
 
-Spring Boot, Data JPA, Security, Swagger, Tokens JWT para segurança, Jasper Report para a geração dos relatórios,
-Docker e Flyway para as migrations. Deploy usando AWS (EC2 e RDS).
+--------------------------------------------------------------------
 
-### Install dependencies
+## 1. Install dependencies
 
 ```shell
 - Java JDK 8 ou superior
 - Maven
-- MYSQL
+- Docker
 ```
 
-### Config connection
+--------------------------------------------------------------------
 
-adicione ao seu arquivo `.env` os valores de cada chave correspondende para a conexão com o banco de dados **postgress**
-
-```env
-DB_HOST=""
-DB_PORT=""
-DB_DATABASE=""
-DB_USERNAME=""
-DB_PASSWORD=""
-```
-
-### Start project
+## 2. Start project
 
 ```shell
-npm run start:dev
+mvn spring-boot:run
 ```
 
-## Autenticação de Usuário
+--------------------------------------------------------------------
 
-### Login
+## Cadastro de Usuário
 
-Endpoint: `/auth/login`
-Método: POST
-
-Este endpoint é usado para permitir que um usuário entre no sistema.
-
-#### Parâmetros da Solicitação
-
-- `email` (string, obrigatório): O endereço de e-mail do usuário.
-- `password` (string, obrigatório): A senha do usuário.
-
-#### Resposta de Sucesso
-
-Status: 200 OK
-
-```json
-{
-  "token": "seu-token-de-autenticação"
-}
-```
-
-#### Resposta de erro
-
-Status: 401 Unauthorized
-
-```json
-{
- "message": "Invalid email or password",
- "error": "Unauthorized",
- "statusCode": 401
-}
-```
-
-## Registro
-
-**Endpoint:** `/auth/register`
+**Endpoint:** `/auth/registrar` 
 
 **Método:** POST
 
-Este endpoint é usado para criar um novo usuário no sistema.
-
 #### Parâmetros da Solicitação
-
-- `name` (string, obrigatório): Nome do usuário.
-- `email` (string, obrigatório): O endereço de e-mail do usuário.
-- `password` (string, obrigatório): A senha do usuário.
-- `phone` (string, opcional): Número de telefone do usuário.
-- `crmv` (string, opcional): Número do CRMV (se aplicável).
-- `office` (string, opcional): Cargo do usuário.
-- `owner` (boolean, opcional): Indica se o usuário é um proprietário (true/false).
-- `work_areas` (array de strings, opcional): Áreas de trabalho do usuário.
-- `status` (string, opcional): Status do usuário se está ativo ou não.
-- `commissioned` (boolean, opcional): Indica se o usuário é comissionado (true/false).
-- `commission_date` (string, opcional): Data de comissão do usuário.
-
-#### Resposta de Sucesso
-
-- **Status:** 201 Created
 
 ```json
 {
- "user": {
-  "id": 143,
-  "name": "test",
-  "office": null,
-  "crmv": null,
-  "owner": false,
-  "profile": {
-   "id": 3
-  }
- }
+	"login" : "",
+	"senha" : "",
+	"role" : "USER or ADMIN"
 }
 ```
 
-## Atualização de Usuário
+#### Resposa de sucesso
 
-Este endpoint é usado para atualizar as informações de um usuário existente no sistema. Para acessar essa funcionalidade, você precisa estar autenticado com um token válido.
+- **Status:** 200 OK
 
-- **Endpoint:** `/user/{id}`
-- **Método:** PATCH
+#### Resposa de Falha
+
+```json
+{
+	"status": 422,
+	"message": "Erro de validação",
+	"errors": [
+		{
+			"field": "{field}",
+			"message": "não deve estar em branco"
+		}
+	]
+}
+```
+
+--------------------------------------------------------------------
+
+## Login de Usuário
+
+**Endpoint:** `/auth/login`
+
+**Método:** GET
 
 #### Parâmetros da Solicitação
 
-- `id` (número, obrigatório): O ID do usuário que você deseja atualizar.
-- `name` (string, opcional): Nome do usuário.
-- `password` (string, opcional): A nova senha do usuário (se você desejar alterá-la).
-- `phone` (string, opcional): Novo número de telefone do usuário.
-- `crmv` (string, opcional): Novo número do CRMV (se aplicável).
-- `office` (string, opcional): Novo cargo do usuário.
-- `owner` (boolean, opcional): Indica se o usuário é um proprietário (true/false).
-- `work_areas` (array de strings, opcional): Novas áreas de trabalho do usuário.
-- `status` (string, opcional): Novo status do usuário (ativo/inativo).
-- `commissioned` (boolean, opcional): Indica se o usuário é comissionado (true/false).
-- `commission_date` (string, opcional): Nova data de comissão do usuário.
+- `login` (required)
+- `senha` (required)
+
+```json
+{
+	"login" : "",
+	"senha" : ""
+}
+```
 
 #### Resposta de Sucesso
 
@@ -151,40 +104,286 @@ Este endpoint é usado para atualizar as informações de um usuário existente 
 
 ```json
 {
- "id": 153,
- "name": "Joe Doe",
- "phone": "(12) 34567-8900",
- "crmv": null,
- "office": null,
- "email": "joedoe@test.com",
- "owner": false,
- "work_areas": null,
- "status": "Ativo",
- "commissioned": false,
- "commission_date": null,
- "last_access": "2023-10-18 14:54:25",
- "profile": {
-  "id": 3,
-  "name": "Gestor da Clínica",
-  "type": "Modelo",
-  "performs_service": true
- }
+	"token": "token"
 }
 ```
 
-## Deleção de Usuário
+#### Resposta de Falha
 
-Este endpoint permite excluir um usuário do sistema, desde que o usuário autenticado seja um proprietário (owner) e que o usuário alvo não seja outro proprietário. Um proprietário também pode excluir a si mesmo.
+```json
+{
+	"status": 403,
+	"message": "Usuário inexistente ou senha inválida"
+}
+```
 
-- **Endpoint:** `/user/{id}`
-- **Método:** DELETE
+--------------------------------------------------------------------
 
-#### Parâmetros da Solicitação
+## Cadastro de Cliente
 
-- `id` (número, obrigatório): O ID do usuário que você deseja excluir.
+**Endpoint:** `/cliente/cadastro/save` 
+
+**Método:** POST
+
+#### Parâmetros da Solicitação -
+
+- `nome` (required) 
+- `dataNascimento` (required) 
+- `telefone` (required) 
+- `endereco` 
+- `cep` 
+- `email` (required) 
+- `corretorId` (required) 
+- `operadoraId` (required) 
+- `administradoraId` (required) 
+- `vigencia` (required) 
+- `planoId` (required) 
+- `valorDoPlanoBruto` (required) 
+- `percentualComissao` (required) 
+- `adesao` ( required) 
+- `segmentacao` (required)
+- `cpf` (required) 
+- `peso` 
+- `altura` 
+
+```json
+{
+	"dadosPessoaisSeguradoDTO": {
+		"nome": "",
+		"dataNascimento": "2003-10-10",
+		"telefone": "XXXXXXXXXXX",
+		"endereco": "",
+		"cep": "",
+		"email": ""
+	},
+	"dadosParaContratacaoSeguradoDTO": {
+		"corretorId": ,
+		"operadoraId": ,
+		"administradoraId": ,
+		"vigencia": "2024-10-10",
+		"planoId": ,
+		"valorDoPlanoBruto": , 
+		"percentualComissao": ,
+		"adesao": ,
+		"segmentacao": ""
+	},
+	"dadosEspecificosCadastroClienteDTO": {
+		"cpf": "",
+		"peso": ,
+		"altura": 
+	}
+}
+```
+
+#### Resposta de sucesso
+
+- **Status:** 201 Created
+
+#### Resposta de Falha
+
+- **Status:** 422 Unprocessable Entity
+
+```json
+{
+	"status": 422,
+	"message": "Erro de validação",
+	"errors": [
+		{
+			"field": "{field}",
+			"message": "não deve estar em branco"
+		}
+	]
+}
+```
+
+--------------------------------------------------------------------
+
+## Detalhamento do Cliente
+
+**Endpoint:** `/cliente/{id}` 
+
+**Método:** GET
 
 #### Resposta de Sucesso
 
-- **Status:** 204 No Content
+- **Status:** 200 OK
 
-Esta resposta indica que o usuário foi excluído com sucesso e não há conteúdo de resposta.
+```json
+{
+	"dadosSeguradoDetalhadoDTO": {
+		"nome": "",
+		"dataNascimento": "",
+		"telefone": "",
+		"cep": "",
+		"endereco": "",
+		"email": "",
+		"corretorId": 0,
+		"operadoraId": 0,
+		"administradoraId": 0,
+		"vigencia": "",
+		"planoId": 0,
+		"valorDoPlanoBruto": 0.0,
+		"percentualComissaoDaOperadora": 0.0,
+		"adesao": 0.0,
+		"segmentacao": ""
+	},
+	"dadosEspecificosClienteDetalhadoDTO": {
+		"cpf": "",
+		"nomeResponsavel": "",
+		"cpfResponsavel": "",
+		"peso": 0.0,
+		"altura": 0.0
+	},
+	"observacoes": null
+}
+```
+
+#### Resposta de Falha
+
+```json
+{
+	"status": 404,
+	"message": "Não foi possível encontrar a entidade"
+}
+```
+
+--------------------------------------------------------------------
+
+## Lista de Clientes
+
+**Endpoint:** `/cliente/lista` 
+
+**Método:** GET
+
+#### Resposta de Sucesso
+
+- **Status:** 200 OK
+
+```json
+{
+	"content": [
+		{
+			"id": ,
+			"nome": "",
+			"operadoraId": ,
+			"vigencia": "4",
+			"planoId": 1,
+			"valorDoPlano": ,
+			"adesao": ,
+			"segmentacao": ""
+		},
+		{
+			"id": ,
+			"nome": "",
+			"operadoraId": ,
+			"vigencia": "",
+			"planoId": ,
+			"valorDoPlano":,
+			"adesao": ,
+			"segmentacao": ""
+		}
+	],
+	"pageable": {
+		"pageNumber": 0,
+		"pageSize": 30,
+		"sort": {
+			"empty": true,
+			"unsorted": true,
+			"sorted": false
+		},
+		"offset": 0,
+		"unpaged": false,
+		"paged": true
+	},
+	"last": true,
+	"totalElements": 2,
+	"totalPages": 1,
+	"size": 30,
+	"number": 0,
+	"sort": {
+		"empty": true,
+		"unsorted": true,
+		"sorted": false
+	},
+	"first": true,
+	"numberOfElements": 2,
+	"empty": false
+}
+
+```
+
+--------------------------------------------------------------------
+
+## Lista de Clientes Filtrada
+
+**Endpoint:** `/cliente/lista/filtrada` 
+
+**Método:** POST
+
+#### Parâmetros da Solicitação -
+
+- `filtroGlobal` (required)
+
+```json
+{
+	"filtroGlobal" : ""
+}
+
+```
+
+#### Resposta de Sucesso
+
+- **Status:** 200 OK
+
+```json
+{
+	{
+	"content": [
+		{
+			"id": ,
+			"nome": "",
+			"operadoraId": ,
+			"vigencia": "2023-10-24",
+			"valorDoPlano": ,
+			"adesao": ,
+			"segmentacao": ""
+		},
+		{
+			"id": ,
+			"nome": "",
+			"operadoraId": ,
+			"vigencia": "2023-10-24",
+			"valorDoPlano": ,
+			"adesao": ,
+			"segmentacao": ""
+		}
+	],
+	"pageable": {
+		"pageNumber": 0,
+		"pageSize": 20,
+		"sort": {
+			"empty": true,
+			"sorted": false,
+			"unsorted": true
+		},
+		"offset": 0,
+		"unpaged": false,
+		"paged": true
+	},
+	"last": true,
+	"totalPages": 1,
+	"totalElements": 2,
+	"size": 20,
+	"number": 0,
+	"sort": {
+		"empty": true,
+		"sorted": false,
+		"unsorted": true
+	},
+	"first": true,
+	"numberOfElements": 2,
+	"empty": false
+	}
+}
+
+```
