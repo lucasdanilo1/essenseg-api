@@ -51,15 +51,11 @@ mvn spring-boot:run
 
 #### Parâmetros da Solicitação
 
-- `login` (required)
-- `senha` (required)
-- `role` (required): ("USER" OU "ADMIN")
-
 ```json
 {
 	"login" : "",
 	"senha" : "",
-	"role" : ""
+	"role" : "USER or ADMIN"
 }
 ```
 
