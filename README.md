@@ -25,18 +25,26 @@ baseados na venda dos planos feitas para Segurados, de um Corretor.
 
 --------------------------------------------------------------------
 
-## 1. Install dependencies
+# 1. Installation
 
-```shell
+## Requirements
+
 - Java JDK 8 ou superior
 - Maven
 - Docker
-```
+- Git
 
---------------------------------------------------------------------
+## Clone and run with:
 
-## 2. Start project
+### Step 1.
+#### Clone project
 
+cd ~
+git clone https://github.com/lucasdanilo1/essenseg-api.git
+cd essenseg-api
+
+### Step 2.
+#### Run project
 ```shell
 mvn spring-boot:run
 ```
