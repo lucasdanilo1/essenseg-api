@@ -39,12 +39,15 @@ baseados na venda dos planos feitas para Segurados, de um Corretor.
 ### Step 1.
 #### Clone project
 
+```shell
 cd ~
 git clone https://github.com/lucasdanilo1/essenseg-api.git
 cd essenseg-api
+```
 
 ### Step 2.
 #### Run project
+
 ```shell
 mvn spring-boot:run
 ```
