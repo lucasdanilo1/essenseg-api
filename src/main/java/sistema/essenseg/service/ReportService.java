@@ -58,7 +58,6 @@ public class ReportService {
         parameters.put("ID", randomId);
         parameters.put("NOME_CORRETOR", nomeCorretor);
         parameters.put("DADOS_DOS_CLIENTES_SELECIONADOS", dataSource);
-        parameters.put("imagemPath", "classpath:/img/logo.png");
 
         return parameters;
     }

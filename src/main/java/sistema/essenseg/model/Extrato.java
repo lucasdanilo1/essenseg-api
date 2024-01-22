@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
+@Table(name = "extrato")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Extrato {
@@ -21,7 +22,7 @@ public class Extrato {
 
     private Long randomId;
 
-    private String nome;
+    private String nomeArquivo;
 
     @ManyToOne
     private Corretor corretor;

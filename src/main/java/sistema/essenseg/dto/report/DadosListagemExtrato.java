@@ -13,6 +13,6 @@ public record DadosListagemExtrato(
 
 ) {
     public DadosListagemExtrato(Extrato extrato){
-        this(extrato.getRandomId(), extrato.getNome(), extrato.getDataCriacao(), extrato.getCorretor().getNome());
+        this(extrato.getRandomId(), extrato.getNomeArquivo(), extrato.getDataCriacao(), extrato.getCorretor().getNome());
     }
 }

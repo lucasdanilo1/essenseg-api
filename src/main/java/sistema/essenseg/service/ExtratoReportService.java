@@ -86,6 +86,6 @@ public class ExtratoReportService {
 
         ByteArrayResource resource = new ByteArrayResource(extrato.getExtratoData());
 
-        return new DocData(extrato.getNome(), resource.contentLength(), resource);
+        return new DocData(extrato.getNomeArquivo(), resource.contentLength(), resource);
     }
 }

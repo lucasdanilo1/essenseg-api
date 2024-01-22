@@ -17,20 +17,16 @@ public record DadosSeguradoDetalhadoDTO(
         String cep,
         String endereco,
         String email,
-        String nomeCorretor,
         Long corretorId,
-        String nomeOperadora,
         Long operadoraId,
-        String nomeAdministradora,
         Long administradoraId,
         @JsonFormat(pattern = "dd/MM/yyyy")
         LocalDate vigencia,
-        String nomePlano,
         Long planoId,
         BigDecimal valorDoPlanoBruto,
+        BigDecimal percentualComissaoDaOperadora,
         BigDecimal adesao,
         Segmentacao segmentacao
-
 
 ) {
     public DadosSeguradoDetalhadoDTO(DadosPessoaisSegurado dadosPessoaisSegurado, DadosContratacaoSegurado dadosContratacaoSegurado){
@@ -41,16 +37,13 @@ public record DadosSeguradoDetalhadoDTO(
                 dadosPessoaisSegurado.getCep(),
                 dadosPessoaisSegurado.getEndereco(),
                 dadosPessoaisSegurado.getEmail(),
-                dadosContratacaoSegurado.getCorretor().getNome(),
                 dadosContratacaoSegurado.getCorretor().getId(),
-                dadosContratacaoSegurado.getOperadora().getNome(),
                 dadosContratacaoSegurado.getOperadora().getId(),
-                dadosContratacaoSegurado.getAdministradora().getNome(),
                 dadosContratacaoSegurado.getAdministradora().getId(),
                 dadosContratacaoSegurado.getVigencia(),
-                dadosContratacaoSegurado.getPlano().getNome(),
                 dadosContratacaoSegurado.getPlano().getId(),
                 dadosContratacaoSegurado.getValorDoPlanoBruto(),
+                dadosContratacaoSegurado.getPercentualComissaoDaOperadora(),
                 dadosContratacaoSegurado.getAdesao(),
                 dadosContratacaoSegurado.getSegmentacao()
         );

@@ -20,7 +20,7 @@ public class DadosPessoaisDependente {
 
     private String cpf;
 
-    private String parentesco;
+    private String relacao;
 
     private String email;
 
@@ -30,7 +30,7 @@ public class DadosPessoaisDependente {
         this.nome = dados.nome();
         this.dataNascimento = DataUtil.converterData(dados.dataNascimento());
         this.cpf = dados.cpf();
-        this.parentesco = dados.parentesco();
+        this.relacao = dados.parentesco();
         this.email = dados.email();
         this.telefone = dados.telefone();
     }
@@ -44,7 +44,7 @@ public class DadosPessoaisDependente {
                 this.dataNascimento = DataUtil.converterData(dados.dataNascimento());
             }
             if(dados.parentesco() != null){
-                this.parentesco = dados.parentesco();
+                this.relacao = dados.parentesco();
             }
             if(dados.email() != null){
                 this.email = dados.email();

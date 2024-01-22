@@ -1,12 +1,12 @@
 package sistema.essenseg.infra.exception;
 
 
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.ConstraintViolationException;
-import org.apache.tomcat.util.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
@@ -107,6 +107,19 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
                 request);
     }
 
+    @ExceptionHandler(JWTVerificationException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ResponseEntity<Object> handleJWTVerificationException(
+            JWTVerificationException ex,
+            WebRequest request) {
+        final String errorMessage = "Token não autorizado";
+        return buildErrorResponse(
+                ex,
+                errorMessage,
+                HttpStatus.UNAUTHORIZED,
+                request);
+    }
+
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public ResponseEntity<Object> handleDataIntegrityViolationException(
@@ -187,7 +200,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
     }
 
     @Override
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, org.springframework.security.core.AuthenticationException exception) throws IOException, ServletException {
+    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, org.springframework.security.core.AuthenticationException exception) throws IOException {
         int status = HttpStatus.UNAUTHORIZED.value();
         response.setStatus(status);
         response.setContentType("application/json");

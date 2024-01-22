@@ -10,8 +10,6 @@ import sistema.essenseg.dto.plano.DadosPlanoDTO;
 import sistema.essenseg.dto.relacionamento.DadosRelacionamentoDTO;
 import sistema.essenseg.service.*;
 
-import java.math.BigDecimal;
-
 @Component
 public class CadastroAutomatico implements ApplicationRunner {
 
@@ -62,15 +60,15 @@ public class CadastroAutomatico implements ApplicationRunner {
 			relacionamentoService.relacionar(new DadosRelacionamentoDTO(5L, 2L));
 			relacionamentoService.relacionar(new DadosRelacionamentoDTO(5L, 5L));
 
-			this.planoService.cadastrar(new DadosPlanoDTO(1L, "Ideal Cuidado 10", new BigDecimal("10")));
-			this.planoService.cadastrar(new DadosPlanoDTO(1L, "Ideal Cuidado 20", new BigDecimal("20")));
-            this.planoService.cadastrar(new DadosPlanoDTO(1L, "Ideal Cuidado 30", new BigDecimal("30")));
-			this.planoService.cadastrar(new DadosPlanoDTO(2L, "Exato QC", new BigDecimal("40")));
-			this.planoService.cadastrar(new DadosPlanoDTO(4L, "Joy QC", new BigDecimal("20")));
-			this.planoService.cadastrar(new DadosPlanoDTO(4L, "Joy QP", new BigDecimal("20")));
-			this.planoService.cadastrar(new DadosPlanoDTO(5L, "Bronze QC", new BigDecimal("10")));
-			this.planoService.cadastrar(new DadosPlanoDTO(5L, "Bronze QP", new BigDecimal("40")));
-            this.planoService.cadastrar(new DadosPlanoDTO(5L, "Bronze Plus QP", new BigDecimal("20")));
+			this.planoService.cadastrar(new DadosPlanoDTO(1L, "Ideal Cuidado 10"));
+			this.planoService.cadastrar(new DadosPlanoDTO(1L, "Ideal Cuidado 20"));
+            this.planoService.cadastrar(new DadosPlanoDTO(1L, "Ideal Cuidado 30"));
+			this.planoService.cadastrar(new DadosPlanoDTO(2L, "Exato QC"));
+			this.planoService.cadastrar(new DadosPlanoDTO(4L, "Joy QC"));
+			this.planoService.cadastrar(new DadosPlanoDTO(4L, "Joy QP"));
+			this.planoService.cadastrar(new DadosPlanoDTO(5L, "Bronze QC"));
+			this.planoService.cadastrar(new DadosPlanoDTO(5L, "Bronze QP"));
+            this.planoService.cadastrar(new DadosPlanoDTO(5L, "Bronze Plus QP"));
 
 		}catch (Exception e){
 			System.out.println(e.getMessage());
