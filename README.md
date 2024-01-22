@@ -57,13 +57,11 @@ mvn spring-boot:run
 <div>
 <img src="https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.png"/>
 </div>
---------------------------------------------------------------------
-## Endpoints
-
 
 # 1. Getting Started
 
 By default, the application server must be running on localhost and the default Spring port - 8080.
+
 If you follow all the steps and run the application correctly, you can trigger requests to application endpoints in the localhost:8080 domain.
 
 To trigger requests, you can use any API testing tools, like insomnia or postman.
