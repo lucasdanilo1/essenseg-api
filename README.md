@@ -59,10 +59,7 @@ mvn spring-boot:run
 </div>
 --------------------------------------------------------------------
 ## Endpoints
-<div>
-<img src="https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.png"/>
-</div>
---------------------------------------------------------------------
+
 
 # 1. Getting Started
 
