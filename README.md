@@ -42,6 +42,7 @@ mvn spring-boot:run
 ```
 
 --------------------------------------------------------------------
-##Db Schema
-
-![db_schema](https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.svg)
+## Db Schema
+<div>
+<img height="30" width="40" src="https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.svg"/>
+</div>
