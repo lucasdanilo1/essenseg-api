@@ -29,7 +29,9 @@ baseados na venda dos planos feitas para Segurados, de um Corretor.
 
 ## Requirements
 
-- Java JDK 8 ou superior
+Make sure you have all these requirements are running and working on your system.
+
+- Java JDK 8 or above
 - Maven
 - Docker
 - Git
@@ -51,7 +53,20 @@ mvn spring-boot:run
 ```
 
 --------------------------------------------------------------------
-## Db Schema
+## Data Base Schema
 <div>
 <img src="https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.png"/>
 </div>
+--------------------------------------------------------------------
+## Endpoints
+<div>
+<img src="https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.png"/>
+</div>
+--------------------------------------------------------------------
+
+# 1. Getting Started
+
+By default, the application server must be running on localhost and the default Spring port - 8080.
+If you follow all the steps and run the application correctly, you can trigger requests to application endpoints in the localhost:8080 domain.
+
+To trigger requests, you can use any API testing tools, like insomnia or postman.
