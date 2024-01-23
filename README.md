@@ -65,3 +65,8 @@ By default, the application server must be running on localhost and the default 
 If you follow all the steps and run the application correctly, you can trigger requests to application endpoints in the localhost:8080 domain.
 
 To trigger requests, you can use any API testing tools, like insomnia or postman.
+
+## Documentação da API
+
+<iframe src="https://raw.githubusercontent.com/lucasdanilo1/essenseg-api/blob/main/redoc-static.html" width="100%" height="500"></iframe>
+
