@@ -95,7 +95,7 @@ Basta clicar nas requisições individuais para abri-las e começar a testar a A
 
 Agora você está pronto para explorar e testar as funcionalidades da aplicação localmente usando algum dos API Client.
 
-
+------------------------------------------------------------------------------
 
 
 
