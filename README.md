@@ -90,6 +90,7 @@ Para isso, disponibilizo a coleção nos dois principais API Client do mercado, 
 ## Como usar 
 
 Após importar as requisições, você verá uma coleção no menu à esquerda.
+
 Basta clicar nas requisições individuais para abri-las e começar a testar a API.
 
 Agora você está pronto para explorar e testar as funcionalidades da aplicação localmente usando algum dos API Client.
