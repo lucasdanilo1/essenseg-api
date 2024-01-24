@@ -37,7 +37,24 @@ disponível em: https://lucasdanilo1.github.io/essenseg-api/
 
 ### 1. Autenticação de Usuários
 
-Descrição curta sobre a funcionalidade de autenticação de usuários. Explique como os usuários podem se registrar, fazer login e gerenciar suas credenciais.
+A autenticação de usuários é essencial para controlar o acesso ao sistema, garantindo que apenas usuários autorizados possam utilizar as funcionalidades disponíveis na API. O processo de autenticação envolve o cadastro de novos usuários e o login de usuários já registrados.
+
+#### Funcionalidades
+
+- Cadastro de um novo Usuário no sistema.
+  /auth/registrar
+  
+- Login de um Usuário cadastrado no sistema.
+ /auth/login
+
+#### Tipo de Sistema e Medidas de Segurança
+
+O sistema adotado para garantir a autenticidade dos usuários e a segurança das informações segue as melhores práticas disponíveis. 
+Para obter detalhes sobre as medidas de segurança implementadas, consulte a documentação específica relacionada à segurança da API.
+
+### 2. Gestão de Segurados.
+
+Funcionalidades:
 
 
 ------------------------------------------------------------------------------
