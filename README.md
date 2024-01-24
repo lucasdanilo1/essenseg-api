@@ -53,10 +53,24 @@ A autenticação de usuários é essencial para controlar o acesso ao sistema, g
 
 O sistema adotado para garantir a autenticidade dos usuários e a segurança das informações segue as melhores práticas disponíveis. Para obter detalhes sobre as medidas de segurança implementadas, consulte a [documentação específica](link) relacionada à segurança da API.
 
-### 2. Gestão de Segurados.
+### 2. Gestão de Segurados
 
-Um Segurado é a parte mais importante do sistema, pois é o principal foco de gestão, e onde todas as outras entidades fazem relação.
-Um Segurado é um Cliente 
+Os Segurados desempenham um papel fundamental no sistema, representando o ponto central da gestão e estabelecendo relações com outras entidades.
+Existem dois tipos de Segurados: Cliente e Empresa. 
+
+#### Na Base de Dados
+
+Na base de dados, tanto Clientes quanto Empresas compartilham características semelhantes, levando à escolha de uma abordagem unificada com uma única tabela para ambos. A diferenciação entre Cliente e Empresa é realizada por meio de uma coluna denominada "tipo".
+
+#### No sistema
+
+No contexto do sistema, Cliente e Empresa são tratados como duas sub-classes distintas que estendem todos os atributos e métodos de uma super-classe comum chamada Segurado. Essa super-classe, por sua vez, é definida como uma classe abstrata. A relação de herança entre Cliente e Empresa, utilizando Segurado como base, segue o modelo de herança de tipo SINGLE TABLE no JPA (Java Persistence API).
+
+#### Justificativa
+
+Esta abordagem foi adotada visando aprimorar a legibilidade do código, promover uma estrutura mais limpa e garantir um baixo acoplamento. A escolha do tipo de herança SINGLE TABLE no JPA contribui para uma representação eficiente e unificada na base de dados, enquanto no código do sistema, Clientes e Empresas mantêm uma hierarquia de classes que reflete suas similaridades e diferenças de forma clara e modular.
+
+Dito isso, optei por fazer Controllers diferentes para cada tipo de Segurado, pois para cada um, campos específicos são utilizados. Isso é importante para o tratamento especifico de cada tipo e principalmente a validação dos campos obrigatórios para o cadastro e atualização de cada tipo. Sem contar as diferenças em  
 
 
 ------------------------------------------------------------------------------
@@ -98,6 +112,7 @@ mvn spring-boot:run
 ```
 
 #### Observações
+
 - É obrigatório que o Docker esteja em execução para ser possível concluir o Passo 3.
 
 Após isso, a aplicação estará disponível em http://localhost:8080.
