@@ -57,6 +57,11 @@ mvn spring-boot:run
 <div>
 <img src="https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.png"/>
 </div>
+--------------------------------------------------------------------
+## API Documentation
+
+https://lucasdanilo1.github.io/essenseg-api/
+--------------------------------------------------------------------
 
 # 1. Getting Started
 
@@ -66,6 +71,4 @@ If you follow all the steps and run the application correctly, you can trigger r
 
 To trigger requests, you can use any API testing tools, like insomnia or postman.
 
-## Documentação da API
 
-https://lucasdanilo1.github.io/essenseg-api/
