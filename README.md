@@ -82,7 +82,7 @@ Siga os passos abaixo para importar as requisições prontas:
 
 ### Importar as Requisições no Insomnia
 
-| # Backend API Collection     | Link                                                                                       |
+| Backend API Collection     | Link                                                                                       |
 |-----------|--------------------------------------------------------------------------------------------|
 | Insomnia  | [![Run in Insomnia](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=essenseg-api&uri=https%3A%2F%2Fraw.githubusercontent.com%2Flucasdanilo1%2Fessenseg-api%2Fmain%2Fessenseg-requisicoes) |
 | Postman   | [<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" width="135" height="30">](https://god.gw.postman.com/run-collection/:collection_id) |
