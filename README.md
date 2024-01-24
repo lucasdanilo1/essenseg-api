@@ -86,6 +86,8 @@ Clique aqui para baixar o arquivo JSON com as requisições.
 
 ### Importar as Requisições no Insomnia
 
+[![Texto Alternativo](https://www.designi.com.br/images/preview/10698269.jpg)](https://github.com/deephealthproject/backend/blob/master/README.md)
+
 Abra o Insomnia e vá para o menu File > Import/Export > Import Data.
 Selecione a opção From File e escolha o arquivo JSON que você baixou.
 
