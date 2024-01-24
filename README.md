@@ -29,7 +29,11 @@ baseados na venda dos planos feitas para Segurados, de um Corretor.
 
 ## Funcionalidades e Documentação
 
-A Documentação completa citando características dos endpoints específicos da API está disponível [aqui](https://lucasdanilo1.github.io/essenseg-api/)
+Breve explicação sobre as funcionalidades gerais e peculiaridades de cada uma.
+
+Documentação completa detalhada, citando rotas dos endpoints, metodos de um, tipos de retorno e parâmetros disponível em:
+https://lucasdanilo1.github.io/essenseg-api/
+
 
 ### 1. Autenticação de Usuários
 
