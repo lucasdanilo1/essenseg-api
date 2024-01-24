@@ -1,4 +1,3 @@
-
 # EssensegAPI
 
 API Restful desenvolvida com Spring para uma corretora de planos de saúde. 
@@ -34,6 +33,8 @@ https://lucasdanilo1.github.io/essenseg-api/
 
 # 1. Instalação
 
+Como instalar e executar o projeto.
+
 ## Requerimentos
 
 Certifique-se que você tem todos os requerimentos devidamente instalandos na sua máquina.
@@ -45,7 +46,7 @@ Caso contrário, não será possível instalar nem executar o projeto.
 - Docker
 - Git
 
-## Clone e execução do projeto.
+## Clone e execução do projeto
 
 ### Passo 1 - Clone o projeto
 
@@ -70,6 +71,8 @@ mvn spring-boot:run
 - É obrigatório que o Docker esteja em execução para ser possível concluir o Passo 3.
 
 Após isso, a aplicação estará disponível em http://localhost:8080.
+
+------------------------------------------------------------------------------
 
 ## Disparando as Requisições com Insomnia
 
