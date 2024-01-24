@@ -80,10 +80,6 @@ Para testar as requisições da API, é recomendado o uso do Insomnia, um client
 
 Siga os passos abaixo para importar as requisições prontas:
 
-### Baixar as Requisições Insomnia
-
-Clique aqui para baixar o arquivo JSON com as requisições.
-
 ### Importar as Requisições no Insomnia
 
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=essenseg-api&uri=https%3A%2F%2Fraw.githubusercontent.com%2Flucasdanilo1%2Fessenseg-api%2Fmain%2Fessenseg-requisicoes)
