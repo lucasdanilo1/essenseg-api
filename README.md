@@ -74,7 +74,7 @@ Após isso, a aplicação estará disponível em http://localhost:8080.
 
 ------------------------------------------------------------------------------
 
-## Disparando as Requisições
+## Teste e Disparo das requisições
 
 É possível importar a coleção completa de requisições disponíveis na API. 
 Para isso, disponibilizo a coleção nos dois principais API Client do mercado, [Insomnia](https://insomnia.rest/download) e [Postman](https://www.postman.com/downloads/).
@@ -86,12 +86,12 @@ Para isso, disponibilizo a coleção nos dois principais API Client do mercado, 
 | [![Run in Insomnia](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=essenseg-api&uri=https%3A%2F%2Fraw.githubusercontent.com%2Flucasdanilo1%2Fessenseg-api%2Fmain%2Fessenseg-requisicoes) |
 | [<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" width="135" height="30">](https://god.gw.postman.com/run-collection/:collection_id) |
 
-### Usar as Requisições
+### Como usar 
 
 Após importar as requisições, você verá uma coleção no menu à esquerda.
 Basta clicar nas requisições individuais para abri-las e começar a testar a API.
 
-Agora você está pronto para explorar e testar as funcionalidades da aplicação localmente usando o Insomnia. Certifique-se de ajustar as configurações de ambiente conforme necessário.
+Agora você está pronto para explorar e testar as funcionalidades da aplicação localmente usando algum dos API Client.
 
 
 
