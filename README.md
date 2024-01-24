@@ -77,12 +77,7 @@ Após isso, a aplicação estará disponível em http://localhost:8080.
 ## Disparando as Requisições
 
 É possível importar a coleção completa de requisições disponíveis na API. 
-Para isso, disponibilizo a coleção nos dois principais API Client do mercado, [Insomnia e Postman].
-
-### Downloads 
-
-[Insomnia](https://insomnia.rest/download)
-[Postman](https://www.postman.com/downloads/)
+Para isso, disponibilizo a coleção nos dois principais API Client do mercado, [Insomnia](https://insomnia.rest/download)] e [Postman](https://www.postman.com/downloads/).
 
 ### Importação da coleção de requisições
 
