@@ -37,6 +37,7 @@ https://lucasdanilo1.github.io/essenseg-api/
 ## Requerimentos
 
 Certifique-se que você tem todos os requerimentos devidamente instalandos na sua máquina.
+
 Caso contrário, não será possível instalar nem executar o projeto.
 
 - Java JDK 8 ou superior
@@ -73,6 +74,7 @@ Após isso, a aplicação estará disponível em http://localhost:8080.
 ## Disparando as Requisições com Insomnia
 
 Para testar as requisições da API, é recomendado o uso do Insomnia, um cliente de API versátil e fácil de usar. 
+
 Siga os passos abaixo para importar as requisições prontas:
 
 ### Baixar as Requisições Insomnia
