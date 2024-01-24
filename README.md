@@ -43,6 +43,7 @@ Como instalar e executar o projeto.
 - Git
 
 Certifique-se que você tem todos os requerimentos devidamente instalandos na sua máquina.
+
 Caso contrário, não será possível instalar nem executar o projeto.
 
 ## Clone e execução do projeto
