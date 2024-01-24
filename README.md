@@ -25,6 +25,19 @@ baseados na venda dos planos feitas para Segurados, de um Corretor.
 
 --------------------------------------------------------------------
 
+## Data Base Schema
+<div>
+<img src="https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.png"/>
+</div>
+
+--------------------------------------------------------------------
+
+## API Documentation
+
+https://lucasdanilo1.github.io/essenseg-api/
+
+--------------------------------------------------------------------
+
 # 1. Installation
 
 ## Requirements
@@ -52,27 +65,33 @@ cd essenseg-api
 mvn spring-boot:run
 ```
 
---------------------------------------------------------------------
-
-## Data Base Schema
-<div>
-<img src="https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.png"/>
-</div>
+A aplicação estará disponível em http://localhost:8080.
 
 --------------------------------------------------------------------
 
-## API Documentation
+## Disparando as Requisições com Insomnia
 
-https://lucasdanilo1.github.io/essenseg-api/
+Para testar as requisições da API, é recomendado o uso do Insomnia, um cliente de API versátil e fácil de usar. 
+Siga os passos abaixo para importar as requisições prontas:
 
---------------------------------------------------------------------
+### Baixar as Requisições Insomnia
 
-# 1. Getting Started
+Clique aqui para baixar o arquivo JSON com as requisições.
 
-By default, the application server must be running on localhost and the default Spring port - 8080.
+### Importar as Requisições no Insomnia
 
-If you follow all the steps and run the application correctly, you can trigger requests to application endpoints in the localhost:8080 domain.
+Abra o Insomnia e vá para o menu File > Import/Export > Import Data.
+Selecione a opção From File e escolha o arquivo JSON que você baixou.
 
-To trigger requests, you can use any API testing tools, like insomnia or postman.
+### Usar as Requisições
+
+Após importar as requisições, você verá uma coleção no menu à esquerda.
+Basta clicar nas requisições individuais para abri-las e começar a testar a API.
+
+Agora você está pronto para explorar e testar as funcionalidades da aplicação localmente usando o Insomnia. Certifique-se de ajustar as configurações de ambiente conforme necessário.
+
+
+
+
 
 
