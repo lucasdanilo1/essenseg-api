@@ -4,14 +4,14 @@
 API Restful desenvolvida com Spring para uma corretora de planos de saúde. 
 
 
-## Description
+## Descrição
 
 Principal foco a gestão de Segurados, Dependentes, Operadoras, Administradoras, Corretores e Planos de Saúde.
 Cadastro, atualização, listagem com filtros e detalhamento de todas as entidades citadas acima. 
 Além da possibilidade de anexo de arquivos, vinculados aos Segurados. Geração de relatórios PDF de extratos, 
 baseados na venda dos planos feitas para Segurados, de um Corretor.
 
-## technologies in use
+## Tecnologias usadas
 
 <div>
 <img height="30" width="40" src="https://github.com/tandpfun/skill-icons/blob/main/icons/Java-Light.svg"/>
@@ -21,43 +21,54 @@ baseados na venda dos planos feitas para Segurados, de um Corretor.
 <img height="30" width="40" src="https://github.com/tandpfun/skill-icons/blob/main/icons/AWS-Light.svg"/>
 </div>
 
-## Data Base Schema
+## Documentação da API
+
+https://lucasdanilo1.github.io/essenseg-api/
+
+## Db Schema
 <div>
 <img src="https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.png"/>
 </div>
 
-## API Documentation
+------------------------------------------------------------------------------
 
-https://lucasdanilo1.github.io/essenseg-api/
+# 1. Instalação
 
-# 1. Installation
+## Requerimentos
 
-## Requirements
+Certifique-se que você tem todos os requerimentos devidamente instalandos na sua máquina.
+Caso contrário, não será possível instalar nem executar o projeto.
 
-Make sure you have all these requirements are running and working on your system.
-
-- Java JDK 8 or above
+- Java JDK 8 ou superior
 - Maven
 - Docker
 - Git
 
-## Clone and run with:
+## Clone e execução do projeto.
 
-### Step 1 - Clone project
+### Passo 1 - Clone o projeto
 
 ```shell
-cd ~
+cd \
 git clone https://github.com/lucasdanilo1/essenseg-api.git
+```
+
+### Passo 2 - Acesse a pasta do projeto
+
+```shell
 cd essenseg-api
 ```
 
-### Step 2 - Run project
+### Passo 3 - Execute o projeto
 
 ```shell
 mvn spring-boot:run
 ```
 
-A aplicação estará disponível em http://localhost:8080.
+#### Observações
+- É obrigatório que o Docker esteja em execução para ser possível concluir o Passo 3.
+
+Após isso, a aplicação estará disponível em http://localhost:8080.
 
 ## Disparando as Requisições com Insomnia
 
