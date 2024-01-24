@@ -48,20 +48,20 @@ Caso contrário, não será possível instalar nem executar o projeto.
 
 ## Clone e execução do projeto
 
-### Passo 1 - Clone o projeto
+#### Passo 1 - Clone o projeto
 
 ```shell
 cd \
 git clone https://github.com/lucasdanilo1/essenseg-api.git
 ```
 
-### Passo 2 - Acesse a pasta do projeto
+#### Passo 2 - Acesse a pasta do projeto
 
 ```shell
 cd essenseg-api
 ```
 
-### Passo 3 - Execute o projeto
+#### Passo 3 - Execute o projeto
 
 ```shell
 mvn spring-boot:run
