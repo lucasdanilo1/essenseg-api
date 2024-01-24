@@ -67,6 +67,9 @@ If you follow all the steps and run the application correctly, you can trigger r
 To trigger requests, you can use any API testing tools, like insomnia or postman.
 
 ## Documentação da API
+
+```yaml
+
 openapi: 3.0.1
 info:
   title: Essenseg
@@ -3382,4 +3385,4 @@ components:
           format: int64
         nome:
           type: string
-
+```
