@@ -86,7 +86,7 @@ Clique aqui para baixar o arquivo JSON com as requisições.
 
 ### Importar as Requisições no Insomnia
 
-[![Texto Alternativo](https://www.designi.com.br/images/preview/10698269.jpg)](https://github.com/deephealthproject/backend/blob/master/README.md)
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=essenseg-api&uri=https%3A%2F%2Fraw.githubusercontent.com%2Flucasdanilo1%2Fessenseg-api%2Fmain%2Fessenseg-requisicoes)
 
 Abra o Insomnia e vá para o menu File > Import/Export > Import Data.
 Selecione a opção From File e escolha o arquivo JSON que você baixou.
