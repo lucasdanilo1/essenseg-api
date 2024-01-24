@@ -82,7 +82,11 @@ Siga os passos abaixo para importar as requisições prontas:
 
 ### Importar as Requisições no Insomnia
 
+Backend API collection
+
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=essenseg-api&uri=https%3A%2F%2Fraw.githubusercontent.com%2Flucasdanilo1%2Fessenseg-api%2Fmain%2Fessenseg-requisicoes)
+
+[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://god.gw.postman.com/run-collection/:collection_id)
 
 Abra o Insomnia e vá para o menu File > Import/Export > Import Data.
 Selecione a opção From File e escolha o arquivo JSON que você baixou.
