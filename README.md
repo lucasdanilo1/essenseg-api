@@ -20,14 +20,21 @@ baseados na venda dos planos feitas para Segurados, de um Corretor.
 <img height="30" width="40" src="https://github.com/tandpfun/skill-icons/blob/main/icons/AWS-Light.svg"/>
 </div>
 
-## Documentação da API
-
-https://lucasdanilo1.github.io/essenseg-api/
-
 ## Db Schema
 <div>
 <img src="https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.png"/>
 </div>
+
+------------------------------------------------------------------------------
+
+## Funcionalidades e Documentação
+
+A Documentação completa citando características dos endpoints específicos da API está disponível [aqui](https://lucasdanilo1.github.io/essenseg-api/)
+
+### 1. Autenticação de Usuários
+
+Descrição curta sobre a funcionalidade de autenticação de usuários. Explique como os usuários podem se registrar, fazer login e gerenciar suas credenciais.
+
 
 ------------------------------------------------------------------------------
 
