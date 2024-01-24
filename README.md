@@ -55,7 +55,8 @@ O sistema adotado para garantir a autenticidade dos usuários e a segurança das
 
 ### 2. Gestão de Segurados.
 
-Funcionalidades:
+Um Segurado é a parte mais importante do sistema, pois é o principal foco de gestão, e onde todas as outras entidades fazem relação.
+Um Segurado é um Cliente 
 
 
 ------------------------------------------------------------------------------
