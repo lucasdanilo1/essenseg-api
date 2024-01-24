@@ -37,14 +37,13 @@ Como instalar e executar o projeto.
 
 ## Requerimentos
 
-Certifique-se que você tem todos os requerimentos devidamente instalandos na sua máquina.
-
-Caso contrário, não será possível instalar nem executar o projeto.
-
 - Java JDK 8 ou superior
 - Maven
 - Docker
 - Git
+
+Certifique-se que você tem todos os requerimentos devidamente instalandos na sua máquina.
+Caso contrário, não será possível instalar nem executar o projeto.
 
 ## Clone e execução do projeto
 
