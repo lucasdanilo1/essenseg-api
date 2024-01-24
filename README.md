@@ -11,8 +11,6 @@ Cadastro, atualização, listagem com filtros e detalhamento de todas as entidad
 Além da possibilidade de anexo de arquivos, vinculados aos Segurados. Geração de relatórios PDF de extratos, 
 baseados na venda dos planos feitas para Segurados, de um Corretor.
 
---------------------------------------------------------------------
-
 ## technologies in use
 
 <div>
@@ -23,20 +21,14 @@ baseados na venda dos planos feitas para Segurados, de um Corretor.
 <img height="30" width="40" src="https://github.com/tandpfun/skill-icons/blob/main/icons/AWS-Light.svg"/>
 </div>
 
---------------------------------------------------------------------
-
 ## Data Base Schema
 <div>
 <img src="https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.png"/>
 </div>
 
---------------------------------------------------------------------
-
 ## API Documentation
 
 https://lucasdanilo1.github.io/essenseg-api/
-
---------------------------------------------------------------------
 
 # 1. Installation
 
@@ -66,8 +58,6 @@ mvn spring-boot:run
 ```
 
 A aplicação estará disponível em http://localhost:8080.
-
---------------------------------------------------------------------
 
 ## Disparando as Requisições com Insomnia
 
