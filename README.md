@@ -53,14 +53,18 @@ mvn spring-boot:run
 ```
 
 --------------------------------------------------------------------
+
 ## Data Base Schema
 <div>
 <img src="https://github.com/lucasdanilo1/essenseg-api/blob/main/db_schema.png"/>
 </div>
+
 --------------------------------------------------------------------
+
 ## API Documentation
 
 https://lucasdanilo1.github.io/essenseg-api/
+
 --------------------------------------------------------------------
 
 # 1. Getting Started
