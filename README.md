@@ -74,24 +74,22 @@ Após isso, a aplicação estará disponível em http://localhost:8080.
 
 ------------------------------------------------------------------------------
 
-## Disparando as Requisições com Insomnia
+## Disparando as Requisições
 
-Para testar as requisições da API, é recomendado o uso do Insomnia, um cliente de API versátil e fácil de usar. 
+É possível importar a coleção completa de requisições disponíveis na API. 
+Para isso, disponibilizo a coleção nos dois principais API Client do mercado, [Insomnia e Postman].
 
-Siga os passos abaixo para importar as requisições prontas:
+### Downloads 
 
-### Importar as Requisições no Insomnia
+[Insomnia](https://insomnia.rest/download)
+[Postman](https://www.postman.com/downloads/)
+
+### Importação da coleção de requisições
 
 | API Collection                                                                             |
 |--------------------------------------------------------------------------------------------|
 | [![Run in Insomnia](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=essenseg-api&uri=https%3A%2F%2Fraw.githubusercontent.com%2Flucasdanilo1%2Fessenseg-api%2Fmain%2Fessenseg-requisicoes) |
 | [<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" width="135" height="30">](https://god.gw.postman.com/run-collection/:collection_id) |
-
-
-
-
-Abra o Insomnia e vá para o menu File > Import/Export > Import Data.
-Selecione a opção From File e escolha o arquivo JSON que você baixou.
 
 ### Usar as Requisições
 
