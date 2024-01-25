@@ -63,7 +63,7 @@ O sistema adotado para garantir a autenticidade dos usuários e a segurança das
 Os Segurados desempenham um papel fundamental no sistema, representando o ponto central da gestão e estabelecendo relações com outras entidades.
 Existem dois tipos de Segurados: Cliente e Empresa. 
 
-Para cada um dos dois tipos de Segurado, foram desenvolvidos dois endpoints para cada operação CRUD (Create, Read, Update, Delete). A lógica por trás dessa abordagem, que detalha a separação dos endpoints para cada tipo de Segurado, é explicada de forma mais específica em:[Estratégia utilizada para distinção de tipos de Segurado](#explicacao-segurado)
+Para cada um dos dois tipos de Segurado, foram desenvolvidos dois endpoints para cada operação CRUD (Create, Read, Update, Delete). A lógica por trás dessa abordagem, que detalha a separação dos endpoints para cada tipo de Segurado, é explicada de forma mais específica em: [estratégia utilizada para distinção de tipos de Segurado](#explicacao-segurado)
 
 #### Funcionalidades
 
