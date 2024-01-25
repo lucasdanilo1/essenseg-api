@@ -70,8 +70,46 @@ No contexto do sistema, Cliente e Empresa são tratados como duas sub-classes di
 
 Esta abordagem foi adotada visando aprimorar a legibilidade do código, promover uma estrutura mais limpa e garantir um baixo acoplamento. A escolha do tipo de herança SINGLE TABLE no JPA contribui para uma representação eficiente e unificada na base de dados, enquanto no código do sistema, Clientes e Empresas mantêm uma hierarquia de classes que reflete suas similaridades e diferenças de forma clara e modular.
 
-Dito isso, optei por fazer Controllers diferentes para cada tipo de Segurado, pois para cada um, campos específicos são utilizados. Isso é importante para o tratamento especifico de cada tipo e principalmente a validação dos campos obrigatórios para o cadastro e atualização de cada tipo. Sem contar as diferenças em  
+Dito isso, optei por fazer Controllers diferentes para cada tipo de Segurado, pois para cada um, campos específicos são utilizados. Isso é importante para o tratamento especifico de cada tipo e principalmente a validação dos campos obrigatórios para o cadastro e atualização de cada tipo. 
 
+#### Funcionalidades
+
+1. **Cadastro:** (POST)
+   - Endpoint: `/cliente/new/cadastro/save` - Para Cliente
+   - Endpoint: `/empresa/new/cadastro/save` - Para Empresa
+
+   - Descrição: Permite o cadastro de um novo Segurado.
+
+2. **Detalhamento:** (GET)
+
+   - Endpoint: `/cliente/{id}` - Para Cliente
+   - Endpoint: `/empresa/{id}` - Para Empresa
+     
+   - Descrição: Exibe todas as informações de determinado Segurado, de acordo com o id informado na URL.
+  
+4. **Listagem:** (GET)
+   - Endpoint: `/auth/registrar` - Para Cliente
+   - Endpoint: `/auth/registrar` - Para Empresa
+   - 
+   - Descrição: Exibe a lista de Cliente ou Empresa.
+
+5. **Listagem com filtros:** (POST)
+   - Endpoint: `/auth/registrar` - Para Cliente
+   - Endpoint: `/auth/registrar` - Para Empresa
+     
+   - Descrição: Exibe uma lista filtrada de Cliente ou Empresa, a filtragem traz todos os item da lista geral que contenha uma parte ou um todo do parâmetro informado na requisição, de acordo com as seguintes informações: .
+  
+6. **Atualização:** (PUT)
+   - Endpoint: `/cliente/{id}/atualizar` - Para Cliente
+   - Endpoint: `/empresa/{id}/atualizar` - Para Empresa
+
+   - Descrição: Atualiza as informações de um Segurado, de acordo com o id informado na URL.
+
+7. **Inativação:** (DELETE)
+   - Endpoint: `/cliente/{id}/inativar` - Para Cliente
+   - Endpoint: `/empresa/{id}/inativar` - Para Empresa
+
+   - Descrição: Inativa um Segurado, de acordo com o id informado na URL.
 
 ------------------------------------------------------------------------------
 
