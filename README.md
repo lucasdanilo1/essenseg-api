@@ -74,47 +74,48 @@ Dito isso, optei por fazer Controllers diferentes para cada tipo de Segurado, po
 
 #### Funcionalidades
 
-1. **Cadastro:** (POST)
-   - **Endpoint:**
-     - `/cliente/new/cadastro/save` - Para Cliente
-     - `/empresa/new/cadastro/save` - Para Empresa
+1. **Cadastro:** 
    - **Descrição:**
      - Permite o cadastro de um novo Segurado.
-
-2. **Detalhamento:** (GET)
    - **Endpoint:**
-     - `/cliente/{id}` - Para Cliente
-     - `/empresa/{id}` - Para Empresa
+     - `/cliente/new/cadastro/save` (POST) - Para Cliente
+     - `/empresa/new/cadastro/save` (POST) - Para Empresa
+
+2. **Detalhamento:** 
    - **Descrição:**
      - Exibe todas as informações de determinado Segurado, de acordo com o id informado na URL.
-  
-4. **Listagem:** (GET)
    - **Endpoint:**
-     - `/auth/registrar` - Para Cliente
-     - `/auth/registrar` - Para Empresa
+     - `/cliente/{id}` (GET) - Para Cliente
+     - `/empresa/{id}` (GET) - Para Empresa
+
+4. **Listagem:** 
    - **Descrição:**
      - Exibe a lista de Cliente ou Empresa.
-
-5. **Listagem com filtros:** (POST)
    - **Endpoint:**
-     - `/auth/registrar` - Para Cliente
-     - `/auth/registrar` - Para Empresa
+     - `/auth/registrar` (GET) - Para Cliente
+     - `/auth/registrar` (GET) - Para Empresa
+
+5. **Listagem com filtros:** 
    - **Descrição:**
      - Exibe uma lista filtrada de Cliente ou Empresa. A filtragem traz todos os itens da lista geral que contenham uma parte ou um todo do parâmetro informado na requisição, de acordo com as seguintes informações.
-
-6. **Atualização:** (PUT)
    - **Endpoint:**
-     - `/cliente/{id}/atualizar` - Para Cliente
-     - `/empresa/{id}/atualizar` - Para Empresa
+     - `/auth/registrar` (POST) - Para Cliente
+     - `/auth/registrar` (POST) - Para Empresa
+
+6. **Atualização:** 
    - **Descrição:**
      - Atualiza as informações de um Segurado, de acordo com o id informado na URL.
-
-8. **Inativação:** (DELETE)
    - **Endpoint:**
-     - `/cliente/{id}/inativar` - Para Cliente
-     - `/empresa/{id}/inativar` - Para Empresa
+     - `/cliente/{id}/atualizar` (PUT) - Para Cliente
+     - `/empresa/{id}/atualizar` (PUT) - Para Empresa
+
+8. **Inativação:** 
    - **Descrição:**
      - Inativa um Segurado, de acordo com o id informado na URL.
+   - **Endpoint:**
+     - `/cliente/{id}/inativar` (DELETE) - Para Cliente
+     - `/empresa/{id}/inativar` (DELETE) - Para Empresa
+
 
 ------------------------------------------------------------------------------
 
