@@ -78,47 +78,42 @@ Dito isso, optei por fazer Controllers diferentes para cada tipo de Segurado, po
 
 #### Funcionalidades
 
-1. **Cadastro:** 
-   - **Descrição:**
-     - Permite o cadastro de um novo Segurado.
-   - **Endpoint:**
-     - `/cliente/new/cadastro/save` (POST) - Para Cliente
-     - `/empresa/new/cadastro/save` (POST) - Para Empresa
+1. **Cadastro:**
+   - **Método:** POST
+   - **Endpoint Cliente:** `/cliente/new/cadastro/save`
+   - **Endpoint Empresa:** `/empresa/new/cadastro/save`
+   - **Descrição:** Permite o cadastro de um novo Segurado.
 
-2. **Detalhamento:** 
-   - **Descrição:**
-     - Exibe todas as informações de determinado Segurado, de acordo com o id informado na URL.
-   - **Endpoint:**
-     - `/cliente/{id}` (GET) - Para Cliente
-     - `/empresa/{id}` (GET) - Para Empresa
+2. **Detalhamento:**
+   - **Método:** GET
+   - **Endpoint Cliente:** `/cliente/{id}`
+   - **Endpoint Empresa:** `/empresa/{id}`
+   - **Descrição:** Exibe todas as informações de determinado Segurado, de acordo com o id informado na URL.
 
-4. **Listagem:** 
-   - **Descrição:**
-     - Exibe a lista de Cliente ou Empresa.
-   - **Endpoint:**
-     - `/auth/registrar` (GET) - Para Cliente
-     - `/auth/registrar` (GET) - Para Empresa
+3. **Listagem:**
+   - **Método:** GET
+   - **Endpoint Cliente:** `/auth/registrar`
+   - **Endpoint Empresa:** `/auth/registrar`
+   - **Descrição:** Exibe a lista de Cliente ou Empresa.
 
-5. **Listagem com filtros:** 
-   - **Descrição:**
-     - Exibe uma lista filtrada de Cliente ou Empresa. A filtragem traz todos os itens da lista geral que contenham uma parte ou um todo do parâmetro informado na requisição, de acordo com as seguintes informações.
-   - **Endpoint:**
-     - `/auth/registrar` (POST) - Para Cliente
-     - `/auth/registrar` (POST) - Para Empresa
+4. **Listagem com filtros:**
+   - **Método:** POST
+   - **Endpoint Cliente:** `/auth/registrar`
+   - **Endpoint Empresa:** `/auth/registrar`
+   - **Descrição:** Exibe uma lista filtrada de Cliente ou Empresa. A filtragem traz todos os itens da lista geral que contenham uma parte ou um todo do parâmetro informado na requisição.
 
-6. **Atualização:** 
-   - **Descrição:**
-     - Atualiza as informações de um Segurado, de acordo com o id informado na URL.
-   - **Endpoint:**
-     - `/cliente/{id}/atualizar` (PUT) - Para Cliente
-     - `/empresa/{id}/atualizar` (PUT) - Para Empresa
+5. **Atualização:**
+   - **Método:** PUT
+   - **Endpoint Cliente:** `/cliente/{id}/atualizar`
+   - **Endpoint Empresa:** `/empresa/{id}/atualizar`
+   - **Descrição:** Atualiza as informações de um Segurado, de acordo com o id informado na URL.
 
-8. **Inativação:** 
-   - **Descrição:**
-     - Inativa um Segurado, de acordo com o id informado na URL.
-   - **Endpoint:**
-     - `/cliente/{id}/inativar` (DELETE) - Para Cliente
-     - `/empresa/{id}/inativar` (DELETE) - Para Empresa
+6. **Inativação:**
+   - **Método:** DELETE
+   - **Endpoint Cliente:** `/cliente/{id}/inativar`
+   - **Endpoint Empresa:** `/empresa/{id}/inativar`
+   - **Descrição:** Inativa um Segurado, de acordo com o id informado na URL.
+
 
 
 ------------------------------------------------------------------------------
