@@ -41,13 +41,17 @@ A autenticação de usuários é essencial para controlar o acesso ao sistema, g
 
 #### Funcionalidades
 
-1. **Cadastro de Novo Usuário:**
-   - Endpoint: `/auth/registrar`
-   - Descrição: Permite o registro de novos usuários no sistema.
+1. **Cadastro:** 
+   - **Descrição:**
+     - Permite o registro de novos usuários no sistema.
+   - **Endpoint:**
+     - `/auth/registrar` (POST)
 
-2. **Login de Usuário:**
-   - Endpoint: `/auth/login`
-   - Descrição: Facilita o acesso de usuários já cadastrados, exigindo autenticação para utilizar as demais funcionalidades da API.
+2. **Cadastro:** 
+   - **Descrição:**
+     - Acesso de usuários já cadastrados, exigindo autenticação para utilizar as demais funcionalidades da API.
+   - **Endpoint:**
+     - `/auth/login` (POST)
 
 #### Tipo de Sistema e Medidas de Segurança
 
