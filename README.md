@@ -71,7 +71,7 @@ Na base de dados, tanto Clientes quanto Empresas compartilham características s
 
 ##### No sistema
 
-No contexto do sistema, Cliente e Empresa são tratados como duas sub-classes distintas que estendem todos os atributos e métodos de uma super-classe comum chamada Segurado. Essa super-classe, por sua vez, é definida como uma classe abstrata. A relação de herança entre Cliente e Empresa, utilizando Segurado como base, segue o modelo de herança de tipo SINGLE TABLE no JPA (Java Persistence API).
+No contexto do sistema, Cliente e Empresa são tratados como duas sub-classes distintas que estendem todos os atributos e métodos de uma super-classe comum chamada Segurado. Essa super-classe, por sua vez, é definida como uma classe abstrata. A relação de herança entre Cliente e Empresa, utilizando Segurado como base, segue o modelo de herança de tipo SINGLE TABLE disponibilizada pelo Hibernate.
 
 ##### Justificativa
 
