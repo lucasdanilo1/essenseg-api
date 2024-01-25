@@ -29,7 +29,7 @@ baseados na venda dos planos feitas para Segurados, de um Corretor.
 
 # Funcionalidades e Documentação
 
-Breve explicação sobre as funcionalidades gerais e peculiaridades de cada uma.
+Explicação sobre as funcionalidades gerais e peculiaridades de cada uma.
 
 Documentação completa detalhada, citando rotas dos endpoints, metodos de um, tipos de retorno e parâmetros requeridos 
 disponível em: https://lucasdanilo1.github.io/essenseg-api/
@@ -58,7 +58,7 @@ A autenticação de usuários é essencial para controlar o acesso ao sistema, g
 
 O sistema adotado para garantir a autenticidade dos usuários e a segurança das informações segue as melhores práticas disponíveis. Para obter detalhes sobre as medidas de segurança implementadas, consulte a [documentação específica](link) relacionada à segurança da API.
 
-## 2. Gestão de Segurados
+## 2. Gestão de Segurados 
 
 Os Segurados desempenham um papel fundamental no sistema, representando o ponto central da gestão e estabelecendo relações com outras entidades.
 Existem dois tipos de Segurados: Cliente e Empresa. 
@@ -103,20 +103,54 @@ Para cada um dos dois tipos de Segurado, foram desenvolvidos dois endpoints para
    - **Endpoint Cliente:** `/cliente/{id}/inativar`
    - **Endpoint Empresa:** `/empresa/{id}/inativar`
 
+## 3. Gestão de Operadora e Administradora
+
+A inclusão conjunta de Operadora e Administradora neste tópico se justifica devido à estreita relação entre ambas.
+
+A função da Operadora reside na oferta de planos de saúde específicos ao público. Frequentemente, é necessária a colaboração com Administradoras para gerenciar e administrar os Segurados que adquiriram um plano dessa mesma Operadora.
+
+Uma Operadora pode ter várias Administradoras, e uma Administradora pode administrar diversas Operadoras. Portanto foi adotado uma relação de muitos para muitos dessas duas entidades.
+
+Logo fez-se necessário um Controller específico para relacionar as diversas possibilidades de relação entre as duas entidades.
+
+#### Funcionalidades
+
+1. **Cadastro:**
+   
+   - **Descrição:** Permite o registro de novos usuários no sistema.
+   - **Método:** POST
+   - **Endpoint:** `/auth/registrar`
+
+3. **Cadastro:**
+   
+   - **Descrição:** Acesso de usuários já cadastrados, exigindo autenticação para utilizar as demais funcionalidades da API.
+   - **Método:** POST
+   - **Endpoint:** `/auth/login`
+
+
+#### Tipo de Sistema e Medidas de Segurança
+
+O sistema adotado para garantir a autenticidade dos usuários e a segurança das informações segue as melhores práticas disponíveis. Para obter detalhes sobre as medidas de segurança implementadas, consulte a [documentação específica](link) relacionada à segurança da API.
 
 ------------------------------------------------------------------------------
 
 ### Estratégia utilizada para distinção de tipos de Segurado
 
+**Modelo:**
+
 Na base de dados, tanto Clientes quanto Empresas compartilham características semelhantes, levando à escolha de uma abordagem unificada com uma única tabela para ambos. A diferenciação entre Cliente e Empresa é realizada por meio de uma coluna denominada "tipo".
 
-No contexto do sistema, Cliente e Empresa são tratados como duas sub-classes distintas que estendem todos os atributos e métodos de uma super-classe comum chamada Segurado. Essa super-classe, por sua vez, é definida como uma classe abstrata. A relação de herança entre Cliente e Empresa, utilizando Segurado como base, segue o modelo de herança de tipo SINGLE TABLE disponibilizada pelo Hibernate.
+No contexto do sistema, Cliente e Empresa são tratados como duas sub-classes distintas que estendem todos os atributos e métodos de uma super-classe comum chamada Segurado. Essa super-classe, por sua vez, é definida como uma classe abstrata. A relação de herança entre Cliente e Empresa segue o modelo de herança de tipo SINGLE TABLE disponibilizada pelo Hibernate.
 
 **Justificativa:**
 
 Esta abordagem foi adotada visando aprimorar a legibilidade do código, promover uma estrutura mais limpa e garantir um baixo acoplamento. A escolha do tipo de herança SINGLE TABLE no JPA contribui para uma representação eficiente e unificada na base de dados, enquanto no código do sistema, Clientes e Empresas mantêm uma hierarquia de classes que reflete suas similaridades e diferenças de forma clara e modular.
 
 Dito isso, optei por fazer Controllers diferentes para cada tipo de Segurado, pois para cada um, campos específicos são utilizados. Isso é importante para o tratamento específico de cada tipo e especialmente a validação dos campos obrigatórios para as funcionalidades de cadastro e atualização.
+
+**Justificativa:**
+
+Logo, mesmo que 
 
 ------------------------------------------------------------------------------
 
