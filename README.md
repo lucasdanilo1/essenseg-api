@@ -115,22 +115,8 @@ Logo fez-se necessário um Controller específico para relacionar as diversas po
 
 #### Funcionalidades
 
-1. **Cadastro:**
-   
-   - **Descrição:** Permite o registro de novos usuários no sistema.
-   - **Método:** POST
-   - **Endpoint:** `/auth/registrar`
-
-3. **Cadastro:**
-   
-   - **Descrição:** Acesso de usuários já cadastrados, exigindo autenticação para utilizar as demais funcionalidades da API.
-   - **Método:** POST
-   - **Endpoint:** `/auth/login`
 
 
-#### Tipo de Sistema e Medidas de Segurança
-
-O sistema adotado para garantir a autenticidade dos usuários e a segurança das informações segue as melhores práticas disponíveis. Para obter detalhes sobre as medidas de segurança implementadas, consulte a [documentação específica](link) relacionada à segurança da API.
 
 ------------------------------------------------------------------------------
 
