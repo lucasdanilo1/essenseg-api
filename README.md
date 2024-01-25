@@ -63,19 +63,7 @@ O sistema adotado para garantir a autenticidade dos usuários e a segurança das
 Os Segurados desempenham um papel fundamental no sistema, representando o ponto central da gestão e estabelecendo relações com outras entidades.
 Existem dois tipos de Segurados: Cliente e Empresa. 
 
-##### Na Base de Dados
-
-Na base de dados, tanto Clientes quanto Empresas compartilham características semelhantes, levando à escolha de uma abordagem unificada com uma única tabela para ambos. A diferenciação entre Cliente e Empresa é realizada por meio de uma coluna denominada "tipo".
-
-##### No sistema
-
-No contexto do sistema, Cliente e Empresa são tratados como duas sub-classes distintas que estendem todos os atributos e métodos de uma super-classe comum chamada Segurado. Essa super-classe, por sua vez, é definida como uma classe abstrata. A relação de herança entre Cliente e Empresa, utilizando Segurado como base, segue o modelo de herança de tipo SINGLE TABLE disponibilizada pelo Hibernate.
-
-##### Justificativa
-
-Esta abordagem foi adotada visando aprimorar a legibilidade do código, promover uma estrutura mais limpa e garantir um baixo acoplamento. A escolha do tipo de herança SINGLE TABLE no JPA contribui para uma representação eficiente e unificada na base de dados, enquanto no código do sistema, Clientes e Empresas mantêm uma hierarquia de classes que reflete suas similaridades e diferenças de forma clara e modular.
-
-Dito isso, optei por fazer Controllers diferentes para cada tipo de Segurado, pois para cada um, campos específicos são utilizados. Isso é importante para o tratamento especifico de cada tipo e especialmente a validação dos campos obrigatórios para as funcionalidades de cadastro e atualização. 
+**Link para a explicação detalhada:** [Entidade Segurado](#explicacao-segurado)
 
 #### Funcionalidades
 
@@ -115,6 +103,20 @@ Dito isso, optei por fazer Controllers diferentes para cada tipo de Segurado, po
    - **Endpoint Cliente:** `/cliente/{id}/inativar`
    - **Endpoint Empresa:** `/empresa/{id}/inativar`
 
+
+------------------------------------------------------------------------------
+
+### Seção de Explicação da Entidade Segurado {#explicacao-segurado}
+
+Na base de dados, tanto Clientes quanto Empresas compartilham características semelhantes, levando à escolha de uma abordagem unificada com uma única tabela para ambos. A diferenciação entre Cliente e Empresa é realizada por meio de uma coluna denominada "tipo".
+
+No contexto do sistema, Cliente e Empresa são tratados como duas sub-classes distintas que estendem todos os atributos e métodos de uma super-classe comum chamada Segurado. Essa super-classe, por sua vez, é definida como uma classe abstrata. A relação de herança entre Cliente e Empresa, utilizando Segurado como base, segue o modelo de herança de tipo SINGLE TABLE disponibilizada pelo Hibernate.
+
+**Justificativa:**
+
+Esta abordagem foi adotada visando aprimorar a legibilidade do código, promover uma estrutura mais limpa e garantir um baixo acoplamento. A escolha do tipo de herança SINGLE TABLE no JPA contribui para uma representação eficiente e unificada na base de dados, enquanto no código do sistema, Clientes e Empresas mantêm uma hierarquia de classes que reflete suas similaridades e diferenças de forma clara e modular.
+
+Dito isso, optei por fazer Controllers diferentes para cada tipo de Segurado, pois para cada um, campos específicos são utilizados. Isso é importante para o tratamento específico de cada tipo e especialmente a validação dos campos obrigatórios para as funcionalidades de cadastro e atualização.
 
 ------------------------------------------------------------------------------
 
