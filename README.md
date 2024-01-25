@@ -41,17 +41,18 @@ A autenticação de usuários é essencial para controlar o acesso ao sistema, g
 
 #### Funcionalidades
 
-1. **Cadastro:** 
+1. **Cadastro:**
    - **Descrição:**
      - Permite o registro de novos usuários no sistema.
-   - **Endpoint:**
-     - `/auth/registrar` (POST)
+   - **Método:** POST
+   - **Endpoint:** `/auth/registrar`
 
-2. **Cadastro:** 
+2. **Cadastro:**
    - **Descrição:**
      - Acesso de usuários já cadastrados, exigindo autenticação para utilizar as demais funcionalidades da API.
-   - **Endpoint:**
-     - `/auth/login` (POST)
+   - **Método:** POST
+   - **Endpoint:** `/auth/login`
+
 
 #### Tipo de Sistema e Medidas de Segurança
 
@@ -79,40 +80,41 @@ Dito isso, optei por fazer Controllers diferentes para cada tipo de Segurado, po
 #### Funcionalidades
 
 1. **Cadastro:**
+   - **Descrição:** Permite o cadastro de um novo Segurado.
    - **Método:** POST
    - **Endpoint Cliente:** `/cliente/new/cadastro/save`
    - **Endpoint Empresa:** `/empresa/new/cadastro/save`
-   - **Descrição:** Permite o cadastro de um novo Segurado.
 
 2. **Detalhamento:**
+   - **Descrição:** Exibe todas as informações de determinado Segurado, de acordo com o id informado na URL.
    - **Método:** GET
    - **Endpoint Cliente:** `/cliente/{id}`
    - **Endpoint Empresa:** `/empresa/{id}`
-   - **Descrição:** Exibe todas as informações de determinado Segurado, de acordo com o id informado na URL.
 
 3. **Listagem:**
+   - **Descrição:** Exibe a lista de Cliente ou Empresa.
    - **Método:** GET
    - **Endpoint Cliente:** `/auth/registrar`
    - **Endpoint Empresa:** `/auth/registrar`
-   - **Descrição:** Exibe a lista de Cliente ou Empresa.
 
 4. **Listagem com filtros:**
+   - **Descrição:** Exibe uma lista filtrada de Cliente ou Empresa. A filtragem traz todos os itens da lista geral que contenham uma parte ou um todo do parâmetro informado na requisição.
    - **Método:** POST
    - **Endpoint Cliente:** `/auth/registrar`
    - **Endpoint Empresa:** `/auth/registrar`
-   - **Descrição:** Exibe uma lista filtrada de Cliente ou Empresa. A filtragem traz todos os itens da lista geral que contenham uma parte ou um todo do parâmetro informado na requisição.
 
 5. **Atualização:**
+   - **Descrição:** Atualiza as informações de um Segurado, de acordo com o id informado na URL.
    - **Método:** PUT
    - **Endpoint Cliente:** `/cliente/{id}/atualizar`
    - **Endpoint Empresa:** `/empresa/{id}/atualizar`
-   - **Descrição:** Atualiza as informações de um Segurado, de acordo com o id informado na URL.
 
 6. **Inativação:**
+   - **Descrição:** Inativa um Segurado, de acordo com o id informado na URL.
    - **Método:** DELETE
    - **Endpoint Cliente:** `/cliente/{id}/inativar`
    - **Endpoint Empresa:** `/empresa/{id}/inativar`
-   - **Descrição:** Inativa um Segurado, de acordo com o id informado na URL.
+
 
 
 
