@@ -75,7 +75,7 @@ No contexto do sistema, Cliente e Empresa são tratados como duas sub-classes di
 
 Esta abordagem foi adotada visando aprimorar a legibilidade do código, promover uma estrutura mais limpa e garantir um baixo acoplamento. A escolha do tipo de herança SINGLE TABLE no JPA contribui para uma representação eficiente e unificada na base de dados, enquanto no código do sistema, Clientes e Empresas mantêm uma hierarquia de classes que reflete suas similaridades e diferenças de forma clara e modular.
 
-Dito isso, optei por fazer Controllers diferentes para cada tipo de Segurado, pois para cada um, campos específicos são utilizados. Isso é importante para o tratamento especifico de cada tipo e principalmente a validação dos campos obrigatórios para o cadastro e atualização de cada tipo. 
+Dito isso, optei por fazer Controllers diferentes para cada tipo de Segurado, pois para cada um, campos específicos são utilizados. Isso é importante para o tratamento especifico de cada tipo e especialmente a validação dos campos obrigatórios para o cadastro e atualização de cada tipo. 
 
 #### Funcionalidades
 
