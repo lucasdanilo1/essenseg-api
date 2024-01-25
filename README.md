@@ -27,7 +27,7 @@ baseados na venda dos planos feitas para Segurados, de um Corretor.
 
 ------------------------------------------------------------------------------
 
-## Funcionalidades e Documentação
+# Funcionalidades e Documentação
 
 Breve explicação sobre as funcionalidades gerais e peculiaridades de cada uma.
 
@@ -35,7 +35,7 @@ Documentação completa detalhada, citando rotas dos endpoints, metodos de um, t
 disponível em: https://lucasdanilo1.github.io/essenseg-api/
 
 
-### 1. Autenticação de Usuários
+## 1. Autenticação de Usuários
 
 A autenticação de usuários é essencial para controlar o acesso ao sistema, garantindo que apenas usuários autorizados possam utilizar as funcionalidades disponíveis na API. O processo de autenticação envolve o cadastro de novos usuários e o login de usuários já registrados.
 
@@ -60,7 +60,7 @@ O sistema adotado para garantir a autenticidade dos usuários e a segurança das
 
 ------------------------------------------------------------------------------
 
-### 2. Gestão de Segurados
+## 2. Gestão de Segurados
 
 Os Segurados desempenham um papel fundamental no sistema, representando o ponto central da gestão e estabelecendo relações com outras entidades.
 Existem dois tipos de Segurados: Cliente e Empresa. 
