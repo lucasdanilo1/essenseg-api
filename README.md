@@ -58,8 +58,6 @@ A autenticação de usuários é essencial para controlar o acesso ao sistema, g
 
 O sistema adotado para garantir a autenticidade dos usuários e a segurança das informações segue as melhores práticas disponíveis. Para obter detalhes sobre as medidas de segurança implementadas, consulte a [documentação específica](link) relacionada à segurança da API.
 
-------------------------------------------------------------------------------
-
 ## 2. Gestão de Segurados
 
 Os Segurados desempenham um papel fundamental no sistema, representando o ponto central da gestão e estabelecendo relações com outras entidades.
